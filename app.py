@@ -17,6 +17,11 @@ def favicon():
     return app.send_static_file("img/logo.png")
 
 
+@app.route("/favicon.ico")
+def favicon_ico():
+    return app.send_static_file("img/logo.png")
+
+
 @app.route("/")
 def index():
     return render_template("home.html")
