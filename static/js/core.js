@@ -90,7 +90,7 @@ try {
 function updateSoundUI() {
   soundIcons.forEach((icon) => {
     if (!icon) return;
-    icon.src = muted ? "/static/img/speaker non aktif.png" : "/static/img/speaker aktif.png";
+    icon.src = muted ? "/static/img/speaker_non_aktif.png" : "/static/img/speaker_aktif.png";
   });
 
   soundButtons.forEach((btn) => {
