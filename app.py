@@ -12,6 +12,10 @@ STATIC_FOLDER = os.path.join(BASE_DIR, "static")
 app = Flask(__name__, static_folder=STATIC_FOLDER, static_url_path="/static", template_folder="templates")
 
 
+@app.route("/favicon.png")
+def favicon():
+    return app.send_static_file("img/logo.png")
+
 
 @app.route("/")
 def index():
