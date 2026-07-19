@@ -24,8 +24,7 @@
 .menu-wrap {
   position: absolute;
   left: 50%;
-  /* moved lower and made wider */
-  bottom: -12%;
+  bottom: 4%;
   z-index: 28;
   width: min(60%, 720px);
   aspect-ratio: 540 / 420;
