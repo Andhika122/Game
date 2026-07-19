@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Gemanti - Pitutur Deskripsi 1{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/css/pitutur_profil.css">
+<link rel="stylesheet" href="/static/css/pitutur_deskripsi_game_1.css">
+{% endblock %}
+
+{% block content %}
+  <section class="pitutur-page direct-view" aria-label="Deskripsi Game Bagian 1">
+    <!-- Reuse menu/background elements for consistent look -->
+    <img class="background-image" src="/static/img/latar%20belakang.png" alt="" aria-hidden="true">
+    <img class="front-ground" src="/static/img/tanah.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-left" src="/static/img/rumput%20kiri.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-right" src="/static/img/rumput%20%20kanan.png" alt="" aria-hidden="true">
+
+    <button class="icon-button top-action" id="soundButton" type="button" aria-label="Matikan suara">
+      <img id="soundIcon" src="/static/img/speaker%20aktif.png" alt="">
+    </button>
+    <button class="icon-button top-action" id="profileButton" type="button" aria-label="Profil">
+      <img src="/static/img/home.png" alt="">
+    </button>
+
+    <img class="janur janur-left" src="/static/img/jenur%20kiri.png" alt="" aria-hidden="true">
+    <img class="janur janur-right" src="/static/img/janur%20kanan.png" alt="" aria-hidden="true">
+    <img class="temple-image" src="/static/img/candi.png" alt="" aria-hidden="true">
+    <img class="tower-image" src="/static/img/tugu.png" alt="" aria-hidden="true">
+    <img class="people-image" src="/static/img/orang.png" alt="" aria-hidden="true">
+    <img class="wayang-image" src="/static/img/wayang.png" alt="" aria-hidden="true">
+
+    <img class="bottom-decor food-image" src="/static/img/makanan.png" alt="" aria-hidden="true">
+    <img class="bottom-decor music-image" src="/static/img/alatmusik.png" alt="" aria-hidden="true">
+
+    <div class="pitutur-panel no-border">
+      <div class="pitutur-description-page">
+        <h1>Deskripsi Game</h1>
+        <div class="pitutur-description-content">
+      <p>
+        GEMATI (Game Tambah Kurang, Interaktif) adalah game edukatif bertema budaya
+        Yogyakarta yang dibuat khusus untuk membantu siswa memahami
+        <strong>konsep penjumlahan dan pengurangan bilangan bulat</strong>.
+      </p>
+      <p>
+        Dalam GEMATI terdapat <strong>tiga bahasa</strong>, yaitu Bahasa Jawa, Bahasa Indonesia,
+        dan Bahasa Inggris.
+      </p>
+      <p>Game ini punya tiga bagian yaitu Pitutur, Dolanan dan Pitakon.</p>
+      <ol>
+        <li>
+          <strong>Pitutur</strong> berisi penjelasan konsep bilangan bulat positif
+          dan negatif serta pemberian contoh penjumlahan dan pengurangan pada
+          bilangan tersebut.
+        </li>
+        <li>
+          <strong>Dolanan</strong> merupakan bagian inti game. Pada bagian ini,
+          pemain diberikan kesempatan memainkan game untuk menentukan hasil
+          penjumlahan maupun pengurangan bilangan bulat. Bagian ini
+          menstimulus pemain untuk dapat membangun konsep penjumlahan dan
+          pengurangan pada bilangan bulat.
+        </li>
+        <li>
+          <strong>Pitakon</strong> berisi soal untuk menguji pemahaman pemain
+          akan konsep penjumlahan dan pengurangan bilangan bulat. Terdapat
+          20 soal yang mencakup penjumlahan dan pengurangan bilangan bulat
+          yang tersebar dalam <strong>14 kategori</strong>.
+        </li>
+      </ol>
+      <div class="pitutur-description-actions">
+        <button class="page-arrow page-arrow-left" type="button" aria-label="Kembali ke profil" onclick="location.href='/pitutur/profil'">
+          <img class="arrow-img" src="/static/img/kiri.png" alt="Kembali">
+        </button>
+        <button class="page-arrow page-arrow-right" type="button" aria-label="Lanjut ke bagian 2" onclick="location.href='/pitutur/deskripsi-2'">
+          <img class="arrow-img" src="/static/img/kanan.png" alt="Lanjut">
+        </button>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

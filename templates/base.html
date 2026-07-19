@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Gemanti{% endblock %}</title>
+  <link rel="stylesheet" href="/static/css/base.css">
+  {% block styles %}{% endblock %}
+</head>
+<body>
+  <main id="stage" class="stage">
+    {% block content %}{% endblock %}
+  </main>
+
+  <div id="feedbackModal" class="feedback-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="feedback-modal__overlay"></div>
+    <div class="feedback-modal__dialog" role="alertdialog" aria-labelledby="feedbackModalTitle" aria-describedby="feedbackModalMessage">
+      <h2 id="feedbackModalTitle" class="sr-only">Feedback Jawaban</h2>
+      <p id="feedbackModalMessage" class="feedback-modal__message"></p>
+      <button type="button" class="btn feedback-modal__button" id="feedbackModalButton">Lanjut</button>
+    </div>
+  </div>
+
+  <script src="/static/js/core.js"></script>
+  <script src="/static/js/helpers-drag.js"></script>
+  <script src="/static/js/game.js"></script>
+  <script src="/static/js/brain-split.js"></script>
+  <script src="/static/js/init.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+.brand {
+  position: absolute;
+  top: 0.6%;
+  left: 50%;
+  width: min(58%, 760px);
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 25;
+}
+
+.brand-logo {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 10px rgba(104, 47, 20, 0.24));
+  /* smoother, slower floating: gentle bob + subtle sway + tiny rotation */
+  animation: logo-float3 8s cubic-bezier(.22,.9,.37,.99) infinite;
+  will-change: transform;
+  transform-origin: 50% 50%;
+}
+
+.menu-wrap {
+  position: absolute;
+  left: 50%;
+  /* moved lower and made wider */
+  bottom: -12%;
+  z-index: 28;
+  width: min(60%, 720px);
+  aspect-ratio: 540 / 420;
+  transform: translateX(-50%);
+}
+
+.menu-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  transition: transform 0.18s ease;
+}
+
+.menu-card:disabled {
+  cursor: default;
+}
+
+.menu-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@keyframes logo-float3 {
+  0% { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+  20% { transform: translate3d(-6px,-8px,0) rotate(-0.6deg) scale(1.005); }
+  40% { transform: translate3d(-10px,-2px,0) rotate(-0.35deg) scale(1.002); }
+  60% { transform: translate3d(-6px,6px,0) rotate(0.35deg) scale(1); }
+  80% { transform: translate3d(6px,4px,0) rotate(0.4deg) scale(1.003); }
+  100% { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+}
+
+/* accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo { animation: none !important; }
+}
+
+/* Keep the start button visible on small screens */
+@media (max-width: 720px) {
+  .menu-wrap {
+    bottom: 4% !important;
+    width: min(72%, 420px);
+  }
+}

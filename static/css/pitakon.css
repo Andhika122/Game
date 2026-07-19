@@ -1,0 +1,103 @@
+.pitakon-page {
+  width: min(96vw, 1180px);
+  margin: 2rem auto;
+  min-height: 84vh;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(6px) saturate(125%);
+  border-radius: 24px;
+  padding: clamp(24px, 3.5vw, 48px) clamp(20px, 4vw, 52px);
+  box-shadow: 0 28px 58px rgba(12, 18, 24, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Make pitakon content match dolanan layout (centered intro) */
+.pitakon-page h2 {
+  margin: 0 0 0.75rem;
+  color: #5c2e1e;
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  line-height: 1.05;
+  text-align: center;
+}
+
+.pitakon-page p {
+  margin: 0 auto 1.6rem;
+  max-width: 760px;
+  color: #3d2821;
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  line-height: 1.8;
+  text-align: center;
+}
+
+.pitakon-page .btn {
+  margin-top: 12px;
+  box-shadow: 0 10px 0 rgba(98, 55, 18, 0.18);
+}
+
+/* Align the menu panel to the top for pitakon page */
+.game-menu-page.pitakon-top {
+  align-items: flex-start;
+  padding-top: clamp(24px, 4vw, 72px);
+}
+
+.game-menu-page.pitakon-top .menu-panel {
+  margin-top: 6px;
+}
+
+/* Ensure the panel and its content sit above decorative background elements */
+.menu-panel {
+  position: relative;
+  z-index: 9999;
+}
+
+.pitakon-page {
+  position: relative;
+  z-index: 10000;
+}
+
+.pitakon-page h2 {
+  margin: 0 0 1.4rem;
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  color: #5b2216;
+  text-align: center;
+}
+
+.pitakon-page p {
+  margin: 0 0 1.8rem;
+  color: #312117;
+  line-height: 1.8;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  max-width: 860px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 1.8rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f4b15f 0%, #d96a10 100%);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 0 rgba(98, 55, 18, 0.24);
+}
+
+@media (max-width: 840px) {
+  .component-page {
+    padding: 2rem 1.2rem 2.5rem;
+  }
+
+  .component-page h2 {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .component-page p {
+    font-size: clamp(0.95rem, 2.5vw, 1.2rem);
+  }
+}

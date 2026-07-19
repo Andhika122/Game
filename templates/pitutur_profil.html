@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}Gemanti - Pitutur Profil{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/css/pitutur_profil.css">
+{% endblock %}
+
+{% block content %}
+  <section class="pitutur-page direct-view" aria-label="Pitutur Profil">
+    <!-- Reuse menu/background elements for consistent look -->
+    <img class="background-image" src="/static/img/latar%20belakang.png" alt="" aria-hidden="true">
+    <img class="front-ground" src="/static/img/tanah.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-left" src="/static/img/rumput%20kiri.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-right" src="/static/img/rumput%20%20kanan.png" alt="" aria-hidden="true">
+
+    <button class="icon-button top-action" id="soundButton" type="button" aria-label="Matikan suara">
+      <img id="soundIcon" src="/static/img/speaker%20aktif.png" alt="">
+    </button>
+    <button class="icon-button top-action" id="profileButton" type="button" aria-label="Profil">
+      <img src="/static/img/home.png" alt="">
+    </button>
+
+    <img class="janur janur-left" src="/static/img/jenur%20kiri.png" alt="" aria-hidden="true">
+    <img class="janur janur-right" src="/static/img/janur%20kanan.png" alt="" aria-hidden="true">
+    <img class="temple-image" src="/static/img/candi.png" alt="" aria-hidden="true">
+    <img class="tower-image" src="/static/img/tugu.png" alt="" aria-hidden="true">
+    <img class="people-image" src="/static/img/orang.png" alt="" aria-hidden="true">
+    <img class="wayang-image" src="/static/img/wayang.png" alt="" aria-hidden="true">
+
+    <img class="bottom-decor food-image" src="/static/img/makanan.png" alt="" aria-hidden="true">
+    <img class="bottom-decor music-image" src="/static/img/alatmusik.png" alt="" aria-hidden="true">
+
+    <div class="pitutur-panel">
+      <div class="pitutur-profil-page">
+        <h1>Disusun Oleh:</h1>
+        
+        <div class="pitutur-advisor pitutur-advisor-top">
+          <div class="advisor-avatar">
+            <img src="/static/img/profil.png" alt="Dosen Pembimbing Atas">
+          </div>
+          <div class="advisor-bubble advisor-bubble-top">
+            <p class="advisor-title">Dosen Pembimbing</p>
+            <p class="advisor-name">Erlina Prihatnani, S.Si., M.Pd.</p>
+          </div>
+        </div>
+
+        <!-- Bottom advisor (different color) -->
+        <div class="pitutur-advisor pitutur-advisor-bottom">
+          <div class="advisor-avatar">
+            <img src="/static/img/profil.png" alt="Dosen Pembimbing Bawah">
+          </div>
+          <div class="advisor-bubble advisor-bubble-bottom">
+            <p class="advisor-title">Dosen Pembimbing</p>
+            <p class="advisor-name">Erlina Prihatnani, S.Si., M.Pd.</p>
+          </div>
+        </div>
+
+        <div class="pitutur-footer">
+          <span class="pitutur-campus">Universitas Kristen Satya Wacana</span>
+          <button class="page-arrow page-arrow-right" type="button" aria-label="Lanjut ke deskripsi" onclick="location.href='/pitutur/deskripsi-1'">
+            <img class="arrow-img" src="/static/img/kanan.png" alt="Lanjut">
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

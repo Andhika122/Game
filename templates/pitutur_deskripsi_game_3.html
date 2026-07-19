@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}Gemanti - Pitutur Deskripsi 3{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/css/pitutur_profil.css">
+<link rel="stylesheet" href="/static/css/pitutur_deskripsi_game_3.css">
+{% endblock %}
+
+{% block content %}
+  <section class="pitutur-page direct-view" aria-label="Deskripsi Game Bagian 3">
+    <!-- Reuse menu/background elements for consistent look -->
+    <img class="background-image" src="/static/img/latar%20belakang.png" alt="" aria-hidden="true">
+    <img class="front-ground" src="/static/img/tanah.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-left" src="/static/img/rumput%20kiri.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-right" src="/static/img/rumput%20%20kanan.png" alt="" aria-hidden="true">
+
+    <button class="icon-button top-action" id="soundButton" type="button" aria-label="Matikan suara">
+      <img id="soundIcon" src="/static/img/speaker%20aktif.png" alt="">
+    </button>
+    <button class="icon-button top-action" id="profileButton" type="button" aria-label="Profil">
+      <img src="/static/img/home.png" alt="">
+    </button>
+
+    <img class="janur janur-left" src="/static/img/jenur%20kiri.png" alt="" aria-hidden="true">
+    <img class="janur janur-right" src="/static/img/janur%20kanan.png" alt="" aria-hidden="true">
+    <img class="temple-image" src="/static/img/candi.png" alt="" aria-hidden="true">
+    <img class="tower-image" src="/static/img/tugu.png" alt="" aria-hidden="true">
+    <img class="people-image" src="/static/img/orang.png" alt="" aria-hidden="true">
+    <img class="wayang-image" src="/static/img/wayang.png" alt="" aria-hidden="true">
+
+    <img class="bottom-decor food-image" src="/static/img/makanan.png" alt="" aria-hidden="true">
+    <img class="bottom-decor music-image" src="/static/img/alatmusik.png" alt="" aria-hidden="true">
+
+    <div class="pitutur-panel no-border">
+      <div class="pitutur-description-page">
+        <h1>Hal yang Perlu Diperhatikan</h1>
+        <div class="pitutur-description-content">
+      <p>Berikut beberapa hal yang perlu diperhatikan dalam GEMATI.</p>
+      <ul class="pitutur-note-list">
+        <li>
+          <strong>Soal.</strong> Terdapat 6 kategori soal penjumlahan dan
+          8 kategori soal pengurangan. Untuk masing-masing kategori, terdapat
+          beberapa soal yang akan muncul secara acak.
+        </li>
+        <li>
+          <strong>Nyawa.</strong> Terdapat 3 nyawa yang diberikan kepada
+          pemain. Nyawa akan berkurang 1 untuk setiap jawaban salah. Jika
+          nyawa habis, maka pemain harus mengulang permainan.
+        </li>
+        <li>
+          <strong>Simbol bilangan bulat.</strong> Terdapat dua jenis simbol
+          bilangan bulat, yaitu simbol bilangan bulat positif dan simbol
+          bilangan bulat negatif. Pasangan simbol bilangan bulat positif dan
+          bilangan bulat negatif bernilai nol.
+        </li>
+        <li>
+          <strong>Teknik <em>drop and drag</em>.</strong> Teknik untuk
+          mempraktikkan proses penjumlahan dan pengurangan bilangan bulat.
+          Pemain dapat menyeret (<em>drag</em>) simbol bilangan bulat dengan
+          jari, lalu meletakkannya (<em>drop</em>) ke tempat yang sesuai.
+        </li>
+      </ul>
+      <div class="pitutur-description-actions actions-split">
+        <button class="page-arrow page-arrow-left" type="button" aria-label="Kembali ke bagian 2" onclick="location.href='/pitutur/deskripsi-2'">
+          <img class="arrow-img" src="/static/img/kiri.png" alt="Kembali">
+        </button>
+        <a class="btn" href="/menu">Selesai</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

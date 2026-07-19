@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Gemanti - Menu{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/css/menu.css">
+{% endblock %}
+
+{% block content %}
+  <section class="game-menu-page direct-view" role="main">
+
+    <!-- Reuse home background elements for visual parity -->
+    <img class="background-image" src="/static/img/latar%20belakang.png" alt="" aria-hidden="true">
+    <img class="front-ground" src="/static/img/tanah.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-left" src="/static/img/rumput%20kiri.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-right" src="/static/img/rumput%20%20kanan.png" alt="" aria-hidden="true">
+
+    <button class="icon-button top-action" id="soundButton" type="button" aria-label="Matikan suara">
+      <img id="soundIcon" src="/static/img/speaker%20aktif.png" alt="">
+    </button>
+    <button class="icon-button top-action" id="profileButton" type="button" aria-label="Profil">
+      <img src="/static/img/home.png" alt="">
+    </button>
+
+    <img class="janur janur-left" src="/static/img/jenur%20kiri.png" alt="" aria-hidden="true">
+    <img class="janur janur-right" src="/static/img/janur%20kanan.png" alt="" aria-hidden="true">
+    <img class="temple-image" src="/static/img/candi.png" alt="" aria-hidden="true">
+    <img class="tower-image" src="/static/img/tugu.png" alt="" aria-hidden="true">
+    <img class="people-image" src="/static/img/orang.png" alt="" aria-hidden="true">
+    <img class="wayang-image" src="/static/img/wayang.png" alt="" aria-hidden="true">
+
+    <img class="bottom-decor food-image" src="/static/img/makanan.png" alt="" aria-hidden="true">
+    <img class="bottom-decor music-image" src="/static/img/alatmusik.png" alt="" aria-hidden="true">
+
+    <div class="menu-panel">
+      <div class="game-menu-items">
+
+        <div class="game-menu-item">
+          <a href="/pitutur">
+            <img src="/static/img/pitutur.png" alt="Pitutur">
+          </a>
+        </div>
+
+        <div class="game-menu-item">
+          <a href="/dolanan">
+            <img src="/static/img/dolanan.png" alt="Dolanan">
+          </a>
+        </div>
+
+        <div class="game-menu-item">
+          <a href="/pitakon">
+            <img src="/static/img/pitakon.png" alt="Pitakon">
+          </a>
+        </div>
+
+      </div>
+    </div>
+  
+  </section>
+   
+{% endblock %}

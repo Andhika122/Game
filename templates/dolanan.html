@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}Gemanti - Dolanan{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/css/pitakon.css">
+<link rel="stylesheet" href="/static/css/dolanan.css">
+{% endblock %}
+
+{% block content %}
+  <section class="game-menu-page direct-view pitakon-top" role="main">
+
+    <img class="background-image" src="/static/img/latar%20belakang.png" alt="" aria-hidden="true">
+    <img class="front-ground" src="/static/img/tanah.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-left" src="/static/img/rumput%20kiri.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-right" src="/static/img/rumput%20%20kanan.png" alt="" aria-hidden="true">
+
+    <img class="janur janur-left" src="/static/img/jenur%20kiri.png" alt="" aria-hidden="true">
+    <img class="janur janur-right" src="/static/img/janur%20kanan.png" alt="" aria-hidden="true">
+    <img class="temple-image" src="/static/img/candi.png" alt="" aria-hidden="true">
+    <img class="tower-image" src="/static/img/tugu.png" alt="" aria-hidden="true">
+    <img class="people-image" src="/static/img/orang.png" alt="" aria-hidden="true">
+    <img class="wayang-image" src="/static/img/wayang.png" alt="" aria-hidden="true">
+
+    <img class="bottom-decor food-image" src="/static/img/makanan.png" alt="" aria-hidden="true">
+    <img class="bottom-decor music-image" src="/static/img/alatmusik.png" alt="" aria-hidden="true">
+
+    <div class="menu-panel">
+      <div class="pitakon-page">
+        <section class="dolanan-select-page" aria-label="Pilih permainan Dolanan">
+          <div class="dolanan-select-intro">
+            <p class="dolanan-select-overline">Dolanan</p>
+            <h1>Pilih jenis permainan</h1>
+            <p class="dolanan-select-copy">Coba latihan hitung dengan penjumlahan atau pengurangan bilangan bulat. Pilih dulu jenis yang ingin kamu mainkan.</p>
+          </div>
+
+          <div class="dolanan-select-card">
+            <article class="dolanan-select-item">
+              <div class="item-deco item-deco--plus"></div>
+              <img src="/static/img/penjemlahan.png" alt="Ilustrasi penjumlahan" class="dolanan-select-image">
+              <h2>Penjumlahan</h2>
+              <p>Kerjakan soal penjumlahan dan latih kemampuan menambahkan bilangan bulat.</p>
+              <a class="btn" href="/dolanan/penjumlahan">Main Penjumlahan</a>
+            </article>
+
+            <article class="dolanan-select-item">
+              <div class="item-deco item-deco--minus"></div>
+              <img src="/static/img/pengurangan.png" alt="Ilustrasi pengurangan" class="dolanan-select-image">
+              <h2>Pengurangan</h2>
+              <p>Kerjakan soal pengurangan dan latih kemampuan mengurangkan bilangan bulat.</p>
+              <a class="btn" href="/dolanan/pengurangan">Main Pengurangan</a>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+
+  </section>
+{% endblock %}

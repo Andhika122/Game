@@ -1,0 +1,116 @@
+.dolanan-select-page {
+  margin: 2rem auto;
+  max-width: min(96vw, 1180px);
+  padding: 2rem 1rem 3rem;
+}
+
+.dolanan-select-intro {
+  max-width: 760px;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.dolanan-select-overline {
+  margin: 0 0 0.75rem;
+  color: #9c5b28;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-size: 0.92rem;
+}
+
+.dolanan-select-intro h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  line-height: 1.05;
+  color: #5c2e1e;
+}
+
+.dolanan-select-copy {
+  margin: 1rem auto 0;
+  max-width: 720px;
+  color: #3d2821;
+  font-size: clamp(1rem, 1.45vw, 1.18rem);
+  line-height: 1.8;
+}
+
+.dolanan-select-card {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.dolanan-select-item {
+  position: relative;
+  display: grid;
+  gap: 1.2rem;
+  padding: 2rem 1.6rem;
+  min-height: 380px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255, 250, 241, 0.96), #fffaf3);
+  border: 1px solid rgba(148, 106, 44, 0.16);
+  box-shadow: 0 22px 48px rgba(38, 25, 11, 0.12);
+  text-align: center;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dolanan-select-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 58px rgba(38, 25, 11, 0.16);
+}
+
+.item-deco {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 104px;
+  height: 104px;
+  border-radius: 50%;
+  opacity: 0.24;
+}
+
+.item-deco--plus {
+  background: radial-gradient(circle, rgba(255, 195, 78, 0.9), transparent 58%);
+}
+
+.item-deco--minus {
+  background: radial-gradient(circle, rgba(172, 118, 143, 0.88), transparent 58%);
+}
+
+.dolanan-select-image {
+  width: 130px;
+  margin: 0 auto;
+  display: block;
+}
+
+.dolanan-select-item h2 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: #6d2f1f;
+}
+
+.dolanan-select-item p {
+  margin: 0;
+  color: #413025;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.75;
+}
+
+.btn {
+  justify-self: center;
+  padding: 1rem 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f4b15f 0%, #d96a10 100%);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 840px) {
+  .dolanan-select-card {
+    grid-template-columns: 1fr;
+  }
+}

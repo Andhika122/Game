@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soal Acak</title>
+  <style>
+    body {
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #eef7ff;
+      font-family: Arial, sans-serif;
+      color: #1f2933;
+    }
+
+    main {
+      width: min(90%, 520px);
+      padding: 32px;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 14px 36px rgba(31, 41, 51, 0.14);
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+    }
+
+    #soal {
+      margin: 28px 0 12px;
+      font-size: 42px;
+      font-weight: 700;
+    }
+
+    #tipe,
+    #jawaban {
+      min-height: 24px;
+      margin: 8px 0;
+      font-weight: 600;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px 22px;
+      border: 0;
+      border-radius: 999px;
+      background: #f58d32;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    button:hover {
+      filter: brightness(1.05);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Soal Acak</h1>
+    <p>Tekan tombol untuk membuat soal penjumlahan bilangan bulat.</p>
+
+    <p id="tipe">Tipe soal akan muncul di sini.</p>
+    <div id="soal">-</div>
+    <p id="jawaban">Jawaban akan muncul di sini.</p>
+
+    <button type="button" onclick="buatSoal()">Buat Soal</button>
+  </main>
+
+  <script>
+    function angkaPositif() {
+      return Math.floor(Math.random() * 5) + 1;
+    }
+
+    function angkaNegatif() {
+      return -(Math.floor(Math.random() * 5) + 1);
+    }
+
+    function formatAngka(angka) {
+      return angka < 0 ? `(${angka})` : angka;
+    }
+
+    function buatSoal() {
+      const tipe = Math.floor(Math.random() * 4) + 1;
+      let a;
+      let b;
+      let namaTipe;
+
+      switch (tipe) {
+        case 1:
+          a = angkaPositif();
+          b = angkaPositif();
+          namaTipe = "Tipe 1: positif + positif";
+          break;
+
+        case 2:
+          a = angkaNegatif();
+          b = angkaNegatif();
+          namaTipe = "Tipe 2: negatif + negatif";
+          break;
+
+        case 3:
+          a = angkaPositif();
+          b = angkaNegatif();
+          namaTipe = "Tipe 3: positif + negatif";
+          break;
+
+        default:
+          a = angkaNegatif();
+          b = angkaPositif();
+          namaTipe = "Tipe 4: negatif + positif";
+          break;
+      }
+
+      document.getElementById("tipe").textContent = namaTipe;
+      document.getElementById("soal").textContent = `${formatAngka(a)} + ${formatAngka(b)} = ?`;
+      document.getElementById("jawaban").textContent = `Jawaban: ${a + b}`;
+    }
+
+    buatSoal();
+  </script>
+</body>
+</html>
