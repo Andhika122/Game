@@ -209,12 +209,13 @@ button:focus-visible,
 
 .front-ground {
   position: absolute;
-  left: -10%;
-  right: -10%;
+  left: 50%;
   bottom: -15%;
-  width: 120%;
+  width: min(120%, 120vw);
+  max-width: 1000px;
   height: 33%;
   object-fit: cover;
+  transform: translateX(-50%);
   z-index: 5;
   pointer-events: none;
 }
@@ -222,7 +223,7 @@ button:focus-visible,
 .leaf {
   position: absolute;
   bottom: 14%;
-  width: 20%;
+  width: min(20%, 140px);
   height: auto;
   object-fit: contain;
   z-index: 7;
@@ -377,15 +378,15 @@ button:focus-visible,
 }
 
 .food-image {
-  left: -5%;
-  bottom: -12%;
-  width: 37%;
+  left: 0%;
+  bottom: -8%;
+  width: min(37%, 260px);
 }
 
 .music-image {
-  right: -5%;
-  bottom: -12%;
-  width: 34%;
+  right: 0%;
+  bottom: -8%;
+  width: min(34%, 240px);
 }
 
 @media (max-width: 720px) {
