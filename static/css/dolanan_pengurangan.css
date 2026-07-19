@@ -566,23 +566,42 @@
   }
 
   .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(4, minmax(64px, 1fr));
+    grid-template-columns: repeat(3, minmax(60px, 1fr));
     max-width: 100%;
+    gap: 6px;
   }
 
   .helper-piece {
-    width: 72px;
-    height: 72px;
+    width: 68px;
+    height: 68px;
+  }
+
+  .helper-piece[data-sign="-"] .helper-icon,
+  .helper-piece[data-sign="+"] .helper-icon {
+    margin: 0;
+  }
+
+  .helper-piece--empty {
+    min-height: 68px;
   }
 
   .number-pad {
     max-width: 100%;
-    grid-template-columns: repeat(3, minmax(64px, 1fr));
+    grid-template-columns: repeat(3, minmax(56px, 1fr));
+    gap: 0.65rem;
   }
 
   .pad-key {
-    font-size: 1.2rem;
-    padding: 0.9rem 0;
+    font-size: 1.1rem;
+    padding: 0.85rem 0;
+  }
+
+  .math-question {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+  }
+
+  .answer-inline {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
   }
 
   .action-bins {
@@ -595,5 +614,91 @@
 
   .calculator-actions .btn {
     max-width: 100%;
+    flex: 1 1 0;
+  }
+}
+
+@media (max-width: 540px) {
+  .dolanan-page {
+    margin: 0.75rem 0.5rem;
+    padding: 1rem;
+  }
+
+  .page-copy {
+    font-size: 1rem;
+  }
+
+  .helper-pieces.helper-grid.layout-b {
+    grid-template-columns: repeat(2, minmax(52px, 1fr));
+  }
+
+  .helper-piece {
+    width: 58px;
+    height: 58px;
+  }
+
+  .pad-key {
+    font-size: 1rem;
+    padding: 0.75rem 0;
+  }
+
+  .calculator-actions .btn {
+    padding: 0.85rem 1rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .dolanan-page {
+    margin: 0.75rem 0.5rem;
+    padding: 1.25rem;
+    border-radius: 20px;
+  }
+
+  .page-copy {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .helper-panel,
+  .calculator-panel,
+  .math-card {
+    padding: 1rem;
+  }
+
+  .helper-pieces.helper-grid.layout-b {
+    grid-template-columns: repeat(2, minmax(60px, 1fr));
+    max-width: 100%;
+    gap: 6px;
+  }
+
+  .helper-piece {
+    width: 64px;
+    height: 64px;
+  }
+
+  .number-pad {
+    grid-template-columns: repeat(3, minmax(56px, 1fr));
+    gap: 0.55rem;
+  }
+
+  .pad-key {
+    font-size: 1.05rem;
+    padding: 0.8rem 0;
+  }
+
+  .math-question {
+    font-size: 2rem;
+  }
+
+  .answer-inline {
+    font-size: 2rem;
+  }
+
+  .calculator-actions {
+    gap: 0.5rem;
+  }
+
+  .btn {
+    font-size: 0.95rem;
   }
 }

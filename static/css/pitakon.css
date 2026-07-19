@@ -103,24 +103,47 @@
 }
 
 @media (max-width: 720px) {
-  .pitakon-page {
-    width: min(96vw, 100%);
-    margin: 1rem auto;
-    padding: 18px;
-    min-height: auto;
+  .game-menu-page.direct-view {
+    padding: 1rem 0.75rem 1.5rem;
   }
 
   .menu-panel {
     width: 100%;
     min-height: auto;
-    padding: 18px;
+    padding: 16px;
+    margin: 0;
+  }
+
+  .pitakon-page {
+    width: 100%;
+    margin: 0 auto;
+    padding: 16px;
+    min-height: auto;
+  }
+
+  .pitakon-page h2,
+  .pitakon-page p,
+  .page-tag {
+    text-align: left;
   }
 
   .pitakon-page p {
     max-width: 100%;
   }
 
-  .game-menu-page.pitakon-top {
-    padding-top: 24px;
+  .game-menu-page.direct-view .background-image,
+  .game-menu-page.direct-view .front-ground,
+  .game-menu-page.direct-view .leaf,
+  .game-menu-page.direct-view .janur,
+  .game-menu-page.direct-view .temple-image,
+  .game-menu-page.direct-view .tower-image,
+  .game-menu-page.direct-view .people-image,
+  .game-menu-page.direct-view .wayang-image,
+  .game-menu-page.direct-view .bottom-decor {
+    display: none;
+  }
+
+  .math-panel {
+    width: 100%;
   }
 }
