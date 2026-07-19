@@ -76,3 +76,110 @@
     width: min(72%, 420px);
   }
 }
+
+@media (max-width: 480px) {
+  .brand {
+    top: 1.2%;
+    width: min(70%, 260px);
+  }
+
+  .brand-logo {
+    filter: drop-shadow(0 10px 8px rgba(104, 47, 20, 0.20));
+  }
+
+  .top-action {
+    top: 1.4%;
+  }
+
+  .icon-button {
+    width: clamp(46px, 10vw, 56px);
+  }
+
+  .menu-wrap {
+    bottom: 8%;
+    width: min(82%, 280px);
+  }
+
+  .leaf {
+    width: 28%;
+  }
+
+  .leaf-left {
+    left: -3%;
+    bottom: 8%;
+  }
+
+  .leaf-right {
+    right: -3%;
+  }
+
+  .front-ground {
+    bottom: -18%;
+    height: 46%;
+  }
+
+  .janur {
+    width: 22%;
+  }
+
+  .janur-left {
+    left: 16%;
+  }
+
+  .janur-right {
+    right: 16%;
+  }
+
+  .temple-image,
+  .tower-image,
+  .people-image,
+  .wayang-image {
+    width: 42%;
+  }
+
+  .temple-image {
+    left: 8%;
+    bottom: 18%;
+  }
+
+  .tower-image {
+    right: 8%;
+    bottom: 18%;
+  }
+
+  .people-image,
+  .wayang-image {
+    bottom: 16%;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand {
+    width: min(82%, 220px);
+  }
+
+  .menu-wrap {
+    width: min(90%, 260px);
+    bottom: 10%;
+  }
+
+  .icon-button {
+    width: clamp(42px, 12vw, 52px);
+  }
+
+  .front-ground {
+    bottom: -16%;
+    height: 52%;
+  }
+
+  .janur {
+    width: 24%;
+  }
+
+  .temple-image,
+  .tower-image,
+  .people-image,
+  .wayang-image {
+    width: 46%;
+  }
+}
