@@ -240,7 +240,7 @@ button:focus-visible,
 .top-action {
   position: absolute;
   top: 2.2%;
-  z-index: 40;
+  z-index: 10010;
   pointer-events: auto;
 }
 
@@ -255,12 +255,12 @@ button:focus-visible,
 }
 
 .icon-button {
-  width: clamp(50px, 5.2vw, 60px);
+  width: clamp(56px, 6vw, 68px);
   aspect-ratio: 1;
   border-radius: 50%;
-  background: linear-gradient(180deg, #fffdf0, #f9d8aa);
-  border: 2px solid rgba(91, 34, 22, 0.18);
-  box-shadow: 0 10px 0 rgba(98, 62, 15, 0.28);
+  background: linear-gradient(180deg, #fffef6, #f7d69a);
+  border: 2px solid rgba(91, 34, 22, 0.25);
+  box-shadow: 0 12px 18px rgba(0, 0, 0, 0.22);
   transition: transform 0.18s ease, filter 0.18s ease;
   pointer-events: auto;
 }

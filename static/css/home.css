@@ -2,7 +2,7 @@
   position: absolute;
   top: 0.6%;
   left: 50%;
-  width: min(58%, 760px);
+  width: min(29%, 380px);
   transform: translateX(-50%);
   text-align: center;
   z-index: 25;
@@ -24,9 +24,9 @@
 .menu-wrap {
   position: absolute;
   left: 50%;
-  bottom: 4%;
+  bottom: -15%;
   z-index: 28;
-  width: min(60%, 720px);
+  width: min(30%, 360px);
   aspect-ratio: 540 / 420;
   transform: translateX(-50%);
 }
