@@ -541,11 +541,59 @@
 }
 
 @media (max-width: 720px) {
-  .number-pad {
+  .dolanan-page {
+    margin: 1rem auto;
+    padding: 1.5rem;
+  }
+
+  .question-row,
+  .bottom-row {
+    grid-template-columns: 1fr;
+  }
+
+  .question-row {
+    gap: 0.75rem;
+  }
+
+  .bottom-row {
+    gap: 1rem;
+  }
+
+  .math-card,
+  .calculator-panel,
+  .helper-panel {
+    width: 100%;
+  }
+
+  .helper-pieces.helper-grid.layout-b {
+    grid-template-columns: repeat(4, minmax(64px, 1fr));
     max-width: 100%;
   }
 
+  .helper-piece {
+    width: 72px;
+    height: 72px;
+  }
+
+  .number-pad {
+    max-width: 100%;
+    grid-template-columns: repeat(3, minmax(64px, 1fr));
+  }
+
   .pad-key {
-    font-size: 1.35rem;
+    font-size: 1.2rem;
+    padding: 0.9rem 0;
+  }
+
+  .action-bins {
+    grid-template-columns: 1fr;
+  }
+
+  .action-bin {
+    width: 100%;
+  }
+
+  .calculator-actions .btn {
+    max-width: 100%;
   }
 }

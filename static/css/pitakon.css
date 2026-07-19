@@ -101,3 +101,26 @@
     font-size: clamp(0.95rem, 2.5vw, 1.2rem);
   }
 }
+
+@media (max-width: 720px) {
+  .pitakon-page {
+    width: min(96vw, 100%);
+    margin: 1rem auto;
+    padding: 18px;
+    min-height: auto;
+  }
+
+  .menu-panel {
+    width: 100%;
+    min-height: auto;
+    padding: 18px;
+  }
+
+  .pitakon-page p {
+    max-width: 100%;
+  }
+
+  .game-menu-page.pitakon-top {
+    padding-top: 24px;
+  }
+}
