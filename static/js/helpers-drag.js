@@ -60,18 +60,49 @@ function initDragHelpers() {
 
     const restorePieceToSlot = (pieceToRestore, slot) => {
       if (!pieceToRestore || !slot) return;
-      const binStorage = pieceToRestore.parentNode;
-      const countValue = binCountValues[pieceToRestore.dataset.sign];
+      try {
+        const slotParent = slot.parentNode;
+        const sign = pieceToRestore.dataset && pieceToRestore.dataset.sign;
+        const binStorage = binStorages[sign];
+        const countValue = binCountValues[sign];
 
-      slot.parentNode.replaceChild(pieceToRestore, slot);
-      pieceToRestore.classList.remove('helper-piece--removed');
-      pieceToRestore.removeAttribute('aria-hidden');
-      pieceToRestore.draggable = true;
-      pieceToRestore.style.opacity = '';
-      pieceToRestore.style.pointerEvents = '';
+        if (slotParent) {
+          try {
+            slotParent.replaceChild(pieceToRestore, slot);
+          } catch (e) {
+            // fallback if replaceChild fails
+            try { slotParent.appendChild(pieceToRestore); } catch (e2) { /* ignore */ }
+          }
+        } else if (pieceToRestore._originalParent && pieceToRestore._originalParent.nodeType === 1) {
+          // try to restore to original parent position
+          try {
+            const orig = pieceToRestore._originalParent;
+            const idx = typeof pieceToRestore._originalIndex === 'number' ? pieceToRestore._originalIndex : -1;
+            if (idx >= 0 && idx <= orig.children.length) {
+              orig.insertBefore(pieceToRestore, orig.children[idx] || null);
+            } else {
+              orig.appendChild(pieceToRestore);
+            }
+          } catch (e) { /* ignore */ }
+        } else {
+          // last-resort append into panel
+          try { panel.appendChild(pieceToRestore); } catch (e) { /* ignore */ }
+        }
 
-      if (countValue && binStorage) {
-        countValue.textContent = binStorage.querySelectorAll('.helper-piece--removed').length.toString();
+        pieceToRestore.classList.remove('helper-piece--removed');
+        pieceToRestore.removeAttribute('aria-hidden');
+        pieceToRestore.draggable = true;
+        pieceToRestore.style.opacity = '';
+        pieceToRestore.style.pointerEvents = '';
+
+        // update bin count safely
+        if (countValue && binStorage) {
+          try {
+            countValue.textContent = binStorage.querySelectorAll('.helper-piece--removed').length.toString();
+          } catch (e) { /* ignore */ }
+        }
+      } catch (err) {
+        console.warn('restorePieceToSlot failed', err, pieceToRestore, slot);
       }
     };
 
@@ -104,26 +135,40 @@ function initDragHelpers() {
       };
 
       const removePiece = (statusText) => {
-        const placeholder = createEmptySlot();
-        const originalParent = piece.parentNode;
-        const originalIndex = Array.from(originalParent.children).indexOf(piece);
-        originalParent.replaceChild(placeholder, piece);
+        try {
+          const placeholder = createEmptySlot();
+          const originalParent = piece.parentNode;
+          const originalIndex = originalParent ? Array.from(originalParent.children).indexOf(piece) : -1;
+          if (originalParent && originalParent.nodeType === 1) {
+            try { originalParent.replaceChild(placeholder, piece); } catch (e) { /* ignore */ }
+          }
 
-        piece._originalParent = originalParent;
-        piece._originalIndex = originalIndex;
+          piece._originalParent = originalParent;
+          piece._originalIndex = originalIndex;
 
-        const storage = binStorages[piece.dataset.sign];
-        const countValue = binCountValues[piece.dataset.sign];
-        if (!storage || !countValue) return;
+          const storage = binStorages[piece.dataset.sign];
+          const countValue = binCountValues[piece.dataset.sign];
 
-        storage.appendChild(piece);
-        piece.classList.add('helper-piece--removed');
-        piece.setAttribute('aria-hidden', 'true');
-        piece.draggable = true;
-        piece.style.opacity = '0.4';
-        piece.style.pointerEvents = 'auto';
+          if (storage && storage.appendChild) {
+            try { storage.appendChild(piece); } catch (e) { panel.appendChild(piece); }
+          } else {
+            try { panel.appendChild(piece); } catch (e) { /* ignore */ }
+          }
 
-        countValue.textContent = storage.querySelectorAll('.helper-piece--removed').length.toString();
+          piece.classList.add('helper-piece--removed');
+          piece.setAttribute('aria-hidden', 'true');
+          piece.draggable = true;
+          piece.style.opacity = '0.4';
+          piece.style.pointerEvents = 'auto';
+
+          if (countValue && storage) {
+            try {
+              countValue.textContent = storage.querySelectorAll('.helper-piece--removed').length.toString();
+            } catch (e) { /* ignore */ }
+          }
+        } catch (err) {
+          console.warn('removePiece failed', err, piece);
+        }
       };
 
       const onPointerMove = (event) => {
