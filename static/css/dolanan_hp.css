@@ -131,3 +131,75 @@
     flex: 1 1 100%;
   }
 }
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .game-menu-page.direct-view.pitakon-top {
+    min-height: 100vh;
+    padding: 1rem 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .game-menu-page.direct-view.pitakon-top .menu-panel {
+    width: min(100vw, 780px);
+    padding: 10px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 24px;
+  }
+
+  .dolanan-page {
+    width: min(100%, 760px);
+    max-width: min(96vw, 760px);
+    padding: clamp(18px, 2.5vw, 24px);
+    border-radius: 28px;
+    min-height: 0;
+    align-self: center;
+  }
+
+  .math-panel {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 1rem;
+  }
+
+  .question-row,
+  .bottom-row {
+    gap: 0.9rem;
+  }
+
+  .question-row {
+    grid-template-columns: 1fr;
+  }
+
+  .bottom-row {
+    grid-template-columns: 1fr;
+  }
+
+  .helper-panel,
+  .calculator-panel,
+  .math-card {
+    padding: 1rem;
+  }
+
+  .helper-pieces.helper-grid {
+    grid-template-columns: repeat(auto-fit, minmax(58px, 1fr));
+    gap: 6px;
+    grid-auto-rows: 64px;
+  }
+
+  .helper-piece {
+    max-width: 58px;
+    height: 58px;
+  }
+
+  .action-bins {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .action-bin {
+    min-height: 120px;
+    padding: 0.85rem;
+  }
+}
