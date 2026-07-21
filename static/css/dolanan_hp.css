@@ -1,0 +1,98 @@
+@media (max-width: 900px) {
+  .dolanan-page {
+    width: min(100%, 460px);
+    max-width: min(96vw, 460px);
+    padding: clamp(14px, 3vw, 20px);
+    gap: 1rem;
+    border-radius: 24px;
+  }
+
+  .game-menu-page.direct-view.pitakon-top .menu-panel {
+    width: min(100vw, 500px);
+    padding: 8px;
+  }
+
+  .dolanan-header {
+    margin-bottom: 1rem;
+  }
+
+  .dolanan-header h1 {
+    font-size: clamp(1.9rem, 6vw, 2.5rem);
+  }
+
+  .page-copy {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .math-panel {
+    gap: 0.9rem;
+  }
+
+  .question-row,
+  .bottom-row {
+    gap: 0.8rem;
+  }
+
+  .math-card,
+  .helper-panel,
+  .calculator-panel {
+    padding: 0.95rem;
+    border-radius: 18px;
+  }
+
+  .math-question-row.large-question .math-question,
+  .math-question-row.large-question .answer-inline {
+    font-size: clamp(1.65rem, 7vw, 2.2rem);
+  }
+
+  .helper-pieces.helper-grid {
+    grid-template-columns: repeat(3, minmax(56px, 1fr));
+    max-width: 100%;
+    gap: 6px;
+    grid-auto-rows: 64px;
+  }
+
+  .helper-piece {
+    width: 56px;
+    height: 56px;
+  }
+
+  .helper-piece--empty {
+    min-height: 56px;
+  }
+
+  .action-bins {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
+  }
+
+  .action-bin {
+    min-height: 100px;
+    padding: 0.75rem;
+  }
+
+  .number-pad {
+    width: 100%;
+    gap: 0.6rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .pad-key {
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
+  }
+
+  .calculator-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.55rem;
+  }
+
+  .calculator-actions .btn {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    flex: 1 1 100%;
+  }
+}

@@ -1,0 +1,142 @@
+<section class="game-menu-page direct-view pitakon-top" role="main">
+
+    <img class="background-image" src="/static/img/latar_belakang.png" alt="" aria-hidden="true">
+    <img class="front-ground" src="/static/img/tanah.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-left" src="/static/img/rumput_kiri.png" alt="" aria-hidden="true">
+    <img class="leaf leaf-right" src="/static/img/rumput_kanan.png" alt="" aria-hidden="true">
+
+    <img class="janur janur-left" src="/static/img/jenur_kiri.png" alt="" aria-hidden="true">
+    <img class="janur janur-right" src="/static/img/janur_kanan.png" alt="" aria-hidden="true">
+    <img class="temple-image" src="/static/img/candi.png" alt="" aria-hidden="true">
+    <img class="tower-image" src="/static/img/tugu.png" alt="" aria-hidden="true">
+    <img class="people-image" src="/static/img/orang.png" alt="" aria-hidden="true">
+    <img class="wayang-image" src="/static/img/wayang.png" alt="" aria-hidden="true">
+
+    <img class="bottom-decor food-image" src="/static/img/makanan.png" alt="" aria-hidden="true">
+    <img class="bottom-decor music-image" src="/static/img/alatmusik.png" alt="" aria-hidden="true">
+
+    <div class="menu-panel">
+      <div class="dolanan-page">
+
+        <header class="dolanan-header">
+          <p class="page-tag">Dolanan</p>
+          <h1>{{ game_heading }}</h1>
+          <p class="page-copy">{{ game_copy }}</p>
+        </header>
+
+        <div class="math-panel">
+          <div class="question-row">
+            <article class="math-card">
+              <p class="math-label" id="questionType">{{ question_type }}</p>
+              <div class="life-display" aria-label="Sisa nyawa">
+                <div class="life-icons" id="lifeIcons" aria-hidden="true"></div>
+                <span class="life-text"><strong id="lifeCount">3</strong> nyawa</span>
+              </div>
+              <div class="math-question-row large-question">
+                <p class="math-question" id="questionText">{{ question_text }}</p>
+                <span class="answer-inline calculator-display" id="questionAnswer">...</span>
+              </div>
+            </article>
+          </div>
+
+          <div class="bottom-row">
+            <aside class="helper-panel" aria-label="Alat bantu hitung">
+              <div class="helper-panel-head">
+                <p class="math-label">Alat Bantuan</p>
+                <p class="helper-hint">Tarik tanda + ke area Positif dan tanda - ke area Negatif. Setelah dibuang, seret token pemulihan dari bin kembali ke papan kapan saja.</p>
+              </div>
+              <div class="helper-plate">
+                <div class="helper-pieces helper-grid layout-b" role="list">
+                  <!-- Layout B: 5 rows x 6 columns (each row: - + - + empty empty) -->
+                  <button class="helper-piece" draggable="true" id="r1c1" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r1c2" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r1c3" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r1c4" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
+                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
+                  <button class="helper-piece" draggable="true" id="r2c1" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r2c2" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r2c3" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r2c4" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
+                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
+                  <button class="helper-piece" draggable="true" id="r3c1" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r3c2" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r3c3" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r3c4" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
+                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
+                  <button class="helper-piece" draggable="true" id="r4c1" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r4c2" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r4c3" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r4c4" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
+                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
+                  <button class="helper-piece" draggable="true" id="r5c1" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r5c2" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r5c3" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r5c4" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
+                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
+                </div>
+              </div>
+              <div class="action-bins">
+                <div class="action-bin action-bin--minus" data-accept="-">
+                  <div class="action-label-row">
+                    <span class="action-label">Negatif</span>
+                    <span class="action-sign">(-)</span>
+                  </div>
+                  <div class="bin-count"><span class="bin-sign">-</span> (<span class="bin-count-value">5</span>)</div>
+                  <div class="bin-storage" aria-hidden="true">
+                    <button class="helper-piece helper-piece--removed" draggable="true" data-sign="-" aria-hidden="true"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                    <button class="helper-piece helper-piece--removed" draggable="true" data-sign="-" aria-hidden="true"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                    <button class="helper-piece helper-piece--removed" draggable="true" data-sign="-" aria-hidden="true"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                    <button class="helper-piece helper-piece--removed" draggable="true" data-sign="-" aria-hidden="true"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                    <button class="helper-piece helper-piece--removed" draggable="true" data-sign="-" aria-hidden="true"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  </div>
+                </div>
+                <div class="action-bin action-bin--plus" data-accept="+">
+                  <div class="action-label-row">
+                    <span class="action-label">Positif</span>
+                    <span class="action-sign">(+)</span>
+                  </div>
+                  <div class="bin-count"><span class="bin-sign">+</span> (<span class="bin-count-value">5</span>)</div>
+                  <div class="bin-storage" aria-hidden="true">
+                    <button class="helper-piece helper-piece--removed" draggable="true" data-sign="+" aria-hidden="true"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                    <button class="helper-piece helper-piece--removed" draggable="true" data-sign="+" aria-hidden="true"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                    <button class="helper-piece helper-piece--removed" draggable="true" data-sign="+" aria-hidden="true"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                    <button class="helper-piece helper-piece--removed" draggable="true" data-sign="+" aria-hidden="true"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                    <button class="helper-piece helper-piece--removed" draggable="true" data-sign="+" aria-hidden="true"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            <div class="calculator-panel">
+              <div class="number-pad">
+                <button type="button" class="pad-key calculator-key" data-key="7">7</button>
+                <button type="button" class="pad-key calculator-key" data-key="8">8</button>
+                <button type="button" class="pad-key calculator-key" data-key="9">9</button>
+                <button type="button" class="pad-key calculator-key" data-key="4">4</button>
+                <button type="button" class="pad-key calculator-key" data-key="5">5</button>
+                <button type="button" class="pad-key calculator-key" data-key="6">6</button>
+                <button type="button" class="pad-key calculator-key" data-key="1">1</button>
+                <button type="button" class="pad-key calculator-key" data-key="2">2</button>
+                <button type="button" class="pad-key calculator-key" data-key="3">3</button>
+                <button type="button" class="pad-key calculator-key operator" data-key="-">-</button>
+                <button type="button" class="pad-key calculator-key" data-key="0">0</button>
+                <button type="button" class="pad-key calculator-key delete" data-key="Hapus">⌫</button>
+              </div>
+
+              <div class="calculator-actions">
+                <button type="button" class="btn" id="makeQuestionButton">Submit Jawaban</button>
+                <a class="btn" href="/menu">Kembali ke Menu</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+</section>

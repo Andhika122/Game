@@ -9,21 +9,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1.5rem 3rem;
+  padding: 0.9rem 0.75rem 1rem;
   z-index: 60;
 }
 
 .pitutur-panel {
   width: min(96vw, 1180px);
-  min-height: auto;
-  background: rgba(255, 255, 255, 0.98);
-  backdrop-filter: blur(4px) saturate(110%);
-  border-radius: 18px;
-  padding: clamp(18px, 3.2vw, 40px) clamp(18px, 3.6vw, 48px);
-  box-shadow: 0 18px 40px rgba(12, 18, 24, 0.12);
+  max-width: 1180px;
+  min-height: 68vh;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px) saturate(125%);
+  border-radius: 24px;
+  padding: clamp(24px, 2.5vw, 40px);
+  box-shadow: 0 28px 58px rgba(12, 18, 24, 0.16);
   display: block;
   z-index: 9999;
-  border: 5px solid #bcdaf0; /* light blue outer border like screenshot */
+  border: 1px solid rgba(255, 255, 255, 0.75);
   position: relative;
 }
 
@@ -131,26 +132,27 @@
 .pitutur-advisor {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
-  margin: 2.4rem auto 0;
-  width: min(1040px, 98%);
-  padding: 1rem 1.6rem;
+  gap: 1rem;
+  margin: 1.2rem auto 0;
+  width: 100%;
+  max-width: 620px;
+  padding: 0.7rem 1rem;
   justify-content: center;
 }
 .advisor-avatar {
-  width: 200px;
-  height: 200px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   overflow: hidden;
-  border: 10px solid #f1e8dd;
+  border: 7px solid #f1e8dd;
   background: #fff;
 }
 .advisor-avatar img { width:100%; height:100%; object-fit:cover; }
 .advisor-bubble {
   background: linear-gradient(90deg,#d96a45,#c65032);
   color:#fff;
-  padding: 30px 48px;
-  border-radius: 34px;
+  padding: 16px 24px;
+  border-radius: 28px;
   box-shadow: 0 12px 26px rgba(0,0,0,0.12);
 }
 .advisor-title { margin:0; font-weight:700; opacity:0.95; }
@@ -160,9 +162,16 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.8rem;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+  width: min(100%, 700px);
+}
+
+.pitutur-campus {
+  color: #3e2a16;
+  font-weight: 700;
+  font-size: 0.98rem;
 }
 
 /* top/bottom advisor color variations */
@@ -187,10 +196,162 @@
   .advisor-bubble { padding: 18px 22px; border-radius:22px; }
 }
 
+@media (max-width: 720px) {
+  .pitutur-panel {
+    width: min(96vw, 320px);
+    min-height: 240px;
+    padding: 10px;
+    border-width: 4px;
+  }
+
+  .pitutur-profil-page h1 {
+    font-size: 1.6rem;
+  }
+
+  .pitutur-advisor {
+    padding: 0.6rem;
+  }
+
+  .advisor-avatar {
+    width: 96px;
+    height: 96px;
+    border-width: 5px;
+  }
+
+  .advisor-bubble {
+    padding: 12px 16px;
+    border-radius: 16px;
+  }
+
+  .pitutur-footer {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .page-arrow {
+    width: 54px;
+    height: 54px;
+    border-width: 5px;
+  }
+
+  .page-arrow .arrow-img {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (max-width: 900px) and (orientation: landscape) {
+  .pitutur-page.direct-view {
+    min-height: 100vh;
+    padding: 1rem 1rem 1.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .pitutur-panel {
+    width: min(78vw, 520px);
+    max-width: 520px;
+    padding: 18px;
+    border-width: 4px;
+  }
+
+  .pitutur-advisor {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1.2rem auto 0;
+    width: 100%;
+    padding: 0.8rem 1rem;
+  }
+
+  .advisor-avatar {
+    width: 120px;
+    height: 120px;
+    border-width: 6px;
+  }
+
+  .advisor-bubble {
+    padding: 16px 18px;
+    border-radius: 20px;
+  }
+
+  .pitutur-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-top: 1.2rem;
+  }
+
+  .page-arrow {
+    width: 62px;
+    height: 62px;
+    border-width: 5px;
+  }
+
+  .page-arrow .arrow-img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .icon-button.top-action {
+    top: 12px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon-button.top-action#soundButton { left: 18px; }
+  .icon-button.top-action#profileButton { right: 18px; }
+}
+
+@media (min-width: 960px) {
+  .pitutur-panel {
+    width: min(80vw, 780px);
+    max-width: 780px;
+    min-height: 220px;
+    padding: 18px 28px;
+  }
+
+  .pitutur-profil-page {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .pitutur-advisor {
+    gap: 1.2rem;
+    margin: 1rem auto 0;
+    padding: 0.75rem 1rem;
+  }
+
+  .advisor-avatar {
+    width: 130px;
+    height: 130px;
+  }
+
+  .advisor-bubble {
+    padding: 16px 26px;
+    border-radius: 26px;
+  }
+
+  .pitutur-footer {
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
+
+  .page-arrow {
+    width: 60px;
+    height: 60px;
+  }
+
+  .page-arrow .arrow-img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
 /* position top action buttons (speaker / logo) inside the panel area */
 .icon-button.top-action {
   position: absolute;
-  top: 18px;
+  top: 22px;
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -201,14 +362,8 @@
   box-shadow: 0 6px 10px rgba(0,0,0,0.12);
 }
 
-.icon-button.top-action#soundButton { left: calc(50% - 540px); }
-.icon-button.top-action#profileButton { right: calc(50% - 540px); }
-
-/* Fallback positioning when panel is narrower: center offsets relative to panel */
-@media (min-width: 980px) {
-  .icon-button.top-action#soundButton { left: 28px; top: 22px; }
-  .icon-button.top-action#profileButton { right: 28px; top: 22px; }
-}
+.icon-button.top-action#soundButton { left: 24px; }
+.icon-button.top-action#profileButton { right: 24px; }
 
 /* Position arrows inside panel corners */
 .pitutur-panel .page-arrow {
@@ -224,11 +379,11 @@
 }
 
 .pitutur-campus {
-  padding: 0.65rem 1.2rem;
+  padding: 0.5rem 1rem;
   border-radius: 999px;
   background: rgba(91,34,22,0.95);
   color: #fff;
-  font-size: clamp(1rem, 1.4vw, 1.35rem);
+  font-size: clamp(0.92rem, 1.2vw, 1.15rem);
   font-weight:800;
   text-shadow: 0 2px 0 rgba(0,0,0,0.15);
 }
@@ -305,6 +460,14 @@
 .pitutur-description-actions.actions-split {
   justify-content: space-between;
   align-items: center;
+}
+
+.pitutur-description-actions.actions-split .page-arrow {
+  margin-right: auto;
+}
+
+.pitutur-description-actions.actions-split .btn {
+  margin-left: auto;
 }
 
 .btn {

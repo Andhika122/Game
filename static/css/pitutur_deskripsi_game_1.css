@@ -1,49 +1,67 @@
 .pitutur-description-page {
-  margin: 2rem auto;
-  max-width: min(98vw, 1180px);
-  padding: 2rem;
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 14px 30px rgba(33, 33, 33, 0.12);
-  border: 1px solid rgba(91, 34, 22, 0.16);
+  margin: 1rem auto;
+  max-width: min(96vw, 1180px);
+  min-height: 74vh;
+  padding: clamp(22px, 2.6vw, 40px);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(6px) saturate(125%);
+  box-shadow: 0 28px 58px rgba(12, 18, 24, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  position: relative;
 }
 
 .pitutur-description-page h1 {
-  margin: 0 0 1.6rem;
-  font-size: clamp(3rem, 5vw, 4.4rem);
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
   color: #6b2f1d;
   text-align: center;
 }
 
+@media (min-width: 960px) {
+  .pitutur-description-page {
+    max-width: min(92vw, 1300px);
+    padding: 1.4rem 1.6rem;
+  }
+}
+
 .pitutur-description-content {
-  font-size: clamp(1rem, 1.6vw, 1.3rem);
-  line-height: 1.8;
+  font-size: clamp(0.95rem, 1.3vw, 1.1rem);
+  line-height: 1.7;
   color: #2a2118;
 }
 
 .pitutur-description-actions {
   display: flex;
   justify-content: space-between;
-  margin-top: 2rem;
-  gap: 1rem;
+  align-items: center;
+  width: min(100%, 700px);
+  margin: 1.6rem auto 0;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .page-arrow,
 .btn {
   display: inline-grid;
   place-items: center;
-  width: 64px;
-  height: 64px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   background: linear-gradient(180deg, #f4b15f 0%, #d96a10 100%);
   border: none;
   box-shadow: 0 10px 0 rgba(98, 55, 18, 0.24);
 }
 
+.page-arrow .arrow-img {
+  width: 24px;
+  height: 24px;
+}
+
 .btn {
   width: auto;
   height: auto;
-  padding: 0.95rem 1.6rem;
+  padding: 0.75rem 1.4rem;
   border-radius: 999px;
   font-weight: 700;
   color: #fff;
@@ -51,6 +69,14 @@
 }
 
 @media (max-width: 840px) {
+  .pitutur-description-page {
+    padding: 1rem 0.9rem;
+  }
+
+  .pitutur-description-page h1 {
+    font-size: 2.2rem;
+  }
+
   .pitutur-description-actions {
     flex-direction: column;
     align-items: stretch;
