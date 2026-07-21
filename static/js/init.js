@@ -34,6 +34,15 @@
     });
   });
 
+  const calculatorDisplay = document.getElementById('questionAnswer');
+  const calculatorPanel = document.querySelector('.calculator-panel');
+
+  if (calculatorDisplay && calculatorPanel) {
+    calculatorDisplay.addEventListener('click', () => {
+      calculatorPanel.classList.toggle('hidden');
+    });
+  }
+
   // submit button
   const makeQuestionButton = document.getElementById('makeQuestionButton');
   if (makeQuestionButton) makeQuestionButton.addEventListener('click', () => { if (typeof submitAnswer === 'function') submitAnswer(); });

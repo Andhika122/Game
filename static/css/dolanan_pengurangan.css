@@ -181,38 +181,6 @@
   padding: 0 0.2rem 0.1rem;
 }
 
-.life-display {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 0.9rem;
-  flex-wrap: wrap;
-}
-
-.life-icons {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.life-icon {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
-
-.life-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-weight: 700;
-  color: #8f3f1f;
-}
-
-.life-text strong {
-  font-size: 1.05rem;
-}
-
 /* Larger question style for specific rows */
 .math-question-row.large-question .math-question,
 .math-question-row.large-question .answer-inline {

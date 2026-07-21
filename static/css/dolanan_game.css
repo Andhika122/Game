@@ -88,36 +88,59 @@
 }
 
 .bottom-row {
-  grid-template-columns: minmax(430px, 1.3fr) minmax(320px, 0.9fr);
-  align-items: stretch;
-}
-
-.calculator-panel {
-  display: grid;
-  gap: 1rem;
-  justify-items: center;
-  align-content: start;
-  padding: 1.35rem;
-  width: 100%;
-  min-width: 0;
-  max-width: 420px;
-  border-radius: 24px;
-  background: linear-gradient(180deg, #fffbf2 0%, #ffecc8 100%);
-  border: 1px solid rgba(148, 106, 44, 0.2);
-  box-shadow: 0 12px 24px rgba(110, 64, 23, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  grid-template-columns: minmax(440px, 1.35fr) minmax(340px, 0.85fr);
+  align-items: start;
+  gap: 1.25rem;
 }
 
 .helper-panel {
   position: relative;
   display: grid;
+  grid-template-rows: auto 1fr auto;
+  align-items: stretch;
+  justify-items: stretch;
   gap: 1rem;
-  padding: 1.8rem;
+  padding: 1.4rem;
   width: 100%;
+  max-width: 100%;
   min-width: 0;
+  box-sizing: border-box;
   border-radius: 28px;
   background: linear-gradient(180deg, #fffdf7 0%, #ffeecf 100%);
   border: 1px solid rgba(148, 106, 44, 0.18);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.helper-pieces.helper-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(64px, 1fr));
+  gap: 8px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  grid-auto-rows: 92px;
+  justify-items: center;
+  align-content: start;
+}
+
+.helper-plate {
+  min-height: 0;
+  align-content: start;
+}
+
+.action-bin {
+  width: 100%;
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  min-height: 140px;
+  padding: 1rem 1.1rem;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.92);
+  border: 2px dashed rgba(148,106,44,0.28);
+  color: #6a2f21;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
 }
 
 @media (min-width: 1024px) {
@@ -148,7 +171,7 @@
 
 .helper-panel-head {
   display: grid;
-  gap: 0.3rem;
+  gap: 0.65rem;
 }
 
 .helper-hint {
@@ -156,14 +179,6 @@
   color: #5b3e24;
   font-size: 0.95rem;
   line-height: 1.5;
-}
-
-.helper-plate {
-  padding: 0.2rem;
-  border-radius: 28px;
-  background: radial-gradient(circle at top, rgba(255, 250, 232, 0.95), rgba(235, 199, 112, 0.12));
-  border: 1px solid rgba(148, 106, 44, 0.18);
-  box-shadow: inset 0 8px 12px rgba(255, 255, 255, 0.7);
 }
 
 .helper-plate.restore-highlight {
@@ -202,38 +217,6 @@
   padding: 0 0.2rem 0.1rem;
 }
 
-.life-display {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-top: 0.9rem;
-  flex-wrap: wrap;
-}
-
-.life-icons {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.life-icon {
-  width: 24px;
-  height: 24px;
-  display: block;
-}
-
-.life-text {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-weight: 700;
-  color: #8f3f1f;
-}
-
-.life-text strong {
-  font-size: 1.05rem;
-}
-
 /* Larger question style for specific rows */
 .math-question-row.large-question .math-question,
 .math-question-row.large-question .answer-inline {
@@ -248,17 +231,19 @@
 
 .helper-pieces.helper-grid {
   display: grid;
-  grid-template-columns: repeat(6, 96px);
+  grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
   gap: 8px;
-  justify-content: center;
-  max-width: 620px;
-  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
   grid-auto-rows: 92px;
 }
 
 .helper-piece {
-  width: 92px;
-  height: 92px;
+  width: 100%;
+  max-width: 84px;
+  height: 100%;
+  max-height: 92px;
   padding: 0;
   cursor: grab;
   border-radius: 0;
@@ -362,26 +347,7 @@
   opacity: 0.95;
 }
 
-.helper-piece .helper-icon {
-  width: 86%;
-  height: 86%;
-  object-fit: contain;
-  display: block;
-}
 
-.helper-piece {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.helper-piece .helper-icon {
-  width: 86%;
-  height: 86%;
-  object-fit: contain;
-  display: block;
-  border-radius: inherit;
-}
 
 .helper-piece[data-sign="-"] {
   justify-content: flex-end;
@@ -396,7 +362,8 @@
 .action-bins {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, minmax(140px, 1fr));
+  align-content: start;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
 }
 
@@ -405,7 +372,7 @@
   display: grid;
   place-items: center;
   gap: 0.5rem;
-  min-height: 140px;
+  min-height: 150px;
   padding: 1rem 1.2rem;
   border-radius: 22px;
   background: rgba(255,255,255,0.92);

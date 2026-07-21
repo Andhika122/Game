@@ -28,10 +28,6 @@
           <div class="question-row">
             <article class="math-card">
               <p class="math-label" id="questionType">{{ question_type }}</p>
-              <div class="life-display" aria-label="Sisa nyawa">
-                <div class="life-icons" id="lifeIcons" aria-hidden="true"></div>
-                <span class="life-text"><strong id="lifeCount">3</strong> nyawa</span>
-              </div>
               <div class="math-question-row large-question">
                 <p class="math-question" id="questionText">{{ question_text }}</p>
                 <span class="answer-inline calculator-display" id="questionAnswer">...</span>
@@ -112,7 +108,7 @@
               </div>
             </aside>
 
-            <div class="calculator-panel">
+            <div class="calculator-panel hidden">
               <div class="number-pad">
                 <button type="button" class="pad-key calculator-key" data-key="7">7</button>
                 <button type="button" class="pad-key calculator-key" data-key="8">8</button>

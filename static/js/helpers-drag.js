@@ -25,7 +25,7 @@ function initDragHelpers() {
     panel.style.position = 'relative';
 
     const actionBins = Array.from(panel.querySelectorAll('.action-bin'));
-    const helperPieces = Array.from(panel.querySelectorAll('.helper-piece:not(.helper-piece--empty):not(.helper-piece--removed)'));
+    const helperPieces = Array.from(panel.querySelectorAll('.helper-piece:not(.helper-piece--empty)'));
     const binStorages = {
       '+': panel.querySelector('.action-bin--plus .bin-storage'),
       '-': panel.querySelector('.action-bin--minus .bin-storage'),
@@ -160,6 +160,7 @@ function initDragHelpers() {
           piece.draggable = true;
           piece.style.opacity = '0.4';
           piece.style.pointerEvents = 'auto';
+          setupHelperPiece(piece);
 
           if (countValue && storage) {
             try {

@@ -26,36 +26,6 @@ function angkaNegatifBesar() {
 const feedbackModal = document.getElementById("feedbackModal");
 const feedbackModalMessage = document.getElementById("feedbackModalMessage");
 const feedbackModalButton = document.getElementById("feedbackModalButton");
-const lifeIcons = document.getElementById("lifeIcons");
-const lifeCount = document.getElementById("lifeCount");
-let currentLives = 3;
-const MAX_LIVES = 3;
-
-function renderLives() {
-  if (lifeIcons) {
-    lifeIcons.innerHTML = "";
-    for (let i = 0; i < currentLives; i += 1) {
-      const lifeImage = document.createElement("img");
-      lifeImage.src = "/static/img/nyawa.png";
-      lifeImage.alt = "";
-      lifeImage.className = "life-icon";
-      lifeIcons.appendChild(lifeImage);
-    }
-  }
-  if (lifeCount) {
-    lifeCount.textContent = String(currentLives);
-  }
-}
-
-function resetLives() {
-  currentLives = MAX_LIVES;
-  renderLives();
-}
-
-function loseLife() {
-  currentLives = Math.max(0, currentLives - 1);
-  renderLives();
-}
 
 function showFeedback(message, type = "success") {
   if (!feedbackModal || !feedbackModalMessage) {
@@ -180,7 +150,8 @@ function tampilkanSoal(tipe = currentQuestionType) {
   if (questionType) questionType.textContent = soal.namaTipe;
   if (questionText) questionText.textContent = `${soal.teksSoal.split("=")[0].trim()} =`;
   if (calculatorDisplay) calculatorDisplay.textContent = "...";
-  renderLives();
+  const calculatorPanel = document.querySelector('.calculator-panel');
+  if (calculatorPanel) calculatorPanel.classList.add('hidden');
 }
 
 function updateCalculatorDisplay() {
@@ -253,20 +224,10 @@ function submitAnswer() {
     tampilkanSoal(currentQuestionType);
     if (window.resetHelpers) window.resetHelpers();
   } else {
-    loseLife();
-    if (currentLives <= 0) {
-      showFeedback("Nyawa habis! Permainan dimulai ulang.", "error");
-      currentQuestionRepeat = 1;
-      currentQuestionType = 1;
-      resetLives();
-      tampilkanSoal(currentQuestionType);
-      if (window.resetHelpers) window.resetHelpers();
-    } else {
-      showFeedback(`Jawaban salah. Soal baru dibuat dalam tipe yang sama. Sisa nyawa ${currentLives}.`, "error");
-      currentUserEntry = "";
-      tampilkanSoal(currentQuestionType);
-      if (window.resetHelpers) window.resetHelpers();
-    }
+    showFeedback("Jawaban salah. Soal baru dibuat dalam tipe yang sama.", "error");
+    currentUserEntry = "";
+    tampilkanSoal(currentQuestionType);
+    if (window.resetHelpers) window.resetHelpers();
   }
 }
 
@@ -276,12 +237,10 @@ function initDolananGame() {
   if (pathname.includes("/dolanan/penjumlahan")) {
     currentGameMode = "addition";
     currentQuestionType = 1;
-    resetLives();
     tampilkanSoal(currentQuestionType);
   } else if (pathname.includes("/dolanan/pengurangan")) {
     currentGameMode = "subtraction";
     currentQuestionType = 1;
-    resetLives();
     tampilkanSoal(currentQuestionType);
   }
 }
