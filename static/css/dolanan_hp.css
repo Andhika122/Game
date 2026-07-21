@@ -34,11 +34,15 @@
   }
 
   .math-panel {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 0.9rem;
   }
 
   .question-row,
   .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 0.8rem;
   }
 
@@ -76,11 +80,11 @@
 
   .helper-pieces.helper-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(56px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
     width: 100%;
     max-width: 100%;
     gap: 6px;
-    grid-auto-rows: 64px;
+    grid-auto-rows: 56px;
     margin: 0;
     justify-items: center;
   }
@@ -89,6 +93,17 @@
     width: 100%;
     max-width: 56px;
     height: 56px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .helper-piece .helper-icon {
+    width: 80%;
+    height: 80%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
   }
 
   .helper-piece--empty {
@@ -97,7 +112,7 @@
 
   .action-bins {
     width: 100%;
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: 0.7rem;
   }
 
@@ -191,6 +206,17 @@
   .helper-piece {
     max-width: 58px;
     height: 58px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .helper-piece .helper-icon {
+    width: 80%;
+    height: 80%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0;
   }
 
   .action-bins {
