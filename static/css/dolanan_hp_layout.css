@@ -1,0 +1,17 @@
+.helper-pieces.helper-grid.layout-b {
+  grid-template-columns: repeat(10, minmax(50px, 1fr));
+  max-width: 100%;
+  gap: 6px;
+}
+
+@media (max-width: 720px) {
+  .helper-pieces.helper-grid.layout-b {
+    grid-template-columns: repeat(6, minmax(40px, 1fr));
+    gap: 5px;
+  }
+
+  .helper-piece {
+    max-width: 52px;
+    height: 52px;
+  }
+}
