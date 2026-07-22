@@ -99,14 +99,11 @@
 
   /* HP only: tampilkan hanya baris 1-3, kosongkan baris 4 dan 5 */
   .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19) {
-    border: 2px dashed rgba(138, 92, 50, 0.18) !important;
-    background: linear-gradient(180deg, rgba(255,255,255,0.75), rgba(250,240,220,0.35)) !important;
-    opacity: 0.8 !important;
-    cursor: grab !important;
-  }
-
-  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19):not(.helper-piece--empty) {
-    pointer-events: auto !important;
+    border: none !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+    cursor: default !important;
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19) .helper-icon {

@@ -16,6 +16,63 @@ function resetHelpers() {
   }
 }
 
+const hpMediaQuery = window.matchMedia('(max-width: 720px)');
+const isHpView = () => hpMediaQuery.matches;
+const createRemovedPiece = (sign) => {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'helper-piece helper-piece--removed';
+  button.draggable = true;
+  button.dataset.sign = sign;
+  button.setAttribute('aria-hidden', 'true');
+  const img = document.createElement('img');
+  img.className = 'helper-icon';
+  img.src = sign === '+' ? '/static/img/tambah.png' : '/static/img/kurang.png';
+  img.alt = sign;
+  button.appendChild(img);
+  return button;
+};
+
+const adjustBinStorageForDevice = (panel) => {
+  const plusStorage = panel.querySelector('.action-bin--plus .bin-storage');
+  const minusStorage = panel.querySelector('.action-bin--minus .bin-storage');
+  const plusCount = panel.querySelector('.action-bin--plus .bin-count-value');
+  const minusCount = panel.querySelector('.action-bin--minus .bin-count-value');
+  if (!plusStorage || !minusStorage || !plusCount || !minusCount) return;
+
+  const targetCount = isHpView() ? 6 : 5;
+  const updateStorage = (storage, countEl, sign) => {
+    const removedPieces = Array.from(storage.querySelectorAll('.helper-piece--removed'));
+    while (removedPieces.length < targetCount) {
+      const piece = createRemovedPiece(sign);
+      storage.appendChild(piece);
+      removedPieces.push(piece);
+    }
+    while (removedPieces.length > targetCount) {
+      const piece = removedPieces.pop();
+      if (piece && piece.parentNode) {
+        piece.parentNode.removeChild(piece);
+      }
+    }
+    countEl.textContent = targetCount.toString();
+  };
+
+  updateStorage(minusStorage, minusCount, '-');
+  updateStorage(plusStorage, plusCount, '+');
+};
+
+const syncHelperBinsOnResize = () => {
+  document.querySelectorAll('.helper-panel').forEach((panel) => adjustBinStorageForDevice(panel));
+};
+
+if (hpMediaQuery.addEventListener) {
+  hpMediaQuery.addEventListener('change', syncHelperBinsOnResize);
+} else if (hpMediaQuery.addListener) {
+  hpMediaQuery.addListener(syncHelperBinsOnResize);
+}
+
+window.addEventListener('resize', syncHelperBinsOnResize);
+
 function initDragHelpers() {
   const helperPanels = Array.from(document.querySelectorAll('.helper-panel'));
   helperPanels.forEach((panel) => {
@@ -23,6 +80,7 @@ function initDragHelpers() {
       originalHelperPanelHTML.set(panel, panel.innerHTML);
     }
     panel.style.position = 'relative';
+    adjustBinStorageForDevice(panel);
 
     const actionBins = Array.from(panel.querySelectorAll('.action-bin'));
     const helperPieces = Array.from(panel.querySelectorAll('.helper-piece:not(.helper-piece--empty)'));
