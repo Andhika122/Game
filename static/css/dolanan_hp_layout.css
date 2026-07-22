@@ -87,7 +87,7 @@
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(6, minmax(28px, 1fr)) !important;
+    grid-template-columns: repeat(6, minmax(20px, 1fr)) !important;
     gap: 0px !important;
     width: 100% !important;
   }
@@ -97,8 +97,8 @@
     height: 44px !important;
   }
 
-  /* HP only: tampilkan hanya baris 1-3, kosongkan baris 4 dan 5 */
-  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19) {
+  /* HP only: sembunyikan hanya potongan non-empty ekstra di baris 4 dan 5 */
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:not(.helper-piece--empty):nth-child(n+19) {
     border: none !important;
     background: transparent !important;
     opacity: 1 !important;
@@ -106,19 +106,19 @@
     cursor: default !important;
   }
 
-  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19) .helper-icon {
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:not(.helper-piece--empty):nth-child(n+19) .helper-icon {
     opacity: 0 !important;
     visibility: hidden !important;
     transform: none !important;
   }
 
-  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19).drag-over {
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:not(.helper-piece--empty):nth-child(n+19).drag-over {
     background: rgba(255, 248, 220, 0.95) !important;
     border-color: rgba(86, 166, 80, 0.85) !important;
     opacity: 1 !important;
   }
 
-  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19).drag-over .helper-icon {
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:not(.helper-piece--empty):nth-child(n+19).drag-over .helper-icon {
     opacity: 0 !important;
     visibility: hidden !important;
   }
