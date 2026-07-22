@@ -97,28 +97,28 @@
     height: 44px !important;
   }
 
-  /* HP only: sembunyikan hanya potongan non-empty ekstra di baris 4 dan 5 */
-  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:not(.helper-piece--empty):nth-child(n+19) {
-    border: none !important;
-    background: transparent !important;
-    opacity: 1 !important;
+  /* HP only: tampilkan baris 4 dan 5 sebagai slot kosong */
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19) {
+    border: 2px dashed rgba(138, 92, 50, 0.18) !important;
+    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,240,220,0.2)) !important;
+    opacity: 0.6 !important;
     pointer-events: none !important;
     cursor: default !important;
   }
 
-  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:not(.helper-piece--empty):nth-child(n+19) .helper-icon {
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19) .helper-icon {
     opacity: 0 !important;
     visibility: hidden !important;
     transform: none !important;
   }
 
-  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:not(.helper-piece--empty):nth-child(n+19).drag-over {
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19).drag-over {
     background: rgba(255, 248, 220, 0.95) !important;
     border-color: rgba(86, 166, 80, 0.85) !important;
     opacity: 1 !important;
   }
 
-  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:not(.helper-piece--empty):nth-child(n+19).drag-over .helper-icon {
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+19).drag-over .helper-icon {
     opacity: 0 !important;
     visibility: hidden !important;
   }
