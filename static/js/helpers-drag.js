@@ -33,6 +33,19 @@ const createRemovedPiece = (sign) => {
   return button;
 };
 
+const markHpHiddenSlotsForDevice = (panel) => {
+  const hiddenSlots = Array.from(panel.querySelectorAll('.helper-piece:not(.helper-piece--empty):nth-child(n+19)'));
+  hiddenSlots.forEach((slot) => {
+    if (isHpView()) {
+      slot.classList.add('hp-hidden-empty-slot');
+      slot.setAttribute('aria-hidden', 'true');
+    } else {
+      slot.classList.remove('hp-hidden-empty-slot');
+      slot.removeAttribute('aria-hidden');
+    }
+  });
+};
+
 const adjustBinStorageForDevice = (panel) => {
   const plusStorage = panel.querySelector('.action-bin--plus .bin-storage');
   const minusStorage = panel.querySelector('.action-bin--minus .bin-storage');
@@ -62,7 +75,10 @@ const adjustBinStorageForDevice = (panel) => {
 };
 
 const syncHelperBinsOnResize = () => {
-  document.querySelectorAll('.helper-panel').forEach((panel) => adjustBinStorageForDevice(panel));
+  document.querySelectorAll('.helper-panel').forEach((panel) => {
+    markHpHiddenSlotsForDevice(panel);
+    adjustBinStorageForDevice(panel);
+  });
 };
 
 if (hpMediaQuery.addEventListener) {
@@ -80,10 +96,11 @@ function initDragHelpers() {
       originalHelperPanelHTML.set(panel, panel.innerHTML);
     }
     panel.style.position = 'relative';
+    markHpHiddenSlotsForDevice(panel);
     adjustBinStorageForDevice(panel);
 
     const actionBins = Array.from(panel.querySelectorAll('.action-bin'));
-    const helperPieces = Array.from(panel.querySelectorAll('.helper-piece:not(.helper-piece--empty)'));
+    const helperPieces = Array.from(panel.querySelectorAll('.helper-piece:not(.helper-piece--empty):not(.hp-hidden-empty-slot)'));
     const binStorages = {
       '+': panel.querySelector('.action-bin--plus .bin-storage'),
       '-': panel.querySelector('.action-bin--minus .bin-storage'),
@@ -93,7 +110,7 @@ function initDragHelpers() {
       '-': panel.querySelector('.action-bin--minus .bin-count-value'),
     };
     const restoreHandles = Array.from(panel.querySelectorAll('.action-bin .bin-count'));
-    const getRestoreSlots = () => Array.from(panel.querySelectorAll('.helper-piece--empty'));
+    const getRestoreSlots = () => Array.from(panel.querySelectorAll('.helper-piece--empty, .helper-piece.hp-hidden-empty-slot'));
 
     if (!helperPieces.length || !actionBins.length || !getRestoreSlots().length || !binStorages['+'] || !binStorages['-'] || !binCountValues['+'] || !binCountValues['-'] || !restoreHandles.length) return;
 
