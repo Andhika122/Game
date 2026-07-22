@@ -37,11 +37,21 @@ const markHpHiddenSlotsForDevice = (panel) => {
   const hiddenSlots = Array.from(panel.querySelectorAll('.helper-piece:not(.helper-piece--empty):nth-child(n+19)'));
   hiddenSlots.forEach((slot) => {
     if (isHpView()) {
-      slot.classList.add('hp-hidden-empty-slot');
+      if (!slot.dataset.originalContent) {
+        slot.dataset.originalContent = slot.innerHTML;
+      }
+      slot.classList.add('hp-hidden-empty-slot', 'helper-piece--empty');
       slot.setAttribute('aria-hidden', 'true');
+      slot.draggable = false;
+      slot.innerHTML = '';
     } else {
-      slot.classList.remove('hp-hidden-empty-slot');
+      slot.classList.remove('hp-hidden-empty-slot', 'helper-piece--empty');
       slot.removeAttribute('aria-hidden');
+      slot.draggable = true;
+      if (slot.dataset.originalContent) {
+        slot.innerHTML = slot.dataset.originalContent;
+        slot.removeAttribute('data-original-content');
+      }
     }
   });
 };
