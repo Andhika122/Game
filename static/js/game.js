@@ -125,6 +125,18 @@ function buatSoal(pilihanTipe = 1) {
         namaTipe = "Tipe 8: kecil (-) - besar (+)";
         break;
     }
+
+    // Pastikan relasi besar/kecil berdasarkan tipe:
+    // Untuk tipe 1,3,5,7: angka pertama harus memiliki nilai mutlak lebih besar dari angka kedua.
+    // Untuk tipe 2,4,6,8: angka pertama harus memiliki nilai mutlak lebih kecil dari angka kedua.
+    const mustAGTB = [1, 3, 5, 7].includes(pilihanTipe);
+    const mustALTb = [2, 4, 6, 8].includes(pilihanTipe);
+    if (mustAGTB && Math.abs(a) <= Math.abs(b)) {
+      const tmp = a; a = b; b = tmp;
+    }
+    if (mustALTb && Math.abs(a) >= Math.abs(b)) {
+      const tmp = a; a = b; b = tmp;
+    }
   }
 
   const operator = currentGameMode === "addition" ? "+" : "-";
@@ -200,9 +212,12 @@ function handleCalculatorInput(key) {
 }
 
 function submitAnswer() {
-  if (currentQuestionAnswer === null) return;
+  if (typeof isSubmittingAnswer !== 'undefined' && isSubmittingAnswer) return;
+  isSubmittingAnswer = true;
+  if (currentQuestionAnswer === null) { isSubmittingAnswer = false; return; }
   if (currentUserEntry === "" || currentUserEntry === "-") {
     if (window.resetHelpers) window.resetHelpers();
+    isSubmittingAnswer = false;
     return;
   }
 
@@ -214,8 +229,16 @@ function submitAnswer() {
 
   if (enteredValue === currentQuestionAnswer) {
     showFeedback("Jawaban benar! Lanjut ke soal berikutnya.", "success");
-    if (currentGameMode === "subtraction") {
-      currentQuestionType = currentQuestionType < 8 ? currentQuestionType + 1 : 1;
+    const resolvedGameMode = currentGameMode || (window.location.pathname.includes("/dolanan/pengurangan") ? "subtraction" : (window.location.pathname.includes("/dolanan/penjumlahan") ? "addition" : "addition"));
+    if (resolvedGameMode === "subtraction") {
+      // Untuk pengurangan: setiap tipe soal diulang 2 kali (seperti penjumlahan),
+      // lalu lanjut ke tipe berikutnya. Soal tetap random dalam tiap tipe.
+      if (currentQuestionRepeat < 2) {
+        currentQuestionRepeat += 1;
+      } else {
+        currentQuestionRepeat = 1;
+        currentQuestionType = currentQuestionType < 8 ? currentQuestionType + 1 : 1;
+      }
     } else {
       if (currentQuestionRepeat < 2) {
         currentQuestionRepeat += 1;
@@ -226,11 +249,13 @@ function submitAnswer() {
     }
     tampilkanSoal(currentQuestionType);
     if (window.resetHelpers) window.resetHelpers();
+    isSubmittingAnswer = false;
   } else {
     showFeedback("Jawaban salah. Soal baru dibuat dalam tipe yang sama.", "error");
     currentUserEntry = "";
     tampilkanSoal(currentQuestionType);
     if (window.resetHelpers) window.resetHelpers();
+    isSubmittingAnswer = false;
   }
 }
 
@@ -244,6 +269,7 @@ function initDolananGame() {
   } else if (pathname.includes("/dolanan/pengurangan")) {
     currentGameMode = "subtraction";
     currentQuestionType = 1;
+    currentQuestionRepeat = 1;
     tampilkanSoal(currentQuestionType);
   }
 }

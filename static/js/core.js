@@ -18,6 +18,7 @@ let currentQuestionType = 1;
 let currentQuestionRepeat = 1;
 let currentQuestionAnswer = null;
 let currentUserEntry = "";
+let isSubmittingAnswer = false;
 
 const viewClasses = {
   home: "",
