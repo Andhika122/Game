@@ -1,20 +1,99 @@
+.dolanan-page {
+  width: min(100%, 760px) !important;
+  max-width: min(96vw, 760px) !important;
+  margin: 0 auto !important;
+}
+
+.dolanan-page .helper-panel {
+  overflow: hidden;
+  padding: 0.85rem !important;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.dolanan-page .helper-plate {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 0 !important;
+  margin: 0 auto !important;
+  display: flex;
+  justify-content: center;
+}
+
+.game-menu-page.direct-view.pitakon-top .menu-panel {
+  width: min(100%, 960px) !important;
+}
+
+.menu-panel .dolanan-page,
+.dolanan-page {
+  width: min(100%, 760px) !important;
+  max-width: min(96vw, 760px) !important;
+  margin: 0 auto !important;
+}
+
+/* Laptop / desktop: 10 kolom */
 .dolanan-page .helper-pieces.helper-grid.layout-b {
   display: grid !important;
-  grid-template-columns: repeat(10, minmax(36px, 1fr)) !important;
-  grid-auto-rows: 92px !important;
+  grid-template-columns: repeat(10, minmax(28px, 1fr)) !important;
+  grid-auto-rows: 90px !important;
   width: 100% !important;
   max-width: 100% !important;
-  gap: 6px !important;
+  gap: 0px !important;
+  margin: 0 auto !important;
+  justify-items: center !important;
+  align-content: start !important;
+}
+
+.dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece {
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  min-width: 0 !important;
+}
+
+.dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece .helper-icon {
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+.dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece[data-sign="+"] .helper-icon {
+  transform: translateX(-1px) !important;
+}
+
+.dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece[data-sign="-"] .helper-icon {
+  transform: translateX(-1px) !important;
+}
+
+.dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece.helper-piece--empty {
+  width: 100% !important;
+  max-width: 100% !important;
+  min-height: 0 !important;
 }
 
 @media (max-width: 720px) {
+  /* HP / layar kecil: 6 kolom */
+  .dolanan-page .helper-plate {
+    justify-content: stretch;
+  }
+
   .dolanan-page .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(6, minmax(40px, 1fr)) !important;
-    gap: 5px !important;
+    grid-template-columns: repeat(6, minmax(30px, 1fr)) !important;
+    gap: 0px !important;
+    width: 100% !important;
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece {
-    max-width: 52px !important;
-    height: 52px !important;
+    max-width: 48px !important;
+    height: 48px !important;
   }
 }

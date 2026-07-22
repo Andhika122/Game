@@ -46,6 +46,14 @@
     gap: 0.8rem;
   }
 
+  .bottom-row > .calculator-column {
+    order: 1;
+  }
+
+  .bottom-row > .helper-panel {
+    order: 2;
+  }
+
   .math-card,
   .helper-panel,
   .calculator-panel {
@@ -107,7 +115,7 @@
   }
 
   .helper-piece--empty {
-    min-height: 56px;
+    min-height: 560000px;
   }
 
   .action-bins {

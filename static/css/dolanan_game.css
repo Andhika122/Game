@@ -140,9 +140,7 @@
   align-content: start;
 }
 
-.helper-pieces.helper-grid.layout-b {
-  grid-template-columns: repeat(10, minmax(50px, 1fr));
-}
+/* layout-b custom grid is handled by dolanan_hp_layout.css for Dolanan HP pages */
 
 .helper-plate {
   min-height: 0;
@@ -671,12 +669,6 @@
     width: 100%;
   }
 
-  .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(5, minmax(48px, 1fr));
-    max-width: 100%;
-    gap: 6px;
-  }
-
   .helper-piece {
     width: 100%;
     max-width: 56px;
@@ -735,12 +727,6 @@
     font-size: 1rem;
   }
 
-  .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(10, minmax(44px, 1fr));
-    max-width: 100%;
-    gap: 6px;
-  }
-
   .helper-piece {
     width: 100%;
     max-width: 52px;
@@ -775,11 +761,7 @@
     padding: 1rem;
   }
 
-  .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(10, minmax(44px, 1fr));
-    max-width: 100%;
-    gap: 6px;
-  }
+  /* layout-b custom grid is handled by dolanan_hp_layout.css for Dolanan HP pages */
 
   .helper-piece {
     width: 100%;
