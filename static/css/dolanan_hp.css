@@ -115,7 +115,7 @@
   }
 
   .helper-piece--empty {
-    min-height: 560000px;
+    min-height: 56px;
   }
 
   .action-bins {
