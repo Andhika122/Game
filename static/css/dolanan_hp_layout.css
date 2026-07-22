@@ -80,21 +80,21 @@
   min-height: 0 !important;
 }
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
   /* HP / layar kecil: 6 kolom */
   .dolanan-page .helper-plate {
     justify-content: stretch;
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(6, minmax(30px, 1fr)) !important;
-    gap: 0px !important;
+    grid-template-columns: repeat(6, minmax(28px, 1fr)) !important;
+    gap: 4px !important;
     width: 100% !important;
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece {
-    max-width: 48px !important;
-    height: 48px !important;
+    max-width: 44px !important;
+    height: 44px !important;
   }
 
   /* HP only: tampilkan hanya baris 1-3, kosongkan baris 4 dan 5 */

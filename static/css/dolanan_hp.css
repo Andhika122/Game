@@ -10,51 +10,57 @@
   .dolanan-page {
     width: min(100%, 460px);
     max-width: min(96vw, 460px);
-    padding: clamp(14px, 3vw, 20px);
-    gap: 1rem;
+    padding: clamp(10px, 2.5vw, 14px);
+    gap: 0.6rem;
     border-radius: 24px;
   }
 
   .game-menu-page.direct-view.pitakon-top .menu-panel {
     width: min(100vw, 500px);
-    padding: 8px;
+    padding: 6px;
   }
 
   .dolanan-header {
-    margin-bottom: 1rem;
+    margin-bottom: 0.65rem;
   }
 
   .dolanan-header h1 {
-    font-size: clamp(1.9rem, 6vw, 2.5rem);
+    font-size: clamp(1.7rem, 6vw, 2.1rem);
   }
 
   .page-copy {
-    font-size: 0.95rem;
-    line-height: 1.6;
+    font-size: 0.9rem;
+    line-height: 1.4;
   }
 
   .math-panel {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.9rem;
+    gap: 0.65rem;
   }
 
   .question-row,
   .bottom-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.65rem !important;
   }
 
   .calculator-column {
-    order: -1;
+    order: -1 !important;
+    width: 100% !important;
+  }
+
+  .helper-panel,
+  .calculator-panel {
+    width: 100%;
   }
 
   .math-card,
   .helper-panel,
   .calculator-panel {
-    padding: 0.95rem;
-    border-radius: 18px;
+    padding: 0.75rem;
+    border-radius: 16px;
   }
 
   .math-question-row.large-question .math-question,
