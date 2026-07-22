@@ -1,17 +1,20 @@
-.helper-pieces.helper-grid.layout-b {
-  grid-template-columns: repeat(10, minmax(50px, 1fr));
-  max-width: 100%;
-  gap: 6px;
+.dolanan-page .helper-pieces.helper-grid.layout-b {
+  display: grid !important;
+  grid-template-columns: repeat(10, minmax(36px, 1fr)) !important;
+  grid-auto-rows: 92px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  gap: 6px !important;
 }
 
 @media (max-width: 720px) {
-  .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(6, minmax(40px, 1fr));
-    gap: 5px;
+  .dolanan-page .helper-pieces.helper-grid.layout-b {
+    grid-template-columns: repeat(6, minmax(40px, 1fr)) !important;
+    gap: 5px !important;
   }
 
-  .helper-piece {
-    max-width: 52px;
-    height: 52px;
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece {
+    max-width: 52px !important;
+    height: 52px !important;
   }
 }
