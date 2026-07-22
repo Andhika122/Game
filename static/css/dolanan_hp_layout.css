@@ -67,7 +67,7 @@
 }
 
 .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece[data-sign="+"] .helper-icon {
-  transform: translateX(-1px) !important;
+  transform: translateX(-5px) !important;
 }
 
 .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece[data-sign="-"] .helper-icon {
@@ -90,6 +90,13 @@
     grid-template-columns: repeat(6, minmax(30px, 1fr)) !important;
     gap: 0px !important;
     width: 100% !important;
+  }
+
+  /* HP only: kosongkan baris 4 dan 5 dengan menyembunyikan dua tombol terakhir */
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(19),
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(20) {
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece {
