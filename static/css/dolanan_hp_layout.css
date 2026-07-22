@@ -80,7 +80,7 @@
   min-height: 0 !important;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 720px) {
   /* HP / layar kecil: 6 kolom */
   .dolanan-page .helper-plate {
     justify-content: stretch;
