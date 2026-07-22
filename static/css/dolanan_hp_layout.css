@@ -87,7 +87,7 @@
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(6, minmax(10px, 1fr)) !important;
+    grid-template-columns: repeat(6, minmax(1px, 1fr)) !important;
     grid-auto-rows: 44px !important;
     gap: 4px !important;
     width: 100% !important;
