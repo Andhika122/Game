@@ -96,4 +96,15 @@
     max-width: 48px !important;
     height: 48px !important;
   }
+
+  /* HP only: tampilkan 6 pasangan terakhir sebagai slot kosong tanpa menghapus fungsi */
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+9) {
+    border: 2px dashed rgba(138, 92, 50, 0.18) !important;
+    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,240,220,0.2)) !important;
+    opacity: 0.6 !important;
+  }
+
+  .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece:nth-child(n+9) .helper-icon {
+    opacity: 0 !important;
+  }
 }
