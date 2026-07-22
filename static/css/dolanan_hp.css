@@ -46,6 +46,10 @@
     gap: 0.8rem;
   }
 
+  .calculator-column {
+    order: -1;
+  }
+
   .math-card,
   .helper-panel,
   .calculator-panel {
