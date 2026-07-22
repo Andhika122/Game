@@ -151,7 +151,10 @@ function tampilkanSoal(tipe = currentQuestionType) {
   if (questionText) questionText.textContent = `${soal.teksSoal.split("=")[0].trim()} =`;
   if (calculatorDisplay) calculatorDisplay.textContent = "...";
   const calculatorPanel = document.querySelector('.calculator-panel');
-  if (calculatorPanel) calculatorPanel.classList.add('hidden');
+  if (calculatorPanel) {
+    calculatorPanel.classList.add('hidden');
+    if (window.updateMakeQuestionButton) window.updateMakeQuestionButton();
+  }
 }
 
 function updateCalculatorDisplay() {

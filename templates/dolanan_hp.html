@@ -39,39 +39,38 @@
             <aside class="helper-panel" aria-label="Alat bantu hitung">
               <div class="helper-panel-head">
                 <p class="math-label">Alat Bantuan</p>
-                <p class="helper-hint">Tarik tanda + ke area Positif dan tanda - ke area Negatif. Setelah dibuang, seret token pemulihan dari bin kembali ke papan kapan saja.</p>
               </div>
               <div class="helper-plate">
                 <div class="helper-pieces helper-grid layout-b" role="list">
-                  <!-- Layout B: 5 rows x 6 columns (each row: - + - + empty empty) -->
+                  <!-- Layout B: 3 rows x 10 columns (each row: - + - + - + - + empty empty) -->
                   <button class="helper-piece" draggable="true" id="r1c1" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
                   <button class="helper-piece" draggable="true" id="r1c2" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
                   <button class="helper-piece" draggable="true" id="r1c3" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
                   <button class="helper-piece" draggable="true" id="r1c4" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r1c5" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r1c6" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r1c7" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r1c8" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
                   <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
                   <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
                   <button class="helper-piece" draggable="true" id="r2c1" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
                   <button class="helper-piece" draggable="true" id="r2c2" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
                   <button class="helper-piece" draggable="true" id="r2c3" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
                   <button class="helper-piece" draggable="true" id="r2c4" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r2c5" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r2c6" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r2c7" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r2c8" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
                   <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
                   <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
                   <button class="helper-piece" draggable="true" id="r3c1" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
                   <button class="helper-piece" draggable="true" id="r3c2" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
                   <button class="helper-piece" draggable="true" id="r3c3" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
                   <button class="helper-piece" draggable="true" id="r3c4" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
-                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
-                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
-                  <button class="helper-piece" draggable="true" id="r4c1" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
-                  <button class="helper-piece" draggable="true" id="r4c2" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
-                  <button class="helper-piece" draggable="true" id="r4c3" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
-                  <button class="helper-piece" draggable="true" id="r4c4" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
-                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
-                  <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
-                  <button class="helper-piece" draggable="true" id="r5c1" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
-                  <button class="helper-piece" draggable="true" id="r5c2" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
-                  <button class="helper-piece" draggable="true" id="r5c3" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
-                  <button class="helper-piece" draggable="true" id="r5c4" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r3c5" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r3c6" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
+                  <button class="helper-piece" draggable="true" id="r3c7" data-sign="-" aria-label="Kurangi"><img class="helper-icon" src="/static/img/kurang.png" alt="-"></button>
+                  <button class="helper-piece" draggable="true" id="r3c8" data-sign="+" aria-label="Tambah"><img class="helper-icon" src="/static/img/tambah.png" alt="+"></button>
                   <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
                   <div class="helper-piece helper-piece--empty" aria-hidden="true"></div>
                 </div>
@@ -108,25 +107,26 @@
               </div>
             </aside>
 
-            <div class="calculator-panel hidden">
-              <div class="number-pad">
-                <button type="button" class="pad-key calculator-key" data-key="7">7</button>
-                <button type="button" class="pad-key calculator-key" data-key="8">8</button>
-                <button type="button" class="pad-key calculator-key" data-key="9">9</button>
-                <button type="button" class="pad-key calculator-key" data-key="4">4</button>
-                <button type="button" class="pad-key calculator-key" data-key="5">5</button>
-                <button type="button" class="pad-key calculator-key" data-key="6">6</button>
-                <button type="button" class="pad-key calculator-key" data-key="1">1</button>
-                <button type="button" class="pad-key calculator-key" data-key="2">2</button>
-                <button type="button" class="pad-key calculator-key" data-key="3">3</button>
-                <button type="button" class="pad-key calculator-key operator" data-key="-">-</button>
-                <button type="button" class="pad-key calculator-key" data-key="0">0</button>
-                <button type="button" class="pad-key calculator-key delete" data-key="Hapus">⌫</button>
+            <div class="calculator-column">
+              <div class="calculator-panel hidden">
+                <div class="number-pad">
+                  <button type="button" class="pad-key calculator-key" data-key="7">7</button>
+                  <button type="button" class="pad-key calculator-key" data-key="8">8</button>
+                  <button type="button" class="pad-key calculator-key" data-key="9">9</button>
+                  <button type="button" class="pad-key calculator-key" data-key="4">4</button>
+                  <button type="button" class="pad-key calculator-key" data-key="5">5</button>
+                  <button type="button" class="pad-key calculator-key" data-key="6">6</button>
+                  <button type="button" class="pad-key calculator-key" data-key="1">1</button>
+                  <button type="button" class="pad-key calculator-key" data-key="2">2</button>
+                  <button type="button" class="pad-key calculator-key" data-key="3">3</button>
+                  <button type="button" class="pad-key calculator-key operator" data-key="-">-</button>
+                  <button type="button" class="pad-key calculator-key" data-key="0">0</button>
+                  <button type="button" class="pad-key calculator-key delete" data-key="Hapus">⌫</button>
+                </div>
               </div>
 
-              <div class="calculator-actions">
-                <button type="button" class="btn" id="makeQuestionButton">Submit Jawaban</button>
-                <a class="btn" href="/menu">Kembali ke Menu</a>
+              <div class="calculator-actions calculator-actions--single">
+                <button type="button" class="btn btn--primary" id="makeQuestionButton">Jawaban</button>
               </div>
             </div>
           </div>

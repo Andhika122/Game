@@ -1,14 +1,14 @@
 .dolanan-page {
   margin: 0 auto;
-  width: min(100%, 960px);
-  max-width: min(92vw, 960px);
-  padding: clamp(24px, 2.2vw, 32px);
+  width: min(100%, 520px);
+  max-width: min(72vw, 520px);
+  padding: clamp(14px, 1.3vw, 20px);
   display: grid;
-  gap: 1.6rem;
+  gap: 0.85rem;
   align-items: stretch;
-  border-radius: 36px;
+  border-radius: 26px;
   background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 24px 48px rgba(33, 33, 33, 0.14);
+  box-shadow: 0 18px 32px rgba(33, 33, 33, 0.14);
   border: 1px solid rgba(148, 106, 44, 0.18);
 }
 
@@ -23,8 +23,8 @@
 }
 
 .game-menu-page.direct-view.pitakon-top .menu-panel {
-  width: min(94vw, 1040px);
-  padding: clamp(14px, 1.8vw, 24px);
+  width: min(92vw, 700px);
+  padding: clamp(12px, 1.6vw, 18px);
 }
 
 .menu-panel .dolanan-page {
@@ -56,7 +56,7 @@
 
 .dolanan-header h1 {
   margin: 0;
-  font-size: clamp(2.8rem, 4vw, 3.8rem);
+  font-size: clamp(2.4rem, 3.4vw, 3.2rem);
   color: #6a2f21;
   line-height: 1.05;
 }
@@ -82,15 +82,15 @@
 }
 
 .question-row {
-  grid-template-columns: minmax(360px, 1.2fr) minmax(260px, 0.8fr);
+  grid-template-columns: 1fr;
   align-items: stretch;
   gap: 1.2rem;
 }
 
 .bottom-row {
-  grid-template-columns: minmax(440px, 1.35fr) minmax(340px, 0.85fr);
+  grid-template-columns: minmax(280px, 1.6fr) minmax(220px, 0.9fr);
   align-items: start;
-  gap: 1.25rem;
+  gap: 0.8rem;
 }
 
 .helper-panel {
@@ -99,28 +99,49 @@
   grid-template-rows: auto 1fr auto;
   align-items: stretch;
   justify-items: stretch;
-  gap: 1rem;
-  padding: 1.4rem;
+  gap: 0.7rem;
+  padding: 0.85rem;
   width: 100%;
   max-width: 100%;
   min-width: 0;
   box-sizing: border-box;
-  border-radius: 28px;
+  border-radius: 24px;
   background: linear-gradient(180deg, #fffdf7 0%, #ffeecf 100%);
   border: 1px solid rgba(148, 106, 44, 0.18);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
+.calculator-column {
+  display: grid;
+  gap: 1rem;
+  align-items: start;
+  width: 100%;
+  min-width: 0;
+}
+
+.calculator-panel {
+  padding: 0.9rem;
+  border-radius: 24px;
+  background: linear-gradient(180deg, #fffdf7 0%, #fff8ee 100%);
+  border: 1px solid rgba(148, 106, 44, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  max-width: 270px;
+}
+
 .helper-pieces.helper-grid {
   display: grid;
-  grid-template-columns: repeat(6, minmax(64px, 1fr));
-  gap: 8px;
+  grid-template-columns: repeat(6, minmax(50px, 1fr));
+  gap: 5px;
   width: 100%;
   max-width: 100%;
   margin: 0;
-  grid-auto-rows: 92px;
+  grid-auto-rows: 66px;
   justify-items: center;
   align-content: start;
+}
+
+.helper-pieces.helper-grid.layout-b {
+  grid-template-columns: repeat(10, minmax(50px, 1fr));
 }
 
 .helper-plate {
@@ -132,9 +153,9 @@
   width: 100%;
   display: grid;
   place-items: center;
-  gap: 0.5rem;
-  min-height: 140px;
-  padding: 1rem 1.1rem;
+  gap: 0.4rem;
+  min-height: 120px;
+  padding: 0.85rem 1rem;
   border-radius: 22px;
   background: rgba(255,255,255,0.92);
   border: 2px dashed rgba(148,106,44,0.28);
@@ -145,11 +166,27 @@
 
 @media (min-width: 1024px) {
   .question-row {
-    grid-template-columns: minmax(420px, 1.2fr) minmax(300px, 0.8fr);
+    grid-template-columns: 1fr;
   }
 
   .bottom-row {
-    grid-template-columns: minmax(470px, 1.3fr) minmax(360px, 0.9fr);
+    grid-template-columns: minmax(260px, 1.5fr) minmax(200px, 1fr);
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .calculator-column {
+    justify-self: stretch;
+    max-width: 100%;
+  }
+
+  .calculator-panel {
+    min-height: 100%;
+  }
+
+  .number-pad {
+    grid-template-columns: repeat(3, minmax(60px, 1fr));
+    gap: 0.85rem;
   }
 }
 
@@ -186,7 +223,7 @@
 }
 
 .math-card {
-  padding: 1.2rem 1.6rem;
+  padding: 1rem 1.2rem;
   background: linear-gradient(180deg, #fffef9, #fff8ee);
   border: 1px solid rgba(148,106,44,0.08);
   border-radius: 14px;
@@ -202,7 +239,7 @@
 
 .math-question {
   margin: 0;
-  font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
   font-weight: 800;
   text-align: left;
   color: #2c1a10;
@@ -210,7 +247,7 @@
 
 .answer-inline {
   min-width: 2.2ch;
-  font-size: clamp(1.6rem, 2.6vw, 2.6rem);
+  font-size: clamp(1.4rem, 2.2vw, 2.2rem);
   font-weight: 800;
   color: #8f3f1f;
   border-bottom: 3px solid rgba(148, 106, 44, 0.24);
@@ -220,7 +257,7 @@
 /* Larger question style for specific rows */
 .math-question-row.large-question .math-question,
 .math-question-row.large-question .answer-inline {
-  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-size: clamp(2rem, 3vw, 3.2rem);
   font-weight: 900;
 }
 
@@ -468,19 +505,19 @@
 .number-pad {
   margin: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(50px, 1fr));
-  gap: 0.7rem;
+  grid-template-columns: repeat(3, minmax(46px, 1fr));
+  gap: 0.55rem;
   width: 100%;
   max-width: 100%;
 }
 
 .pad-key {
-  padding: 1.05rem 0;
+  padding: 0.75rem 0;
   border-radius: 16px;
   border: 0;
   background: linear-gradient(180deg, #ffd36f 0%, #f2a421 100%);
   color: #412612;
-  font-size: 1.45rem;
+  font-size: 1.18rem;
   font-weight: 800;
   box-shadow: 0 8px 0 rgba(132, 72, 22, 0.18);
   cursor: pointer;
@@ -489,32 +526,47 @@
 
 .calculator-actions {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   gap: 0.75rem;
   width: 100%;
+  padding-top: 0.5rem;
+}
+
+.calculator-actions--single {
+  justify-content: center;
 }
 
 .calculator-actions .btn {
-  flex: 1 1 160px;
-  max-width: 200px;
-  min-width: 140px;
+  flex: 0 1 auto;
+  max-width: 220px;
+  width: 100%;
   padding: 0.85rem 1rem;
-  border-radius: 14px;
+  border-radius: 18px;
+  font-size: 0.96rem;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.calculator-actions .btn.btn--primary {
+  background: linear-gradient(180deg, #ffb74d 0%, #f2920a 100%);
+  color: #fff;
+  box-shadow: 0 10px 0 rgba(174, 101, 16, 0.16);
+}
+
+.calculator-actions .btn.btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 0 rgba(174, 101, 16, 0.18);
 }
 
 @media (max-width: 720px) {
   .calculator-actions {
     flex-direction: column;
     align-items: stretch;
-    justify-content: flex-end;
   }
 
   .calculator-actions .btn {
     max-width: 100%;
     width: 100%;
-    flex: 1 1 100%;
   }
 }
 
@@ -620,7 +672,7 @@
   }
 
   .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
+    grid-template-columns: repeat(5, minmax(48px, 1fr));
     max-width: 100%;
     gap: 6px;
   }
@@ -684,7 +736,7 @@
   }
 
   .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+    grid-template-columns: repeat(10, minmax(44px, 1fr));
     max-width: 100%;
     gap: 6px;
   }
@@ -724,7 +776,7 @@
   }
 
   .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+    grid-template-columns: repeat(10, minmax(44px, 1fr));
     max-width: 100%;
     gap: 6px;
   }

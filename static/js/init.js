@@ -36,16 +36,34 @@
 
   const calculatorDisplay = document.getElementById('questionAnswer');
   const calculatorPanel = document.querySelector('.calculator-panel');
+  const makeQuestionButton = document.getElementById('makeQuestionButton');
+
+  function updateMakeQuestionButton() {
+    if (!makeQuestionButton || !calculatorPanel) return;
+    makeQuestionButton.textContent = calculatorPanel.classList.contains('hidden') ? 'Jawaban' : 'Submit Jawaban';
+  }
+  window.updateMakeQuestionButton = updateMakeQuestionButton;
 
   if (calculatorDisplay && calculatorPanel) {
     calculatorDisplay.addEventListener('click', () => {
       calculatorPanel.classList.toggle('hidden');
+      updateMakeQuestionButton();
     });
   }
 
-  // submit button
-  const makeQuestionButton = document.getElementById('makeQuestionButton');
-  if (makeQuestionButton) makeQuestionButton.addEventListener('click', () => { if (typeof submitAnswer === 'function') submitAnswer(); });
+  if (makeQuestionButton) {
+    makeQuestionButton.addEventListener('click', () => {
+      if (calculatorPanel && calculatorPanel.classList.contains('hidden')) {
+        calculatorPanel.classList.remove('hidden');
+        updateMakeQuestionButton();
+        return;
+      }
+
+      if (typeof submitAnswer === 'function') submitAnswer();
+    });
+  }
+
+  updateMakeQuestionButton();
 
   // apply initial UI state
   if (window.gemanti && typeof window.gemanti.updateSoundUI === 'function') window.gemanti.updateSoundUI();
