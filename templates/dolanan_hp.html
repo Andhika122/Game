@@ -32,6 +32,12 @@
                 <p class="math-question" id="questionText">{{ question_text }}</p>
                 <span class="answer-inline calculator-display" id="questionAnswer">...</span>
               </div>
+              <div class="help-row">
+                <button type="button" class="btn btn--primary" id="makeQuestionButton">Jawaban</button>
+              </div>
+              <div class="help-row">
+                <button type="button" id="helpVideoButton" class="btn">Bantuan</button>
+              </div>
             </article>
           </div>
 
@@ -108,6 +114,12 @@
             </aside>
 
             <div class="calculator-column">
+              <div id="helpVideoContainer" class="help-video-container hidden" aria-live="polite">
+                <video controls playsinline preload="metadata">
+                  <source src="/static/video/vidio_bantuan_penjumlahan_tipe_1.mp4" type="video/mp4">
+                  Browser kamu tidak mendukung video bantuan.
+                </video>
+              </div>
               <div class="calculator-panel hidden">
                 <div class="number-pad">
                   <button type="button" class="pad-key calculator-key" data-key="7">7</button>
@@ -124,9 +136,8 @@
                   <button type="button" class="pad-key calculator-key delete" data-key="Hapus">⌫</button>
                 </div>
               </div>
-
-              <div class="calculator-actions calculator-actions--single">
-                <button type="button" class="btn btn--primary" id="makeQuestionButton">Jawaban</button>
+              <div class="calculator-actions calculator-actions--single hidden" id="submitAnswerRow">
+                <button type="button" class="btn btn--primary" id="submitAnswerButton">Submit Jawaban</button>
               </div>
             </div>
           </div>

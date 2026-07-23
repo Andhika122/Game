@@ -37,33 +37,51 @@
   const calculatorDisplay = document.getElementById('questionAnswer');
   const calculatorPanel = document.querySelector('.calculator-panel');
   const makeQuestionButton = document.getElementById('makeQuestionButton');
+  const submitAnswerRow = document.getElementById('submitAnswerRow');
+  const submitAnswerButton = document.getElementById('submitAnswerButton');
 
   function updateMakeQuestionButton() {
     if (!makeQuestionButton || !calculatorPanel) return;
-    makeQuestionButton.textContent = calculatorPanel.classList.contains('hidden') ? 'Jawaban' : 'Submit Jawaban';
+    makeQuestionButton.textContent = calculatorPanel.classList.contains('hidden') ? 'Jawaban' : 'Tutup Jawaban';
   }
+
+  function updateSubmitButtonVisibility() {
+    if (!submitAnswerRow || !calculatorPanel) return;
+    submitAnswerRow.classList.toggle('hidden', calculatorPanel.classList.contains('hidden'));
+  }
+
   window.updateMakeQuestionButton = updateMakeQuestionButton;
+  window.updateSubmitButtonVisibility = updateSubmitButtonVisibility;
 
   if (calculatorDisplay && calculatorPanel) {
     calculatorDisplay.addEventListener('click', () => {
+      const openingCalculator = calculatorPanel.classList.contains('hidden');
       calculatorPanel.classList.toggle('hidden');
+      if (openingCalculator && typeof toggleHelpVideo === 'function') toggleHelpVideo(false);
       updateMakeQuestionButton();
+      updateSubmitButtonVisibility();
     });
   }
 
   if (makeQuestionButton) {
     makeQuestionButton.addEventListener('click', () => {
-      if (calculatorPanel && calculatorPanel.classList.contains('hidden')) {
-        calculatorPanel.classList.remove('hidden');
-        updateMakeQuestionButton();
-        return;
-      }
+      if (!calculatorPanel) return;
+      const openingCalculator = calculatorPanel.classList.contains('hidden');
+      calculatorPanel.classList.toggle('hidden');
+      if (openingCalculator && typeof toggleHelpVideo === 'function') toggleHelpVideo(false);
+      updateMakeQuestionButton();
+      updateSubmitButtonVisibility();
+    });
+  }
 
+  if (submitAnswerButton) {
+    submitAnswerButton.addEventListener('click', () => {
       if (typeof submitAnswer === 'function') submitAnswer();
     });
   }
 
   updateMakeQuestionButton();
+  updateSubmitButtonVisibility();
 
   // apply initial UI state
   if (window.gemanti && typeof window.gemanti.updateSoundUI === 'function') window.gemanti.updateSoundUI();

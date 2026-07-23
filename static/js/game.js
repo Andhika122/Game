@@ -26,6 +26,34 @@ function angkaNegatifBesar() {
 const feedbackModal = document.getElementById("feedbackModal");
 const feedbackModalMessage = document.getElementById("feedbackModalMessage");
 const feedbackModalButton = document.getElementById("feedbackModalButton");
+const helpVideoButton = document.getElementById("helpVideoButton");
+const helpVideoContainer = document.getElementById("helpVideoContainer");
+
+function toggleHelpVideo(show) {
+  if (!helpVideoContainer) return;
+  const isHidden = helpVideoContainer.classList.contains("hidden");
+  const shouldShow = typeof show === "boolean" ? show : isHidden;
+  if (shouldShow) {
+    const calculatorPanel = document.querySelector('.calculator-panel');
+    if (calculatorPanel && !calculatorPanel.classList.contains('hidden')) {
+      calculatorPanel.classList.add('hidden');
+      if (window.updateMakeQuestionButton) window.updateMakeQuestionButton();
+      if (window.updateSubmitButtonVisibility) window.updateSubmitButtonVisibility();
+    }
+  }
+  helpVideoContainer.classList.toggle("hidden", !shouldShow);
+  if (helpVideoButton) {
+    helpVideoButton.textContent = shouldShow ? "Tutup Bantuan" : "Bantuan";
+  }
+  const video = helpVideoContainer.querySelector("video");
+  if (!video) return;
+  if (shouldShow) {
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  } else {
+    video.pause();
+  }
+}
 
 function showFeedback(message, type = "success") {
   if (!feedbackModal || !feedbackModalMessage) {
@@ -56,6 +84,12 @@ function hideFeedback() {
 
 if (feedbackModalButton) {
   feedbackModalButton.addEventListener("click", hideFeedback);
+}
+
+if (helpVideoButton) {
+  helpVideoButton.addEventListener("click", () => {
+    toggleHelpVideo();
+  });
 }
 
 function formatAngka(n) {
@@ -174,7 +208,9 @@ function tampilkanSoal(tipe = currentQuestionType) {
   if (calculatorPanel) {
     calculatorPanel.classList.add('hidden');
     if (window.updateMakeQuestionButton) window.updateMakeQuestionButton();
+    if (window.updateSubmitButtonVisibility) window.updateSubmitButtonVisibility();
   }
+  toggleHelpVideo(false);
 }
 
 function updateCalculatorDisplay() {
