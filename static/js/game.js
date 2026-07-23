@@ -33,6 +33,10 @@ function showFeedback(message, type = "success") {
     return;
   }
 
+  if (feedbackModalButton) {
+    feedbackModalButton.textContent = type === "error" ? "Coba lagi" : "Lanjut";
+  }
+
   feedbackModalMessage.textContent = message;
   feedbackModal.classList.toggle("feedback-modal--success", type === "success");
   feedbackModal.classList.toggle("feedback-modal--error", type === "error");
@@ -44,6 +48,10 @@ function hideFeedback() {
   if (!feedbackModal) return;
   feedbackModal.classList.remove("feedback-modal--show", "feedback-modal--success", "feedback-modal--error");
   feedbackModal.setAttribute("aria-hidden", "true");
+  if (completionRedirect) {
+    completionRedirect = false;
+    window.location.href = "/dolanan";
+  }
 }
 
 if (feedbackModalButton) {
@@ -228,26 +236,45 @@ function submitAnswer() {
   }
 
   if (enteredValue === currentQuestionAnswer) {
-    showFeedback("Jawaban benar! Lanjut ke soal berikutnya.", "success");
+    const prevType = currentQuestionType;
     const resolvedGameMode = currentGameMode || (window.location.pathname.includes("/dolanan/pengurangan") ? "subtraction" : (window.location.pathname.includes("/dolanan/penjumlahan") ? "addition" : "addition"));
+    let finishedAllQuestions = false;
     if (resolvedGameMode === "subtraction") {
-      // Untuk pengurangan: setiap tipe soal diulang 2 kali (seperti penjumlahan),
-      // lalu lanjut ke tipe berikutnya. Soal tetap random dalam tiap tipe.
       if (currentQuestionRepeat < 2) {
         currentQuestionRepeat += 1;
-      } else {
+      } else if (currentQuestionType < 8) {
         currentQuestionRepeat = 1;
-        currentQuestionType = currentQuestionType < 8 ? currentQuestionType + 1 : 1;
+        currentQuestionType += 1;
+      } else {
+        finishedAllQuestions = true;
       }
     } else {
       if (currentQuestionRepeat < 2) {
         currentQuestionRepeat += 1;
-      } else {
+      } else if (currentQuestionType < 4) {
         currentQuestionRepeat = 1;
-        currentQuestionType = currentQuestionType < 4 ? currentQuestionType + 1 : 1;
+        currentQuestionType += 1;
+      } else {
+        finishedAllQuestions = true;
       }
     }
-    tampilkanSoal(currentQuestionType);
+
+    if (finishedAllQuestions) {
+      const completionMessage = resolvedGameMode === "addition"
+        ? "HEBAT👍🏻\nKamu Sudah Menguasai Penjumlahan Pada Bilangan Bulat"
+        : "Hebat! Kamu sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Dolanan.";
+      showFeedback(completionMessage, "success");
+      completionRedirect = true;
+    } else {
+      const advanced = currentQuestionType !== prevType;
+      if (advanced) {
+        showFeedback(`Hebat kamu sudah menguasai soal tipe ${prevType}.\n Ayo lanjut soal tipe ${currentQuestionType}`, "success");
+      } else {
+        showFeedback("Jawaban benar! Ulangi tipe yang sama.", "success");
+      }
+      tampilkanSoal(currentQuestionType);
+    }
+
     if (window.resetHelpers) window.resetHelpers();
     isSubmittingAnswer = false;
   } else {
