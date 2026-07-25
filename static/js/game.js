@@ -55,14 +55,22 @@ function toggleHelpVideo(show) {
   }
 }
 
-function showFeedback(message, type = "success") {
+function showFeedback(message, type = "success", buttonText = null) {
   if (!feedbackModal || !feedbackModalMessage) {
     alert(message);
     return;
   }
 
   if (feedbackModalButton) {
-    feedbackModalButton.textContent = type === "error" ? "Coba lagi" : "Lanjut";
+    if (type === "error") {
+      feedbackModalButton.textContent = "Coba lagi, yuk!";
+    } else if (buttonText) {
+      feedbackModalButton.textContent = buttonText;
+    } else if (message.includes("Yupss Benar")) {
+      feedbackModalButton.textContent = "Lanjut";
+    } else {
+      feedbackModalButton.textContent = "Lanjut tipe berikutnya";
+    }
   }
 
   feedbackModalMessage.textContent = message;
@@ -319,17 +327,17 @@ function submitAnswer() {
 
     if (finishedAllQuestions) {
       const completionMessage = resolvedGameMode === "addition"
-      ? "Woow Keren👍🏻👍🏻👍🏻 Kamu Sudah Menguasai PENJUMLAHAN Pada Bilangan Bulat"
+      ? "Woow Keren👍🏻👍🏻👍🏻\nKamu sudah menguasai\nPENJUMLAHAN pada Bilangan Bulat"
       : "Hebat! Kamu sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Dolanan.";
-      showFeedback(completionMessage, "success");
+      showFeedback(completionMessage, "success", "Lanjut Permainan Berikutnya...");
       try { createConfettiBurst(); } catch (e) { /* ignore */ }
       completionRedirect = true;
     } else {
       const advanced = currentQuestionType !== prevType;
       if (advanced) {
-        showFeedback(`Hebatt👍🏻\nKamu sudah menaklukan soal TIPE ${prevType}`, "success");
+        showFeedback(`Hebat👍🏻\nKamu sudah menaklukan soal TIPE ${prevType}`, "success");
       } else if (wasFirstTry) {
-        const msg = "Wah hebat! Jawaban tepat di soal pertama! ✨";
+        const msg = "Yupss Benar✨  ";
         showFeedback(msg, "success");
       } else {
         showFeedback("Jawaban benar! Ulangi tipe yang sama.", "success");
@@ -340,7 +348,7 @@ function submitAnswer() {
     if (window.resetHelpers) window.resetHelpers();
     isSubmittingAnswer = false;
   } else {
-    const msg = "Opps salahh, ayo coba lagi ya! 😊";
+    const msg = "Opps salah🤭";
     showFeedback(msg, "error");
     currentUserEntry = "";
     tampilkanSoal(currentQuestionType);
