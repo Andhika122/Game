@@ -70,7 +70,7 @@
 }
 
 .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece[data-sign="-"] .helper-icon {
-  transform: translateX(-10px) !important;
+  transform: translateX(-1px) !important;
 }
 
 .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece.helper-piece--empty {
