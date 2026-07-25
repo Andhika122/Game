@@ -86,7 +86,7 @@
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(5, minmax(44px, 1fr)) !important;
+    grid-template-columns: repeat(6, minmax(44px, 1fr)) !important;
     grid-auto-rows: 58px !important;
     gap: 6px !important;
     width: 100% !important;
@@ -141,11 +141,11 @@
     justify-content: space-between !important;
     align-items: stretch !important;
     width: 100% !important;
-    min-height: 140px !important;
+    min-height: 150px !important;
     height: auto !important;
     padding: 1rem !important;
     border-radius: 22px !important;
-    aspect-ratio: auto !important;
+    aspect-ratio: 1.6 / 1 !important;
   }
 
   .dolanan-page .action-label-row {
@@ -162,10 +162,6 @@
   .dolanan-page .action-bin {
     min-height: 130px !important;
     padding: 0.95rem 0.9rem !important;
+    aspect-ratio: auto !important;
   }
-}
-
-.dolanan-page .action-bin {
-  aspect-ratio: 2 / 1 !important;
-  min-height: 130px !important;
 }
