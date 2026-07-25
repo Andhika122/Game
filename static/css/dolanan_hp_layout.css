@@ -86,9 +86,9 @@
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b {
-    grid-template-columns: repeat(6, minmax(44px, 1fr)) !important;
+    grid-template-columns: repeat(6, minmax(22px, 1fr)) !important;
     grid-auto-rows: 58px !important;
-    gap: 6px !important;
+    gap: 0px !important;
     width: 100% !important;
   }
 
@@ -132,7 +132,7 @@
 
   .dolanan-page .action-bins {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 0.85rem !important;
+    gap: 0.75rem !important;
   }
 
   .dolanan-page .action-bin {
@@ -141,11 +141,11 @@
     justify-content: space-between !important;
     align-items: stretch !important;
     width: 100% !important;
-    min-height: 150px !important;
+    min-height: 120px !important;
     height: auto !important;
-    padding: 1rem !important;
-    border-radius: 22px !important;
-    aspect-ratio: 1.6 / 1 !important;
+    padding: 0.85rem 0.9rem !important;
+    border-radius: 20px !important;
+    aspect-ratio: 1.5 / 1 !important;
   }
 
   .dolanan-page .action-label-row {
@@ -156,12 +156,12 @@
 
 @media (max-width: 520px) {
   .dolanan-page .action-bins {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
   .dolanan-page .action-bin {
-    min-height: 130px !important;
-    padding: 0.95rem 0.9rem !important;
-    aspect-ratio: auto !important;
+    min-height: 110px !important;
+    padding: 0.75rem 0.75rem !important;
+    aspect-ratio: 1.4 / 1 !important;
   }
 }
