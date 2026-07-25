@@ -319,7 +319,7 @@ function submitAnswer() {
 
     if (finishedAllQuestions) {
       const completionMessage = resolvedGameMode === "addition"
-      ? "HEBAT👍🏻 Kamu Sudah Menguasai PENJUMLAHAN Pada Bilangan Bulat"
+      ? "Woow Keren👍🏻👍🏻👍🏻 Kamu Sudah Menguasai PENJUMLAHAN Pada Bilangan Bulat"
       : "Hebat! Kamu sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Dolanan.";
       showFeedback(completionMessage, "success");
       try { createConfettiBurst(); } catch (e) { /* ignore */ }
@@ -327,15 +327,9 @@ function submitAnswer() {
     } else {
       const advanced = currentQuestionType !== prevType;
       if (advanced) {
-        showFeedback(`Hebatt\nKamu sudah menaklukan soal TIPE ${prevType}`, "success");
+        showFeedback(`Hebatt👍🏻\nKamu sudah menaklukan soal TIPE ${prevType}`, "success");
       } else if (wasFirstTry) {
-        const firstTryMessages = [
-          "Yupss! Benar di percobaan pertama! 🎉",
-          "Wah hebat! Kamu langsung benar! 🌟",
-          "Mantap! Jawaban tepat di coba pertama! 🐣",
-          "Keren! Langsung benar—teruskan ya! ✨",
-        ];
-        const msg = firstTryMessages[Math.floor(Math.random() * firstTryMessages.length)];
+        const msg = "Wah hebat! Jawaban tepat di coba pertama! ✨";
         showFeedback(msg, "success");
       } else {
         showFeedback("Jawaban benar! Ulangi tipe yang sama.", "success");
@@ -346,13 +340,7 @@ function submitAnswer() {
     if (window.resetHelpers) window.resetHelpers();
     isSubmittingAnswer = false;
   } else {
-    const kidFriendlyWrong = [
-      "Uh-oh! Bukan jawaban yang benar — coba lagi ya! 🌟",
-      "Wah, hampir! Coba lagi, aku tahu kamu bisa 🐣",
-      "Aduh, salah nih — ayo coba satu kali lagi! 💪",
-      "Ups! Yuk ulang, cari jawabannya seru loh ✨",
-    ];
-    const msg = kidFriendlyWrong[Math.floor(Math.random() * kidFriendlyWrong.length)];
+    const msg = "Opps salahh, ayo coba lagi ya! 😊";
     showFeedback(msg, "error");
     currentUserEntry = "";
     tampilkanSoal(currentQuestionType);
