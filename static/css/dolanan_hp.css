@@ -135,6 +135,27 @@
     margin-top: 1rem;
   }
 
+  @media (max-width: 720px) {
+    .math-top-row {
+      grid-template-columns: 1fr !important;
+      gap: 0.7rem !important;
+    }
+
+    .help-actions {
+      width: 100%;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.65rem;
+    }
+
+    .help-actions .btn {
+      min-width: 0 !important;
+      flex: 1 1 48%;
+      max-width: 48%;
+    }
+  }
+
   .help-video-container.hidden {
     display: none !important;
   }
