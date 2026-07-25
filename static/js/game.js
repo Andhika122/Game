@@ -329,7 +329,7 @@ function submitAnswer() {
       if (advanced) {
         showFeedback(`Hebatt👍🏻\nKamu sudah menaklukan soal TIPE ${prevType}`, "success");
       } else if (wasFirstTry) {
-        const msg = "Wah hebat! Jawaban tepat di coba pertama! ✨";
+        const msg = "Wah hebat! Jawaban tepat di soal pertama! ✨";
         showFeedback(msg, "success");
       } else {
         showFeedback("Jawaban benar! Ulangi tipe yang sama.", "success");

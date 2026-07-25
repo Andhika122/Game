@@ -2,10 +2,32 @@
   cursor: pointer;
 }
 
-.help-row {
+.math-top-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: start;
+}
+
+.math-question-column {
+  display: grid;
+  gap: 1rem;
+}
+
+.help-actions {
   display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
+  flex-direction: column;
+  gap: 0.85rem;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+.help-actions .btn {
+  min-width: 140px;
+}
+
+.help-row {
+  display: none;
 }
 
 .help-video-container {
@@ -180,8 +202,12 @@
 
   .action-bin {
     width: 100%;
-    min-height: 100px;
-    padding: 0.75rem;
+    min-height: 140px;
+    aspect-ratio: 2 / 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .number-pad {
@@ -233,6 +259,24 @@
     border-radius: 28px;
     min-height: 0;
     align-self: center;
+  }
+
+  .math-top-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .help-actions {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .help-actions .btn {
+    width: 48%;
+    min-width: 0;
   }
 
   .math-panel {
