@@ -72,6 +72,27 @@ function showFeedback(message, type = "success") {
   feedbackModal.setAttribute("aria-hidden", "false");
 }
 
+// create a short confetti burst for celebrations
+function createConfettiBurst() {
+  const colors = ['#FFD166', '#06D6A0', '#118AB2', '#EF476F', '#FFB4A2'];
+  const count = 14;
+  const container = document.createElement('div');
+  container.className = 'confetti-burst';
+  container.setAttribute('aria-hidden', 'true');
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement('span');
+    el.className = 'confetti-piece';
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    el.style.background = color;
+    el.style.left = `${50 + (Math.random() - 0.5) * 40}%`;
+    el.style.transform = `translateY(0) rotate(${Math.random() * 360}deg)`;
+    container.appendChild(el);
+  }
+  document.body.appendChild(container);
+  // remove after animation
+  setTimeout(() => { container.remove(); }, 1600);
+}
+
 function hideFeedback() {
   if (!feedbackModal) return;
   feedbackModal.classList.remove("feedback-modal--show", "feedback-modal--success", "feedback-modal--error");
@@ -273,6 +294,7 @@ function submitAnswer() {
 
   if (enteredValue === currentQuestionAnswer) {
     const prevType = currentQuestionType;
+    const wasFirstTry = currentQuestionRepeat === 1;
     const resolvedGameMode = currentGameMode || (window.location.pathname.includes("/dolanan/pengurangan") ? "subtraction" : (window.location.pathname.includes("/dolanan/penjumlahan") ? "addition" : "addition"));
     let finishedAllQuestions = false;
     if (resolvedGameMode === "subtraction") {
@@ -297,14 +319,24 @@ function submitAnswer() {
 
     if (finishedAllQuestions) {
       const completionMessage = resolvedGameMode === "addition"
-        ? "HEBAT👍🏻\nKamu Sudah Menguasai Penjumlahan Pada Bilangan Bulat"
-        : "Hebat! Kamu sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Dolanan.";
+      ? "HEBAT👍🏻 Kamu Sudah Menguasai PENJUMLAHAN Pada Bilangan Bulat"
+      : "Hebat! Kamu sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Dolanan.";
       showFeedback(completionMessage, "success");
+      try { createConfettiBurst(); } catch (e) { /* ignore */ }
       completionRedirect = true;
     } else {
       const advanced = currentQuestionType !== prevType;
       if (advanced) {
-        showFeedback(`Hebat kamu sudah menguasai soal tipe ${prevType}.\n Ayo lanjut soal tipe ${currentQuestionType}`, "success");
+        showFeedback(`Hebatt\nKamu sudah menaklukan soal TIPE ${prevType}`, "success");
+      } else if (wasFirstTry) {
+        const firstTryMessages = [
+          "Yupss! Benar di percobaan pertama! 🎉",
+          "Wah hebat! Kamu langsung benar! 🌟",
+          "Mantap! Jawaban tepat di coba pertama! 🐣",
+          "Keren! Langsung benar—teruskan ya! ✨",
+        ];
+        const msg = firstTryMessages[Math.floor(Math.random() * firstTryMessages.length)];
+        showFeedback(msg, "success");
       } else {
         showFeedback("Jawaban benar! Ulangi tipe yang sama.", "success");
       }
@@ -314,7 +346,14 @@ function submitAnswer() {
     if (window.resetHelpers) window.resetHelpers();
     isSubmittingAnswer = false;
   } else {
-    showFeedback("Jawaban salah. Soal baru dibuat dalam tipe yang sama.", "error");
+    const kidFriendlyWrong = [
+      "Uh-oh! Bukan jawaban yang benar — coba lagi ya! 🌟",
+      "Wah, hampir! Coba lagi, aku tahu kamu bisa 🐣",
+      "Aduh, salah nih — ayo coba satu kali lagi! 💪",
+      "Ups! Yuk ulang, cari jawabannya seru loh ✨",
+    ];
+    const msg = kidFriendlyWrong[Math.floor(Math.random() * kidFriendlyWrong.length)];
+    showFeedback(msg, "error");
     currentUserEntry = "";
     tampilkanSoal(currentQuestionType);
     if (window.resetHelpers) window.resetHelpers();
