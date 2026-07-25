@@ -108,12 +108,12 @@
 
   .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece[data-sign="+"] .helper-icon {
     /* mobile layout */
-    transform: translateX(-40px) !important;
+    transform: translateX(-2px) !important;
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece[data-sign="-"] .helper-icon {
     /* mobile layout */
-    transform: translateX(-10px) !important;
+    transform: translateX(0px) !important;
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece--empty,
