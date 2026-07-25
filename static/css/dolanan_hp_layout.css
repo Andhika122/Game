@@ -108,7 +108,7 @@
 
   .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece[data-sign="+"] .helper-icon {
     /* mobile layout */
-    transform: translateX(-50px) !important;
+    transform: translateX(-500px) !important;
   }
 
   .dolanan-page .helper-pieces.helper-grid.layout-b .helper-piece[data-sign="-"] .helper-icon {
