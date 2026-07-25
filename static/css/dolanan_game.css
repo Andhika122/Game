@@ -89,7 +89,7 @@
 
 .bottom-row {
   grid-template-columns: minmax(280px, 1.6fr) minmax(220px, 0.9fr);
-  align-items: start;
+  align-items: stretch;
   gap: 0.8rem;
 }
 
@@ -112,11 +112,40 @@
 }
 
 .calculator-column {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
-  align-items: start;
+  align-items: stretch;
   width: 100%;
   min-width: 0;
+}
+
+/* Make the help video fill the calculator column height so it matches the helper panel */
+.help-video-container {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Stronger selector to override other page rules so video fills column height */
+.dolanan-page .calculator-column .help-video-container video {
+  height: 100% !important;
+  width: 100% !important;
+  max-height: none !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  border-radius: 14px !important;
+  background: #000 !important;
+}
+
+/* Remove extra margins/padding that can create empty space inside the video container */
+.dolanan-page .calculator-column .help-video-container {
+  padding: 0 !important;
+  margin: 0 !important;
+  align-items: stretch !important;
 }
 
 .calculator-panel {
