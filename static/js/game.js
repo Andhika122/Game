@@ -120,6 +120,10 @@ function showFeedback(message, type = "success", buttonText = null) {
     }
   }
 
+  window.__gemantiFeedbackSoundMode = feedbackModalButton && feedbackModalButton.textContent.trim() === "Lanjut tipe berikutnya"
+    ? "double-correct"
+    : null;
+
   feedbackModalMessage.textContent = message;
   feedbackModal.classList.toggle("feedback-modal--success", type === "success");
   feedbackModal.classList.toggle("feedback-modal--error", type === "error");
@@ -149,7 +153,16 @@ function createConfettiBurst() {
 
 function hideFeedback() {
   const feedbackModal = getFeedbackModal();
+  const feedbackModalButton = getFeedbackModalButton();
   if (!feedbackModal) return;
+
+  const shouldPlayDoubleCorrectSound = window.__gemantiFeedbackSoundMode === "double-correct";
+  if (shouldPlayDoubleCorrectSound && window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
+    window.gemanti.playFeedbackSound('correct', 2);
+  }
+
+  window.__gemantiFeedbackSoundMode = null;
+
   feedbackModal.classList.remove("feedback-modal--show", "feedback-modal--success", "feedback-modal--error");
   feedbackModal.setAttribute("aria-hidden", "true");
   if (completionRedirect) {

@@ -175,24 +175,31 @@ function getAudioContext() {
   return audioContext;
 }
 
-function playFeedbackSound(kind) {
+function playFeedbackSound(kind, playCount = 1) {
   const audioMap = {
-    correct: '/static/audio/suara_benar.mpeg',
-    wrong: '/static/audio/suara_salah.mpeg',
-    complete: '/static/audio/suara_selesai.mpeg',
+    correct: ['/static/audio/suara_benar.mpeg'],
+    correctAlt: ['/static/audio/suara_bener_2.mpeg', '/static/audio/suara_bener 2.mpeg'],
+    wrong: ['/static/audio/suara_salah.mpeg'],
+    complete: ['/static/audio/suara_selesai.mpeg'],
   };
 
-  const src = audioMap[kind];
-  if (!src) return;
+  if (playCount < 1) return;
 
-  if (feedbackAudio) {
-    feedbackAudio.pause();
-    feedbackAudio.currentTime = 0;
+  const sources = [];
+  if (kind === 'correct' && playCount > 1) {
+    sources.push(...audioMap.correct);
+    sources.push(...audioMap.correctAlt);
+  } else {
+    const candidates = audioMap[kind];
+    if (!candidates || !candidates.length) return;
+    sources.push(...candidates);
   }
 
-  feedbackAudio = new Audio(src);
-  feedbackAudio.volume = 1;
-  feedbackAudio.play().catch(() => {});
+  sources.slice(0, playCount).forEach((src) => {
+    const audio = new Audio(src);
+    audio.volume = 1;
+    audio.play().catch(() => {});
+  });
 }
 
 function playBackgroundGameAudio() {
