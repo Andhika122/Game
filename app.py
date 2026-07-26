@@ -51,6 +51,10 @@ def permainan_pengurangan():
 def profil():
     return render_template("profil.html")
 
+@app.route("/profil/selanjutnya")
+def profil_selanjutnya():
+    return render_template("profil_selanjutnya.html")
+
 @app.route("/demo")
 def demo():
     return render_template("demo.html")
