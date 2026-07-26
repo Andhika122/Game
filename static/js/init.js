@@ -77,6 +77,11 @@
     if (typeof initFeedbackModalButton === 'function') initFeedbackModalButton();
   }
 
+  window.gemanti = window.gemanti || {};
+  Object.assign(window.gemanti, {
+    loadPage,
+  });
+
   async function loadPage(url, replaceHistory = true) {
     if (!stage) {
       window.location.href = url;

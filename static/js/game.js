@@ -154,7 +154,11 @@ function hideFeedback() {
   feedbackModal.setAttribute("aria-hidden", "true");
   if (completionRedirect) {
     completionRedirect = false;
-    window.location.href = "/permainan";
+    if (window.gemanti && typeof window.gemanti.loadPage === 'function') {
+      window.gemanti.loadPage("/permainan");
+    } else {
+      window.location.href = "/permainan";
+    }
   }
 }
 
@@ -385,6 +389,8 @@ function submitAnswer() {
       if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
         window.gemanti.playFeedbackSound('complete');
       }
+
+
       showFeedback(completionMessage, "success", "Lanjut Permainan Berikutnya...");
       try {
         createConfettiBurst();
