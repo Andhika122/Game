@@ -120,10 +120,6 @@ function showFeedback(message, type = "success", buttonText = null) {
     }
   }
 
-  window.__gemantiFeedbackSoundMode = feedbackModalButton && feedbackModalButton.textContent.trim() === "Lanjut tipe berikutnya"
-    ? "double-correct"
-    : null;
-
   feedbackModalMessage.textContent = message;
   feedbackModal.classList.toggle("feedback-modal--success", type === "success");
   feedbackModal.classList.toggle("feedback-modal--error", type === "error");
@@ -155,13 +151,6 @@ function hideFeedback() {
   const feedbackModal = getFeedbackModal();
   const feedbackModalButton = getFeedbackModalButton();
   if (!feedbackModal) return;
-
-  const shouldPlayDoubleCorrectSound = window.__gemantiFeedbackSoundMode === "double-correct";
-  if (shouldPlayDoubleCorrectSound && window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
-    window.gemanti.playFeedbackSound('correct', 2);
-  }
-
-  window.__gemantiFeedbackSoundMode = null;
 
   feedbackModal.classList.remove("feedback-modal--show", "feedback-modal--success", "feedback-modal--error");
   feedbackModal.setAttribute("aria-hidden", "true");
@@ -369,9 +358,6 @@ function submitAnswer() {
 
   if (enteredValue === currentQuestionAnswer) {
     const prevType = currentQuestionType;
-    if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
-      window.gemanti.playFeedbackSound('correct');
-    }
     const wasFirstTry = currentQuestionRepeat === 1;
     const resolvedGameMode = currentGameMode || (window.location.pathname.includes("/permainan/pengurangan") ? "subtraction" : (window.location.pathname.includes("/permainan/penjumlahan") ? "addition" : "addition"));
     let finishedAllQuestions = false;
@@ -416,11 +402,20 @@ function submitAnswer() {
     } else {
       const advanced = currentQuestionType !== prevType;
       if (advanced) {
+        if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
+          window.gemanti.playFeedbackSound('correctAlt');
+        }
         showFeedback(`Hebat👍🏻\nKamu sudah menaklukan soal TIPE ${prevType}`, "success");
       } else if (wasFirstTry) {
+        if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
+          window.gemanti.playFeedbackSound('correct');
+        }
         const msg = "Yupss Benar✨  ";
         showFeedback(msg, "success");
       } else {
+        if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
+          window.gemanti.playFeedbackSound('correct');
+        }
         showFeedback("Jawaban benar! Ulangi tipe yang sama.", "success");
       }
       tampilkanSoal(currentQuestionType);

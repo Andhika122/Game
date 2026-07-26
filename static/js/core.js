@@ -178,7 +178,7 @@ function getAudioContext() {
 function playFeedbackSound(kind, playCount = 1) {
   const audioMap = {
     correct: ['/static/audio/suara_benar.mpeg'],
-    correctAlt: ['/static/audio/suara_bener_2.mpeg', '/static/audio/suara_bener 2.mpeg'],
+    correctAlt: ['/static/audio/suara_bener_2.mpeg'],
     wrong: ['/static/audio/suara_salah.mpeg'],
     complete: ['/static/audio/suara_selesai.mpeg'],
   };
