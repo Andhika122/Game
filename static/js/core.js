@@ -85,6 +85,7 @@ function updateFullscreenButton() {
   const button = fullscreenButton();
   if (!button) return;
   const isFullscreen = Boolean(getFullscreenElement());
+  button.classList.toggle("is-hidden", isFullscreen);
   button.setAttribute("aria-label", isFullscreen ? "Keluar dari layar penuh" : "Buka layar penuh");
   button.textContent = "FS";
 }

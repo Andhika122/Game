@@ -300,6 +300,10 @@ button:focus-visible,
   right: clamp(72px, 14vw, 96px);
 }
 
+.fullscreen-action.is-hidden {
+  display: none !important;
+}
+
 /* Keep controls visible in fullscreen mode */
 .stage:fullscreen .top-action,
 .stage:-webkit-full-screen .top-action,
