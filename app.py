@@ -47,25 +47,9 @@ def dolanan_penjumlahan():
 def dolanan_pengurangan():
     return render_template("dolanan_pengurangan.html")
 
-@app.route("/pitutur")
-def pitutur():
-    return redirect("/pitutur/profil")
-
-@app.route("/pitutur/profil")
-def pitutur_profil():
-    return render_template("pitutur_profil.html")
-
-@app.route("/pitutur/deskripsi-1")
-def pitutur_deskripsi_game_1():
-    return render_template("pitutur_deskripsi_game_1.html")
-
-@app.route("/pitutur/deskripsi-2")
-def pitutur_deskripsi_game_2():
-    return render_template("pitutur_deskripsi_game_2.html")
-
-@app.route("/pitutur/deskripsi-3")
-def pitutur_deskripsi_game_3():
-    return render_template("pitutur_deskripsi_game_3.html")
+@app.route("/profil")
+def profil():
+    return render_template("profil.html")
 
 @app.route("/pitakon")
 def pitakon():
