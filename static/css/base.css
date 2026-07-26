@@ -387,43 +387,92 @@ button:focus-visible,
 .stage:fullscreen .math-panel,
 .stage:-webkit-full-screen .math-panel,
 .stage:-ms-fullscreen .math-panel {
+  grid-template-columns: 1.35fr 0.85fr;
   gap: 0.75rem;
+  align-items: start;
+}
+
+.stage:fullscreen .math-question-row.large-question .math-question,
+.stage:-webkit-full-screen .math-question-row.large-question .math-question,
+.stage:-ms-fullscreen .math-question-row.large-question .math-question,
+.stage:fullscreen .math-question-row.large-question .answer-inline,
+.stage:-webkit-full-screen .math-question-row.large-question .answer-inline,
+.stage:-ms-fullscreen .math-question-row.large-question .answer-inline {
+  font-size: clamp(1.1rem, 3.2vw, 1.55rem);
+  line-height: 1.2;
+  max-width: 100%;
 }
 
 .stage:fullscreen .help-actions,
 .stage:-webkit-full-screen .help-actions,
 .stage:-ms-fullscreen .help-actions {
   gap: 0.65rem;
+  align-items: flex-start;
 }
 
-.fullscreen-action.fullscreen-hidden {
-  display: none !important;
+.stage:fullscreen .help-actions .btn,
+.stage:-webkit-full-screen .help-actions .btn,
+.stage:-ms-fullscreen .help-actions .btn {
+  min-width: 90px;
 }
 
-@media (max-width: 900px) {
-    .stage:fullscreen .top-action,
-    .stage:-webkit-full-screen .top-action,
-    .stage:-ms-fullscreen .top-action {
-      top: 10px;
-    }
+.stage:-webkit-full-screen .top-action,
+.stage:-ms-fullscreen .top-action {
+  top: 10px;
+}
 
-    .stage:fullscreen #soundButton,
-    .stage:-webkit-full-screen #soundButton,
-    .stage:-ms-fullscreen #soundButton {
-      left: 12px;
-    }
+.stage:fullscreen #soundButton,
+.stage:-webkit-full-screen #soundButton,
+.stage:-ms-fullscreen #soundButton {
+  left: 12px;
+}
 
-    .stage:fullscreen #profileButton,
-    .stage:-webkit-full-screen #profileButton,
-    .stage:-ms-fullscreen #profileButton {
-      right: 12px;
-    }
+.stage:fullscreen #profileButton,
+.stage:-webkit-full-screen #profileButton,
+.stage:-ms-fullscreen #profileButton {
+  right: 12px;
+}
 
-    .stage:fullscreen .fullscreen-action,
-    .stage:-webkit-full-screen .fullscreen-action,
-    .stage:-ms-fullscreen .fullscreen-action {
-      right: 64px;
-    }
+.stage:fullscreen .fullscreen-action,
+.stage:-webkit-full-screen .fullscreen-action,
+.stage:-ms-fullscreen .fullscreen-action {
+  right: 64px;
+}
+
+.stage:fullscreen .math-card,
+.stage:-webkit-full-screen .math-card,
+.stage:-ms-fullscreen .math-card {
+  padding: 0.75rem;
+}
+
+.stage:fullscreen .math-top-row,
+.stage:-webkit-full-screen .math-top-row,
+.stage:-ms-fullscreen .math-top-row {
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.stage:fullscreen .math-question-row.large-question {
+  gap: 0.35rem;
+}
+
+.stage:fullscreen .math-question-row.large-question .math-question,
+.stage:-webkit-full-screen .math-question-row.large-question .math-question,
+.stage:-ms-fullscreen .math-question-row.large-question .math-question,
+.stage:fullscreen .math-question-row.large-question .answer-inline,
+.stage:-webkit-full-screen .math-question-row.large-question .answer-inline,
+.stage:-ms-fullscreen .math-question-row.large-question .answer-inline {
+  font-size: clamp(1rem, 3vw, 1.45rem);
+  line-height: 1.15;
+  max-width: 100%;
+}
+
+.stage:fullscreen .helper-panel,
+.stage:-webkit-full-screen .helper-panel,
+.stage:-ms-fullscreen .helper-panel {
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .icon-button {
