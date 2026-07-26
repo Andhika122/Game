@@ -21,6 +21,18 @@
   box-shadow: 0 24px 48px rgba(12, 18, 24, 0.16) !important;
 }
 
+.stage:fullscreen .game-menu-page.direct-view.permainan-top .menu-panel,
+.stage:-webkit-full-screen .game-menu-page.direct-view.permainan-top .menu-panel,
+.stage:-ms-fullscreen .game-menu-page.direct-view.permainan-top .menu-panel {
+  width: 100vw !important;
+  max-width: 100vw !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
 .permainan-page {
   margin: 0 auto !important;
 }
