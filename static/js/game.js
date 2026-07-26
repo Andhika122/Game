@@ -23,9 +23,17 @@ function angkaNegatifBesar() {
   return -(Math.floor(Math.random() * 5) + 1);
 }
 
-const feedbackModal = document.getElementById("feedbackModal");
-const feedbackModalMessage = document.getElementById("feedbackModalMessage");
-const feedbackModalButton = document.getElementById("feedbackModalButton");
+function getFeedbackModal() {
+  return document.getElementById("feedbackModal");
+}
+
+function getFeedbackModalMessage() {
+  return document.getElementById("feedbackModalMessage");
+}
+
+function getFeedbackModalButton() {
+  return document.getElementById("feedbackModalButton");
+}
 
 function getHelpVideoButton() {
   return document.getElementById("helpVideoButton");
@@ -91,6 +99,10 @@ function updateHelpVideoSource() {
 }
 
 function showFeedback(message, type = "success", buttonText = null) {
+  const feedbackModal = getFeedbackModal();
+  const feedbackModalMessage = getFeedbackModalMessage();
+  const feedbackModalButton = getFeedbackModalButton();
+
   if (!feedbackModal || !feedbackModalMessage) {
     alert(message);
     return;
@@ -115,7 +127,6 @@ function showFeedback(message, type = "success", buttonText = null) {
   feedbackModal.setAttribute("aria-hidden", "false");
 }
 
-// create a short confetti burst for celebrations
 function createConfettiBurst() {
   const colors = ['#FFD166', '#06D6A0', '#118AB2', '#EF476F', '#FFB4A2'];
   const count = 14;
@@ -137,6 +148,7 @@ function createConfettiBurst() {
 }
 
 function hideFeedback() {
+  const feedbackModal = getFeedbackModal();
   if (!feedbackModal) return;
   feedbackModal.classList.remove("feedback-modal--show", "feedback-modal--success", "feedback-modal--error");
   feedbackModal.setAttribute("aria-hidden", "true");
@@ -146,8 +158,12 @@ function hideFeedback() {
   }
 }
 
-if (feedbackModalButton) {
-  feedbackModalButton.addEventListener("click", hideFeedback);
+function initFeedbackModalButton() {
+  const feedbackModalButton = getFeedbackModalButton();
+  if (feedbackModalButton) {
+    feedbackModalButton.removeEventListener("click", hideFeedback);
+    feedbackModalButton.addEventListener("click", hideFeedback);
+  }
 }
 
 function formatAngka(n) {

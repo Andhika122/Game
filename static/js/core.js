@@ -2,12 +2,23 @@
 const stage = document.getElementById("stage");
 const SOUND_KEY = 'gemanti-muted';
 const fullscreenButton = () => document.getElementById("fullscreenButton");
-const questionType = document.getElementById("questionType");
-const questionText = document.getElementById("questionText");
-const questionAnswer = document.getElementById("questionAnswer");
-const makeQuestionButton = document.getElementById("makeQuestionButton");
-const calculatorDisplay = questionAnswer || document.querySelector(".calculator-display");
-const calculatorKeys = document.querySelectorAll(".calculator-key");
+let questionType = null;
+let questionText = null;
+let questionAnswer = null;
+let makeQuestionButton = null;
+let calculatorDisplay = null;
+let calculatorKeys = [];
+
+function refreshDomRefs() {
+  questionType = document.getElementById("questionType");
+  questionText = document.getElementById("questionText");
+  questionAnswer = document.getElementById("questionAnswer");
+  makeQuestionButton = document.getElementById("makeQuestionButton");
+  calculatorDisplay = questionAnswer || document.querySelector(".calculator-display");
+  calculatorKeys = Array.from(document.querySelectorAll(".calculator-key"));
+}
+
+refreshDomRefs();
 
 function getSoundButtons() {
   return Array.from(document.querySelectorAll('#soundButton'));
@@ -161,4 +172,5 @@ Object.assign(window.gemanti, {
   updateFullscreenButton,
   initFullscreenControl,
   initSoundControl,
+  refreshDomRefs,
 });

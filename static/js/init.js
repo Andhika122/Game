@@ -64,6 +64,7 @@
   }
 
   function runPageInit() {
+    if (window.gemanti && typeof window.gemanti.refreshDomRefs === 'function') window.gemanti.refreshDomRefs();
     if (window.gemanti && typeof window.gemanti.updateSoundUI === 'function') window.gemanti.updateSoundUI();
     if (window.gemanti && typeof window.gemanti.initSoundControl === 'function') window.gemanti.initSoundControl();
     if (typeof updateMakeQuestionButton === 'function') updateMakeQuestionButton();
@@ -72,6 +73,7 @@
     if (typeof initPermainanGame === 'function') initPermainanGame();
     if (typeof initDragHelpers === 'function') initDragHelpers();
     if (window.gemanti && typeof window.gemanti.initFullscreenControl === 'function') window.gemanti.initFullscreenControl();
+    if (typeof initFeedbackModalButton === 'function') initFeedbackModalButton();
   }
 
   async function loadPage(url, replaceHistory = true) {
@@ -172,4 +174,5 @@
   if (window.gemanti && typeof window.gemanti.updateSoundUI === 'function') window.gemanti.updateSoundUI();
   if (typeof initPermainanGame === 'function') initPermainanGame();
   if (typeof initDragHelpers === 'function') initDragHelpers();
+  if (typeof initFeedbackModalButton === 'function') initFeedbackModalButton();
 })();
