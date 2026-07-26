@@ -40,6 +40,8 @@ let currentQuestionAnswer = null;
 let currentUserEntry = "";
 let isSubmittingAnswer = false;
 let completionRedirect = false;
+let audioContext = null;
+let feedbackAudio = null;
 
 const viewClasses = {
   home: "",
@@ -156,6 +158,40 @@ function toggleSound() {
   updateSoundUI();
 }
 
+function getAudioContext() {
+  if (!audioContext) {
+    const AudioCtor = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtor) return null;
+    audioContext = new AudioCtor();
+  }
+  if (audioContext.state === 'suspended') {
+    audioContext.resume().catch(() => {});
+  }
+  return audioContext;
+}
+
+function playFeedbackSound(kind) {
+  if (muted) return;
+
+  const audioMap = {
+    correct: '/static/audio/suara_benar.mpeg',
+    wrong: '/static/audio/suara_salah.mpeg',
+    complete: '/static/audio/suara_selesai.mpeg',
+  };
+
+  const src = audioMap[kind];
+  if (!src) return;
+
+  if (feedbackAudio) {
+    feedbackAudio.pause();
+    feedbackAudio.currentTime = 0;
+  }
+
+  feedbackAudio = new Audio(src);
+  feedbackAudio.volume = 1;
+  feedbackAudio.play().catch(() => {});
+}
+
 loadMutedState();
 
 // Fullscreen wiring (if available)
@@ -174,4 +210,5 @@ Object.assign(window.gemanti, {
   initFullscreenControl,
   initSoundControl,
   refreshDomRefs,
+  playFeedbackSound,
 });

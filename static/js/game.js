@@ -352,6 +352,9 @@ function submitAnswer() {
 
   if (enteredValue === currentQuestionAnswer) {
     const prevType = currentQuestionType;
+    if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
+      window.gemanti.playFeedbackSound('correct');
+    }
     const wasFirstTry = currentQuestionRepeat === 1;
     const resolvedGameMode = currentGameMode || (window.location.pathname.includes("/permainan/pengurangan") ? "subtraction" : (window.location.pathname.includes("/permainan/penjumlahan") ? "addition" : "addition"));
     let finishedAllQuestions = false;
@@ -379,6 +382,9 @@ function submitAnswer() {
       const completionMessage = resolvedGameMode === "addition"
       ? "Woow Keren👍🏻👍🏻👍🏻\nKamu sudah menguasai\nPENJUMLAHAN pada Bilangan Bulat"
       : "Hebat! Kamu sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Permainan.";
+      if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
+        window.gemanti.playFeedbackSound('complete');
+      }
       showFeedback(completionMessage, "success", "Lanjut Permainan Berikutnya...");
       try { createConfettiBurst(); } catch (e) { /* ignore */ }
       completionRedirect = true;
@@ -399,6 +405,9 @@ function submitAnswer() {
     isSubmittingAnswer = false;
   } else {
     const msg = "Opps salah🤭";
+    if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
+      window.gemanti.playFeedbackSound('wrong');
+    }
     showFeedback(msg, "error");
     currentUserEntry = "";
     tampilkanSoal(currentQuestionType);
