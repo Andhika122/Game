@@ -386,7 +386,13 @@ function submitAnswer() {
         window.gemanti.playFeedbackSound('complete');
       }
       showFeedback(completionMessage, "success", "Lanjut Permainan Berikutnya...");
-      try { createConfettiBurst(); } catch (e) { /* ignore */ }
+      try {
+        createConfettiBurst();
+        const celebrationGlow = document.createElement('div');
+        celebrationGlow.className = 'celebration-glow';
+        document.body.appendChild(celebrationGlow);
+        setTimeout(() => celebrationGlow.remove(), 1200);
+      } catch (e) { /* ignore */ }
       completionRedirect = true;
     } else {
       const advanced = currentQuestionType !== prevType;
