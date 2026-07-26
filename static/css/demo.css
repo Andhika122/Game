@@ -1,4 +1,4 @@
-.pitakon-page {
+.demo-page {
   width: min(84vw, 620px);
   margin: 0 auto;
   min-height: auto;
@@ -17,8 +17,8 @@
   z-index: 2;
 }
 
-/* Make pitakon content match dolanan layout (centered intro) */
-.pitakon-page h2 {
+/* Make demo content match permainan layout (centered intro) */
+.demo-page h2 {
   margin: 0 0 0.75rem;
   color: #5c2e1e;
   font-size: clamp(2.6rem, 4vw, 3.6rem);
@@ -26,7 +26,7 @@
   text-align: center;
 }
 
-.pitakon-page p {
+.demo-page p {
   margin: 0 auto 1.6rem;
   max-width: 760px;
   color: #3d2821;
@@ -35,13 +35,13 @@
   text-align: center;
 }
 
-.pitakon-page .btn {
+.demo-page .btn {
   margin-top: 12px;
   box-shadow: 0 10px 0 rgba(98, 55, 18, 0.18);
 }
 
-/* Align the menu panel to the center for pitakon page */
-.game-menu-page.pitakon-top {
+/* Align the menu panel to the center for demo page */
+.game-menu-page.demo-top {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +50,7 @@
   min-height: 100vh;
 }
 
-.game-menu-page.pitakon-top .menu-panel {
+.game-menu-page.demo-top .menu-panel {
   margin-top: 0;
   width: min(90vw, 720px);
   min-height: auto;
@@ -74,20 +74,20 @@
   position: relative;
 }
 
-.game-menu-page.pitakon-top .menu-panel {
+.game-menu-page.demo-top .menu-panel {
   background: transparent;
   border: none;
   box-shadow: none;
 }
 
-.pitakon-actions {
+.demo-actions {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   margin-top: 1.4rem;
 }
 
-.pitakon-actions .btn {
+.demo-actions .btn {
   margin-left: auto;
 }
 
@@ -133,20 +133,20 @@
     box-shadow: 0 18px 36px rgba(12, 18, 24, 0.16);
   }
 
-  .pitakon-page {
+  .demo-page {
     width: 100%;
     margin: 0 auto;
     padding: 16px;
     min-height: auto;
   }
 
-  .pitakon-page h2,
-  .pitakon-page p,
+  .demo-page h2,
+  .demo-page p,
   .page-tag {
     text-align: left;
   }
 
-  .pitakon-page p {
+  .demo-page p {
     max-width: 100%;
   }
 

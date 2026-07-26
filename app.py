@@ -35,17 +35,17 @@ def home():
 def menu():
     return render_template("menu.html")
 
-@app.route("/dolanan")
-def dolanan():
-    return render_template("dolanan.html")
+@app.route("/permainan")
+def permainan():
+    return render_template("permainan.html")
 
-@app.route("/dolanan/penjumlahan")
-def dolanan_penjumlahan():
-    return render_template("dolanan_penjumlahan.html")
+@app.route("/permainan/penjumlahan")
+def permainan_penjumlahan():
+    return render_template("permainan_penjumlahan.html")
 
-@app.route("/dolanan/pengurangan")
-def dolanan_pengurangan():
-    return render_template("dolanan_pengurangan.html")
+@app.route("/permainan/pengurangan")
+def permainan_pengurangan():
+    return render_template("permainan_pengurangan.html")
 
 @app.route("/profil")
 def profil():
@@ -54,10 +54,6 @@ def profil():
 @app.route("/demo")
 def demo():
     return render_template("demo.html")
-
-@app.route("/pitakon")
-def pitakon():
-    return redirect("/demo")
 
 @app.route('/status')
 def status():

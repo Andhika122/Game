@@ -1,4 +1,4 @@
-.dolanan-page {
+.permainan-page {
   margin: 0 auto;
   width: min(100%, 700px);
   max-width: min(84vw, 700px);
@@ -12,7 +12,7 @@
   border: 1px solid rgba(148, 106, 44, 0.18);
 }
 
-.dolanan-page,
+.permainan-page,
 .math-panel,
 .question-row,
 .bottom-row,
@@ -22,12 +22,12 @@
   width: 100%;
 }
 
-.game-menu-page.direct-view.pitakon-top .menu-panel {
+.game-menu-page.direct-view.permainan-top .menu-panel {
   width: min(90vw, 700px);
   padding: clamp(12px, 1.5vw, 18px);
 }
 
-.menu-panel .dolanan-page {
+.menu-panel .permainan-page {
   width: 100%;
   margin: 0;
   padding: 0;
@@ -36,7 +36,7 @@
   border: none;
 }
 
-.dolanan-header {
+.permainan-header {
   text-align: center;
   margin-bottom: 2rem;
 }
@@ -54,7 +54,7 @@
   font-weight: 800;
 }
 
-.dolanan-header h1 {
+.permainan-header h1 {
   margin: 0;
   font-size: clamp(2.8rem, 4vw, 3.8rem);
   color: #6a2f21;
@@ -557,7 +557,7 @@
 }
 
 @media (max-width: 720px) {
-  .dolanan-page {
+  .permainan-page {
     margin: 1rem auto;
     padding: 1.5rem;
   }
@@ -635,7 +635,7 @@
 }
 
 @media (max-width: 540px) {
-  .dolanan-page {
+  .permainan-page {
     margin: 0.75rem 0.5rem;
     padding: 1rem;
   }
@@ -664,7 +664,7 @@
 }
 
 @media (max-width: 540px) {
-  .dolanan-page {
+  .permainan-page {
     margin: 0.75rem 0.5rem;
     padding: 1.25rem;
     border-radius: 20px;
@@ -720,7 +720,7 @@
 }
 
 @media (max-width: 900px) and (orientation: landscape) {
-  .game-menu-page.direct-view.pitakon-top {
+  .game-menu-page.direct-view.permainan-top {
     min-height: 100vh;
     padding: 1rem 0.75rem 1.25rem;
     display: flex;
@@ -728,13 +728,13 @@
     justify-content: center;
   }
 
-  .game-menu-page.direct-view.pitakon-top .menu-panel {
+  .game-menu-page.direct-view.permainan-top .menu-panel {
     width: min(100vw, 780px);
     padding: 10px;
     margin: 0 auto;
   }
 
-  .dolanan-page {
+  .permainan-page {
     width: min(100%, 760px);
     max-width: min(96vw, 760px);
     padding: clamp(18px, 2.5vw, 24px);

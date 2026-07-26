@@ -107,7 +107,7 @@ function hideFeedback() {
   feedbackModal.setAttribute("aria-hidden", "true");
   if (completionRedirect) {
     completionRedirect = false;
-    window.location.href = "/dolanan";
+    window.location.href = "/permainan";
   }
 }
 
@@ -303,7 +303,7 @@ function submitAnswer() {
   if (enteredValue === currentQuestionAnswer) {
     const prevType = currentQuestionType;
     const wasFirstTry = currentQuestionRepeat === 1;
-    const resolvedGameMode = currentGameMode || (window.location.pathname.includes("/dolanan/pengurangan") ? "subtraction" : (window.location.pathname.includes("/dolanan/penjumlahan") ? "addition" : "addition"));
+    const resolvedGameMode = currentGameMode || (window.location.pathname.includes("/permainan/pengurangan") ? "subtraction" : (window.location.pathname.includes("/permainan/penjumlahan") ? "addition" : "addition"));
     let finishedAllQuestions = false;
     if (resolvedGameMode === "subtraction") {
       if (currentQuestionRepeat < 2) {
@@ -328,7 +328,7 @@ function submitAnswer() {
     if (finishedAllQuestions) {
       const completionMessage = resolvedGameMode === "addition"
       ? "Woow Keren👍🏻👍🏻👍🏻\nKamu sudah menguasai\nPENJUMLAHAN pada Bilangan Bulat"
-      : "Hebat! Kamu sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Dolanan.";
+      : "Hebat! Kamu sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Permainan.";
       showFeedback(completionMessage, "success", "Lanjut Permainan Berikutnya...");
       try { createConfettiBurst(); } catch (e) { /* ignore */ }
       completionRedirect = true;
@@ -357,14 +357,14 @@ function submitAnswer() {
   }
 }
 
-function initDolananGame() {
+function initPermainanGame() {
   currentQuestionRepeat = 1;
   const pathname = window.location.pathname || window.location.href;
-  if (pathname.includes("/dolanan/penjumlahan")) {
+  if (pathname.includes("/permainan/penjumlahan")) {
     currentGameMode = "addition";
     currentQuestionType = 1;
     tampilkanSoal(currentQuestionType);
-  } else if (pathname.includes("/dolanan/pengurangan")) {
+  } else if (pathname.includes("/permainan/pengurangan")) {
     currentGameMode = "subtraction";
     currentQuestionType = 1;
     currentQuestionRepeat = 1;
@@ -377,4 +377,4 @@ window.buatSoal = buatSoal;
 window.tampilkanSoal = tampilkanSoal;
 window.submitAnswer = submitAnswer;
 window.handleCalculatorInput = handleCalculatorInput;
-window.initDolananGame = initDolananGame;
+window.initPermainanGame = initPermainanGame;

@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}Gemanti - Dolanan{% endblock %}
+{% block title %}Gemanti - Permainan{% endblock %}
 
 {% block styles %}
 <link rel="stylesheet" href="/static/css/demo.css">
-<link rel="stylesheet" href="/static/css/dolanan.css">
+<link rel="stylesheet" href="/static/css/permainan.css">
 {% endblock %}
 
 {% block content %}
-  <section class="game-menu-page direct-view pitakon-top" role="main">
+  <section class="game-menu-page direct-view permainan-top" role="main">
 
     <img class="background-image" src="/static/img/latar_belakang.png" alt="" aria-hidden="true">
     <img class="front-ground" src="/static/img/tanah.png" alt="" aria-hidden="true">
@@ -26,27 +26,27 @@
     <img class="bottom-decor music-image" src="/static/img/alatmusik.png" alt="" aria-hidden="true">
 
     <div class="menu-panel">
-      <div class="dolanan-page-wrapper">
-        <section class="dolanan-select-page" aria-label="Pilih permainan Dolanan">
-          <div class="dolanan-select-intro">
-            <p class="dolanan-select-overline">Dolanan</p>
+      <div class="permainan-page-wrapper">
+        <section class="permainan-select-page" aria-label="Pilih permainan Permainan">
+          <div class="permainan-select-intro">
+            <p class="permainan-select-overline">Permainan</p>
             <h1>Jenis Permainan</h1>
             <br>
           </div>
 
-          <div class="dolanan-select-card">
-            <article class="dolanan-select-item">
+          <div class="permainan-select-card">
+            <article class="permainan-select-item">
               <div class="item-deco item-deco--plus"></div>
-              <img src="/static/img/penjemlahan.png" alt="Ilustrasi penjumlahan" class="dolanan-select-image">
+              <img src="/static/img/penjemlahan.png" alt="Ilustrasi penjumlahan" class="permainan-select-image">
               <h2>Penjumlahan</h2>
-              <a class="btn" href="/dolanan/penjumlahan">Main</a>
+              <a class="btn" href="/permainan/penjumlahan">Main</a>
             </article>
 
-            <article class="dolanan-select-item">
+            <article class="permainan-select-item">
               <div class="item-deco item-deco--minus"></div>
-              <img src="/static/img/pengurangan.png" alt="Ilustrasi pengurangan" class="dolanan-select-image">
+              <img src="/static/img/pengurangan.png" alt="Ilustrasi pengurangan" class="permainan-select-image">
               <h2>Pengurangan</h2>
-              <a class="btn" href="/dolanan/pengurangan">Main</a>
+              <a class="btn" href="/permainan/pengurangan">Main</a>
             </article>
           </div>
         </section>

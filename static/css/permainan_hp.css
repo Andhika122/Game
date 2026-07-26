@@ -2,6 +2,29 @@
   cursor: pointer;
 }
 
+.game-menu-page.direct-view.permainan-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: clamp(30px, 4vw, 60px) 0;
+}
+
+.game-menu-page.direct-view.permainan-top .menu-panel {
+  width: min(94vw, 900px) !important;
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: clamp(22px, 3vw, 28px) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.85) !important;
+  box-shadow: 0 24px 48px rgba(12, 18, 24, 0.16) !important;
+}
+
+.permainan-page {
+  margin: 0 auto !important;
+}
+
 .math-top-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -60,7 +83,7 @@
 }
 
 @media (max-width: 900px) {
-  .dolanan-page {
+  .permainan-page {
     width: min(100%, 460px);
     max-width: min(96vw, 460px);
     padding: clamp(10px, 2.5vw, 14px);
@@ -68,16 +91,16 @@
     border-radius: 24px;
   }
 
-  .game-menu-page.direct-view.pitakon-top .menu-panel {
+  .game-menu-page.direct-view.permainan-top .menu-panel {
     width: min(100vw, 500px);
     padding: 6px;
   }
 
-  .dolanan-header {
+  .permainan-header {
     margin-bottom: 0.65rem;
   }
 
-  .dolanan-header h1 {
+  .permainan-header h1 {
     font-size: clamp(1.7rem, 6vw, 2.1rem);
   }
 
@@ -269,7 +292,7 @@
 }
 
 @media (max-width: 900px) and (orientation: landscape) {
-  .game-menu-page.direct-view.pitakon-top {
+  .game-menu-page.direct-view.permainan-top {
     min-height: 100vh;
     padding: 1rem 0.75rem 1.25rem;
     display: flex;
@@ -277,7 +300,7 @@
     justify-content: center;
   }
 
-  .game-menu-page.direct-view.pitakon-top .menu-panel {
+  .game-menu-page.direct-view.permainan-top .menu-panel {
     width: min(100vw, 780px);
     padding: 10px;
     margin: 0 auto;
@@ -285,7 +308,7 @@
     border-radius: 24px;
   }
 
-  .dolanan-page {
+  .permainan-page {
     width: min(100%, 760px);
     max-width: min(96vw, 760px);
     padding: clamp(18px, 2.5vw, 24px);

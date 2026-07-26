@@ -90,6 +90,6 @@
   const initial = window.location.hash.replace('#', '') || 'home';
   if (window.gemanti && window.gemanti.showView) window.gemanti.showView(initial);
 
-  if (typeof initDolananGame === 'function') initDolananGame();
+  if (typeof initPermainanGame === 'function') initPermainanGame();
   if (typeof initDragHelpers === 'function') initDragHelpers();
 })();
