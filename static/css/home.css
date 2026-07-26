@@ -183,3 +183,50 @@
     width: 46%;
   }
 }
+
+@media (max-width: 420px) {
+  .brand {
+    top: 1.6%;
+    width: min(86%, 240px);
+  }
+
+  .menu-wrap {
+    bottom: 10%;
+    width: min(88%, 280px);
+    max-width: 320px;
+  }
+
+  .background-image {
+    object-position: top center;
+  }
+
+  .front-ground {
+    bottom: -14%;
+    height: 48%;
+  }
+
+  .leaf-left {
+    left: 0;
+  }
+
+  .leaf-right {
+    right: 0;
+  }
+
+  .food-image {
+    left: -10%;
+    width: 32%;
+  }
+
+  .music-image {
+    right: -10%;
+    width: 30%;
+  }
+
+  .temple-image,
+  .tower-image,
+  .people-image,
+  .wayang-image {
+    width: 48%;
+  }
+}
