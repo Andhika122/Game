@@ -106,7 +106,6 @@
   .game-menu-page.direct-view.permainan-top .menu-panel {
     width: min(100vw, 500px);
     padding: 6px;
-    box-sizing: border-box;
   }
 
   .permainan-header {
@@ -304,10 +303,10 @@
   }
 }
 
-@media (max-width: 900px) and (orientation: landscape) {
+@media (max-width: 700px) and (orientation: landscape) {
   .game-menu-page.direct-view.permainan-top {
     min-height: 100vh;
-    padding: 1rem 0.75rem 1.25rem;
+    padding: 0rem 0.25rem 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -319,9 +318,6 @@
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.96);
     border-radius: 24px;
-    box-sizing: border-box;
-    max-height: calc(100vh - 20px);
-    overflow-y: auto;
   }
 
   .permainan-page {

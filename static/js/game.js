@@ -151,7 +151,11 @@ if (feedbackModalButton) {
 }
 
 function formatAngka(n) {
-  return n >= 0 ? `+${n}`.replace(/^\+/, '') : `${n}`;
+  return `${n}`;
+}
+
+function formatAngkaKedua(n) {
+  return n < 0 ? `(${n})` : `${n}`;
 }
 
 function buatSoal(pilihanTipe = 1) {
@@ -248,7 +252,7 @@ function buatSoal(pilihanTipe = 1) {
     angkaPertama: a,
     angkaKedua: b,
     jawaban,
-    teksSoal: `(${formatAngka(a)}) ${operator} (${formatAngka(b)}) = ?`,
+    teksSoal: `${formatAngka(a)} ${operator} ${formatAngkaKedua(b)} = ?`,
   };
 }
 
