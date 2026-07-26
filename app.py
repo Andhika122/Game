@@ -51,9 +51,13 @@ def dolanan_pengurangan():
 def profil():
     return render_template("profil.html")
 
+@app.route("/demo")
+def demo():
+    return render_template("demo.html")
+
 @app.route("/pitakon")
 def pitakon():
-    return render_template("pitakon.html")
+    return redirect("/demo")
 
 @app.route('/status')
 def status():
