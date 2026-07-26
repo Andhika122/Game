@@ -1,16 +1,25 @@
 // core.js - shared DOM refs and UI utilities
 const stage = document.getElementById("stage");
-// Sound controls: support multiple pages by syncing via localStorage.
-const soundButtons = Array.from(document.querySelectorAll('#soundButton'));
-const soundIcons = Array.from(document.querySelectorAll('#soundIcon'));
 const SOUND_KEY = 'gemanti-muted';
-const fullscreenButton = document.getElementById("fullscreenButton");
+const fullscreenButton = () => document.getElementById("fullscreenButton");
 const questionType = document.getElementById("questionType");
 const questionText = document.getElementById("questionText");
 const questionAnswer = document.getElementById("questionAnswer");
 const makeQuestionButton = document.getElementById("makeQuestionButton");
 const calculatorDisplay = questionAnswer || document.querySelector(".calculator-display");
 const calculatorKeys = document.querySelectorAll(".calculator-key");
+
+function getSoundButtons() {
+  return Array.from(document.querySelectorAll('#soundButton'));
+}
+
+function getSoundIcons() {
+  return Array.from(document.querySelectorAll('#soundIcon'));
+}
+
+function getSoundStorageKey() {
+  return `${SOUND_KEY}:${window.location.pathname}`;
+}
 
 let muted = false;
 let currentGameMode = "addition";
@@ -62,10 +71,20 @@ function exitPageFullscreen() {
 }
 
 function updateFullscreenButton() {
-  if (!fullscreenButton) return;
+  const button = fullscreenButton();
+  if (!button) return;
   const isFullscreen = Boolean(getFullscreenElement());
-  fullscreenButton.setAttribute("aria-label", isFullscreen ? "Keluar dari layar penuh" : "Buka layar penuh");
-  fullscreenButton.textContent = isFullscreen ? "X" : "FS";
+  button.setAttribute("aria-label", isFullscreen ? "Keluar dari layar penuh" : "Buka layar penuh");
+  button.textContent = isFullscreen ? "X" : "FS";
+  button.classList.toggle('fullscreen-hidden', isFullscreen);
+}
+
+function initFullscreenControl() {
+  const button = fullscreenButton();
+  if (!button) return;
+  button.removeEventListener('click', toggleFullscreen);
+  button.addEventListener('click', toggleFullscreen);
+  updateFullscreenButton();
 }
 
 async function toggleFullscreen() {
@@ -81,21 +100,30 @@ async function toggleFullscreen() {
   }
 }
 
-// Initialize muted from localStorage if present
-try {
-  const stored = localStorage.getItem(SOUND_KEY);
-  if (stored !== null) muted = stored === 'true';
-} catch (e) {
-  console.warn('localStorage unavailable', e);
+function loadMutedState() {
+  try {
+    const stored = localStorage.getItem(getSoundStorageKey());
+    if (stored !== null) muted = stored === 'true';
+  } catch (e) {
+    console.warn('localStorage unavailable', e);
+  }
+}
+
+function saveMutedState() {
+  try {
+    localStorage.setItem(getSoundStorageKey(), String(muted));
+  } catch (e) {
+    /* ignore */
+  }
 }
 
 function updateSoundUI() {
-  soundIcons.forEach((icon) => {
+  getSoundIcons().forEach((icon) => {
     if (!icon) return;
     icon.src = muted ? "/static/img/speaker_non_aktif.png" : "/static/img/speaker_aktif.png";
   });
 
-  soundButtons.forEach((btn) => {
+  getSoundButtons().forEach((btn) => {
     if (!btn) return;
     btn.setAttribute("aria-label", muted ? "Nyalakan suara" : "Matikan suara");
   });
@@ -103,23 +131,27 @@ function updateSoundUI() {
   if (muted) stage.classList.add('muted'); else stage.classList.remove('muted');
 }
 
-// Attach listeners to all sound buttons
-soundButtons.forEach((btn) => {
-  btn.addEventListener('click', () => {
-    muted = !muted;
-    try { localStorage.setItem(SOUND_KEY, String(muted)); } catch (e) { /* ignore */ }
-    updateSoundUI();
+function initSoundControl() {
+  const buttons = getSoundButtons();
+  buttons.forEach((btn) => {
+    btn.removeEventListener('click', toggleSound);
+    btn.addEventListener('click', toggleSound);
   });
-});
+}
+
+function toggleSound() {
+  muted = !muted;
+  saveMutedState();
+  updateSoundUI();
+}
+
+loadMutedState();
 
 // Fullscreen wiring (if available)
-if (fullscreenButton && (stage.requestFullscreen || stage.webkitRequestFullscreen || stage.msRequestFullscreen)) {
-  fullscreenButton.addEventListener('click', toggleFullscreen);
+if (stage.requestFullscreen || stage.webkitRequestFullscreen || stage.msRequestFullscreen) {
   document.addEventListener('fullscreenchange', updateFullscreenButton);
   document.addEventListener('webkitfullscreenchange', updateFullscreenButton);
   document.addEventListener('MSFullscreenChange', updateFullscreenButton);
-} else if (fullscreenButton) {
-  fullscreenButton.hidden = true;
 }
 
 // expose some utilities globally (used by other modules)
@@ -128,4 +160,6 @@ Object.assign(window.gemanti, {
   showView,
   updateSoundUI,
   updateFullscreenButton,
+  initFullscreenControl,
+  initSoundControl,
 });

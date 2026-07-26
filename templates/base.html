@@ -8,13 +8,14 @@
   {% block styles %}{% endblock %}
 </head>
 <body>
-  <button class="icon-button top-action" id="soundButton" type="button" aria-label="Matikan suara">
-    <img id="soundIcon" src="/static/img/speaker_aktif.png" alt="">
-  </button>
-  <button class="icon-button top-action" id="profileButton" type="button" aria-label="Profil">
-    <img src="/static/img/home.png" alt="">
-  </button>
   <main id="stage" class="stage">
+    <button class="icon-button top-action" id="soundButton" type="button" aria-label="Matikan suara">
+      <img id="soundIcon" src="/static/img/speaker_aktif.png" alt="">
+    </button>
+    <button class="icon-button top-action" id="profileButton" type="button" aria-label="Profil">
+      <img src="/static/img/home.png" alt="">
+    </button>
+    <button class="icon-button top-action fullscreen-action" id="fullscreenButton" type="button" aria-label="Buka layar penuh">FS</button>
     {% block content %}{% endblock %}
   </main>
 

@@ -26,10 +26,29 @@ function angkaNegatifBesar() {
 const feedbackModal = document.getElementById("feedbackModal");
 const feedbackModalMessage = document.getElementById("feedbackModalMessage");
 const feedbackModalButton = document.getElementById("feedbackModalButton");
-const helpVideoButton = document.getElementById("helpVideoButton");
-const helpVideoContainer = document.getElementById("helpVideoContainer");
+
+function getHelpVideoButton() {
+  return document.getElementById("helpVideoButton");
+}
+
+function getHelpVideoContainer() {
+  return document.getElementById("helpVideoContainer");
+}
+
+function getQuestionTypeElement() {
+  return document.getElementById("questionType");
+}
+
+function getQuestionTextElement() {
+  return document.getElementById("questionText");
+}
+
+function getCalculatorDisplay() {
+  return document.getElementById("questionAnswer") || document.querySelector(".calculator-display");
+}
 
 function toggleHelpVideo(show) {
+  const helpVideoContainer = getHelpVideoContainer();
   if (!helpVideoContainer) return;
   const isHidden = helpVideoContainer.classList.contains("hidden");
   const shouldShow = typeof show === "boolean" ? show : isHidden;
@@ -42,6 +61,7 @@ function toggleHelpVideo(show) {
     }
   }
   helpVideoContainer.classList.toggle("hidden", !shouldShow);
+  const helpVideoButton = getHelpVideoButton();
   if (helpVideoButton) {
     helpVideoButton.textContent = shouldShow ? "Tutup Bantuan" : "Bantuan";
   }
@@ -53,6 +73,21 @@ function toggleHelpVideo(show) {
   } else {
     video.pause();
   }
+}
+
+function getHelpVideoSourcePath() {
+  const mode = currentGameMode === "subtraction" ? "pengurangan" : "penjumlahan";
+  const type = Math.max(1, Math.min(8, currentQuestionType));
+  return `/static/video/vidio_bantuan_${mode}_tipe_${type}.mp4`;
+}
+
+function updateHelpVideoSource() {
+  if (!helpVideoContainer) return;
+  const video = helpVideoContainer.querySelector("video");
+  const source = helpVideoContainer.querySelector("source");
+  if (!video || !source) return;
+  source.src = getHelpVideoSourcePath();
+  video.load();
 }
 
 function showFeedback(message, type = "success", buttonText = null) {
@@ -113,12 +148,6 @@ function hideFeedback() {
 
 if (feedbackModalButton) {
   feedbackModalButton.addEventListener("click", hideFeedback);
-}
-
-if (helpVideoButton) {
-  helpVideoButton.addEventListener("click", () => {
-    toggleHelpVideo();
-  });
 }
 
 function formatAngka(n) {
@@ -239,6 +268,7 @@ function tampilkanSoal(tipe = currentQuestionType) {
     if (window.updateMakeQuestionButton) window.updateMakeQuestionButton();
     if (window.updateSubmitButtonVisibility) window.updateSubmitButtonVisibility();
   }
+  updateHelpVideoSource();
   toggleHelpVideo(false);
 }
 

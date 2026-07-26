@@ -285,6 +285,41 @@ button:focus-visible,
   left: auto;
 }
 
+.fullscreen-action {
+  right: clamp(72px, 14vw, 96px);
+}
+
+/* Keep controls visible in fullscreen mode */
+.stage:fullscreen .top-action,
+.stage:-webkit-full-screen .top-action,
+.stage:-ms-fullscreen .top-action {
+  position: fixed;
+  top: 18px;
+  z-index: 9999;
+}
+
+.stage:fullscreen #soundButton,
+.stage:-webkit-full-screen #soundButton,
+.stage:-ms-fullscreen #soundButton {
+  left: 18px;
+}
+
+.stage:fullscreen #profileButton,
+.stage:-webkit-full-screen #profileButton,
+.stage:-ms-fullscreen #profileButton {
+  right: 18px;
+}
+
+.stage:fullscreen .fullscreen-action,
+.stage:-webkit-full-screen .fullscreen-action,
+.stage:-ms-fullscreen .fullscreen-action {
+  right: 88px;
+}
+
+.fullscreen-action.fullscreen-hidden {
+  display: none !important;
+}
+
 .icon-button {
   width: clamp(56px, 6vw, 68px);
   aspect-ratio: 1;
