@@ -158,13 +158,8 @@ function toggleSound() {
   saveMutedState();
   updateSoundUI();
 
-  if (muted) {
-    if (backgroundAudio) {
-      backgroundAudio.pause();
-      backgroundAudio.currentTime = 0;
-    }
-  } else {
-    playBackgroundGameAudio();
+  if (backgroundAudio) {
+    backgroundAudio.muted = muted;
   }
 }
 
@@ -201,16 +196,14 @@ function playFeedbackSound(kind) {
 }
 
 function playBackgroundGameAudio() {
-  if (muted) return;
-
   if (!backgroundAudio) {
     backgroundAudio = new Audio('/static/audio/suara_musik.mpeg');
     backgroundAudio.loop = true;
     backgroundAudio.volume = 0.7;
+    backgroundAudio.muted = muted;
   }
 
   if (backgroundAudio.paused) {
-    backgroundAudio.currentTime = 0;
     backgroundAudio.play().catch(() => {});
   }
 }
