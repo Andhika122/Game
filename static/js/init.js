@@ -66,6 +66,7 @@
   function runPageInit() {
     if (window.gemanti && typeof window.gemanti.refreshDomRefs === 'function') window.gemanti.refreshDomRefs();
     if (window.gemanti && typeof window.gemanti.updateSoundUI === 'function') window.gemanti.updateSoundUI();
+    if (window.gemanti && typeof window.gemanti.playBackgroundGameAudio === 'function') window.gemanti.playBackgroundGameAudio();
     if (window.gemanti && typeof window.gemanti.initSoundControl === 'function') window.gemanti.initSoundControl();
     if (typeof updateMakeQuestionButton === 'function') updateMakeQuestionButton();
     if (typeof updateSubmitButtonVisibility === 'function') updateSubmitButtonVisibility();

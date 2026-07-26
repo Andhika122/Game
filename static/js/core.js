@@ -42,6 +42,7 @@ let isSubmittingAnswer = false;
 let completionRedirect = false;
 let audioContext = null;
 let feedbackAudio = null;
+let backgroundAudio = null;
 
 const viewClasses = {
   home: "",
@@ -156,6 +157,16 @@ function toggleSound() {
   muted = !muted;
   saveMutedState();
   updateSoundUI();
+
+  if (backgroundAudio) {
+    if (muted) {
+      backgroundAudio.pause();
+    } else {
+      backgroundAudio.play().catch(() => {});
+    }
+  } else if (!muted) {
+    playBackgroundGameAudio();
+  }
 }
 
 function getAudioContext() {
@@ -171,8 +182,6 @@ function getAudioContext() {
 }
 
 function playFeedbackSound(kind) {
-  if (muted) return;
-
   const audioMap = {
     correct: '/static/audio/suara_benar.mpeg',
     wrong: '/static/audio/suara_salah.mpeg',
@@ -190,6 +199,21 @@ function playFeedbackSound(kind) {
   feedbackAudio = new Audio(src);
   feedbackAudio.volume = 1;
   feedbackAudio.play().catch(() => {});
+}
+
+function playBackgroundGameAudio() {
+  if (muted) return;
+  if (backgroundAudio) {
+    if (backgroundAudio.paused) {
+      backgroundAudio.play().catch(() => {});
+    }
+    return;
+  }
+
+  backgroundAudio = new Audio('/static/audio/suara_musik.mpeg');
+  backgroundAudio.loop = true;
+  backgroundAudio.volume = 0.7;
+  backgroundAudio.play().catch(() => {});
 }
 
 loadMutedState();
@@ -211,4 +235,5 @@ Object.assign(window.gemanti, {
   initSoundControl,
   refreshDomRefs,
   playFeedbackSound,
+  playBackgroundGameAudio,
 });
