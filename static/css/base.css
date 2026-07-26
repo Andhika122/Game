@@ -372,6 +372,9 @@ button:focus-visible,
   box-shadow: none !important;
   padding-left: 10px !important;
   padding-right: 10px !important;
+  box-sizing: border-box !important;
+  max-height: 100vh !important;
+  overflow-y: auto !important;
 }
 
 .stage:fullscreen .permainan-page,
