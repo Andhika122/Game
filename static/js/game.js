@@ -98,13 +98,23 @@ function updateHelpVideoSource() {
   video.load();
 }
 
+function personalizeMessage(message) {
+  const name = window.playerName || 'Kamu';
+  const trimmedName = name.trim() || 'Kamu';
+  return message
+    .replace(/\bKamu\b/g, trimmedName)
+    .replace(/\bkamu\b/g, trimmedName.toLowerCase());
+}
+
 function showFeedback(message, type = "success", buttonText = null) {
   const feedbackModal = getFeedbackModal();
   const feedbackModalMessage = getFeedbackModalMessage();
   const feedbackModalButton = getFeedbackModalButton();
 
+  const finalMessage = personalizeMessage(message);
+
   if (!feedbackModal || !feedbackModalMessage) {
-    alert(message);
+    alert(finalMessage);
     return;
   }
 
@@ -120,7 +130,7 @@ function showFeedback(message, type = "success", buttonText = null) {
     }
   }
 
-  feedbackModalMessage.textContent = message;
+  feedbackModalMessage.textContent = finalMessage;
   feedbackModal.classList.toggle("feedback-modal--success", type === "success");
   feedbackModal.classList.toggle("feedback-modal--error", type === "error");
   feedbackModal.classList.add("feedback-modal--show");

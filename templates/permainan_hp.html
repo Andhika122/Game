@@ -29,20 +29,29 @@
             <article class="math-card">
               <div class="math-top-row">
                 <div class="math-question-column">
-                  <p class="math-label" id="questionType">{{ question_type }}</p>
-                  <div class="math-question-row large-question">
-                    <p class="math-question" id="questionText">{{ question_text }}</p>
-                    <span class="answer-inline calculator-display" id="questionAnswer">...</span>
-                  </div>
+                  {% if game_description %}
+                    <div class="symbol-description">
+                      {{ game_description|safe }}
+                    </div>
+                  {% else %}
+                    <p class="math-label" id="questionType">{{ question_type }}</p>
+                    <div class="math-question-row large-question">
+                      <p class="math-question" id="questionText">{{ question_text }}</p>
+                      <span class="answer-inline calculator-display" id="questionAnswer">...</span>
+                    </div>
+                  {% endif %}
                 </div>
+                {% if not game_description %}
                 <div class="help-actions">
                   <button type="button" class="btn btn--primary" id="makeQuestionButton">Jawaban</button>
                   <button type="button" id="helpVideoButton" class="btn">Bantuan</button>
                 </div>
+                {% endif %}
               </div>
             </article>
           </div>
 
+          {% if not game_description %}
           <div class="bottom-row">
             <aside class="helper-panel" aria-label="Alat bantu hitung">
               <div class="helper-panel-head">
@@ -143,6 +152,7 @@
               </div>
             </div>
           </div>
+          {% endif %}
         </div>
 
       </div>

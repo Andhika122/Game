@@ -20,6 +20,44 @@ function refreshDomRefs() {
 
 refreshDomRefs();
 
+function safeLocalStorageGet(key) {
+  try {
+    return localStorage.getItem(key);
+  } catch (error) {
+    return null;
+  }
+}
+
+function safeLocalStorageSet(key, value) {
+  try {
+    localStorage.setItem(key, value);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+function getStoredPlayerName() {
+  return '';
+}
+
+function getPlayerNameOrDefault() {
+  const name = 'Kamu';
+  window.playerName = name;
+  return name;
+}
+
+function setPlayerName(name) {
+  const cleaned = (name || '').trim() || 'Kamu';
+  window.playerName = cleaned;
+  return cleaned;
+}
+
+function initNameInputPage() {
+  // name input removed; noop to avoid errors
+  return;
+}
+
 function getSoundButtons() {
   return Array.from(document.querySelectorAll('#soundButton'));
 }
@@ -90,7 +128,6 @@ function updateFullscreenButton() {
   const isFullscreen = Boolean(getFullscreenElement());
   button.classList.toggle("is-hidden", isFullscreen);
   button.setAttribute("aria-label", isFullscreen ? "Keluar dari layar penuh" : "Buka layar penuh");
-  button.textContent = "FS";
 }
 
 function initFullscreenControl() {

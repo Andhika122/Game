@@ -1,3 +1,13 @@
+.page-home #profileButton {
+  display: none !important;
+}
+
+.page-home .fullscreen-action {
+  top: auto;
+  right: clamp(12px, 2vw, 28px);
+  bottom: clamp(12px, 2vw, 28px);
+}
+
 .brand {
   position: absolute;
   top: 0.6%;

@@ -151,6 +151,42 @@
     border-radius: 16px;
   }
 
+  .symbol-description {
+    display: grid;
+    gap: 1rem;
+    padding: 0.5rem 0;
+  }
+
+  .symbol-description p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    color: #4f3725;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    line-height: 1.6;
+  }
+
+  .symbol-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 16px;
+    background: rgba(255, 197, 102, 0.18);
+    color: #6a2f21;
+    font-size: 1.25rem;
+    font-weight: 800;
+    padding: 0.25rem;
+  }
+
+  .symbol-icon--zero {
+    background: rgba(255, 224, 186, 0.4);
+    color: #7a4428;
+  }
+
   .math-question-row.large-question .math-question,
   .math-question-row.large-question .answer-inline {
     font-size: clamp(1.65rem, 7vw, 2.2rem);

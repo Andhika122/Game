@@ -1,0 +1,212 @@
+.game-menu-page.direct-view.permainan-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: clamp(20px, 4vw, 40px);
+}
+
+.game-menu-page.direct-view.permainan-top .menu-panel {
+  width: min(100%, 940px);
+  max-width: 940px;
+  margin: 0 auto;
+  padding: clamp(24px, 3vw, 40px);
+  background: #ffffff;
+  border-radius: 40px;
+  box-shadow: 0 24px 56px rgba(33, 33, 33, 0.12);
+  border: 1px solid rgba(148, 106, 44, 0.14);
+}
+
+.permainan-page {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  display: grid;
+  gap: 1.5rem;
+  align-items: stretch;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.permainan-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.page-tag {
+  margin: 0 auto 0.75rem;
+  display: inline-block;
+  color: #9a5f24;
+  background: rgba(244, 177, 95, 0.18);
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.permainan-header h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 3.4vw, 3.2rem);
+  color: #6a2f21;
+  line-height: 1.05;
+}
+
+.page-copy {
+  margin: 1rem auto 0;
+  max-width: 680px;
+  color: #423026;
+  font-size: clamp(1rem, 1.7vw, 1.2rem);
+  line-height: 1.8;
+}
+
+.math-panel {
+  display: grid;
+  gap: 1.8rem;
+}
+
+.math-card {
+  padding: 1.25rem 1rem;
+  border-radius: 30px;
+  background: linear-gradient(180deg, #fff8e8 0%, #fff3d1 100%);
+  border: 1px solid rgba(213, 157, 84, 0.27);
+  box-shadow: 0 16px 28px rgba(134, 84, 27, 0.12);
+  width: 100%;
+}
+
+.symbol-description {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.2rem 0;
+}
+
+.symbol-row {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.symbol-row--center {
+  gap: 0.75rem;
+}
+
+.symbol-row--center .symbol-pill {
+  width: 110px;
+  min-width: 110px;
+  max-width: 110px;
+}
+
+.symbol-label,
+.symbol-text {
+  color: #6a2f21;
+  font-size: clamp(1rem, 2.2vw, 1.15rem);
+}
+
+.symbol-label {
+  font-weight: 700;
+}
+
+.symbol-text {
+  opacity: 0.85;
+}
+
+.symbol-value,
+.symbol-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  background: rgba(255, 197, 102, 0.35);
+  color: #6a2f21;
+  font-size: 1.35rem;
+  font-weight: 800;
+  padding: 0;
+}
+
+.symbol-pill {
+  width: 140px;
+  min-width: 90px;
+  max-width: 140px;
+  border-radius: 999px;
+  background: rgba(255, 224, 186, 0.75);
+}
+
+.symbol-value img,
+.symbol-pill img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.symbol-icon--plus,
+.symbol-icon--minus {
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+}
+
+.symbol-icon--zero {
+  background: rgba(255, 224, 186, 0.6);
+  color: #7a4428;
+}
+
+.image-question-card {
+  padding: 1rem;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(213, 157, 84, 0.24);
+}
+
+.image-question-box {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.image-question-row {
+  display: grid;
+  grid-template-columns: 98px 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.image-question-thumb {
+  margin: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  min-width: 98px;
+  min-height: 98px;
+  background: rgba(255, 224, 186, 0.45);
+  display: grid;
+  place-items: center;
+}
+
+.image-question-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.image-question-copy {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.image-question-label {
+  margin: 0;
+  color: #6a2f21;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.image-question-text {
+  margin: 0;
+  color: #6a2f21;
+  opacity: 0.88;
+  line-height: 1.5;
+}

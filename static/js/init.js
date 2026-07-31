@@ -63,7 +63,24 @@
     });
   }
 
+  function syncBodyPageClass(url = window.location.href) {
+    try {
+      const pathname = new URL(url, window.location.href).pathname;
+      const isHomePage = pathname === '/home' || pathname === '/';
+      document.body.classList.toggle('page-home', isHomePage);
+    } catch (error) {
+      document.body.classList.remove('page-home');
+    }
+  }
+
+  function ensurePlayerNameForHome() {
+    // name flow removed; noop to avoid unexpected redirects
+    return;
+  }
+  
+
   function runPageInit() {
+    // name input flow removed; do not enforce redirects
     if (window.gemanti && typeof window.gemanti.refreshDomRefs === 'function') window.gemanti.refreshDomRefs();
     if (window.gemanti && typeof window.gemanti.updateSoundUI === 'function') window.gemanti.updateSoundUI();
     if (window.gemanti && typeof window.gemanti.playBackgroundGameAudio === 'function') window.gemanti.playBackgroundGameAudio();
@@ -75,6 +92,7 @@
     if (typeof initDragHelpers === 'function') initDragHelpers();
     if (window.gemanti && typeof window.gemanti.initFullscreenControl === 'function') window.gemanti.initFullscreenControl();
     if (typeof initFeedbackModalButton === 'function') initFeedbackModalButton();
+    if (typeof initNameInputPage === 'function') initNameInputPage();
   }
 
   window.gemanti = window.gemanti || {};
@@ -109,6 +127,7 @@
 
       updateDynamicStyles(doc);
       stage.innerHTML = newStage.innerHTML;
+      syncBodyPageClass(url);
       if (replaceHistory) history.pushState({ path: url }, '', url);
       runPageInit();
     } catch (error) {
@@ -129,7 +148,7 @@
 
     if (button.id === 'profileButton') {
       event.preventDefault();
-      loadPage('/');
+      loadPage('/home');
       return;
     }
 
@@ -174,11 +193,6 @@
     loadPage(path, false);
   });
 
-  updateMakeQuestionButton();
-  updateSubmitButtonVisibility();
-
-  if (window.gemanti && typeof window.gemanti.updateSoundUI === 'function') window.gemanti.updateSoundUI();
-  if (typeof initPermainanGame === 'function') initPermainanGame();
-  if (typeof initDragHelpers === 'function') initDragHelpers();
-  if (typeof initFeedbackModalButton === 'function') initFeedbackModalButton();
+  syncBodyPageClass(window.location.href);
+  runPageInit();
 })();

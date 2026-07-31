@@ -27,6 +27,9 @@ def index():
     return render_template("home.html")
 
 
+
+
+
 @app.route("/home")
 def home():
     return render_template("home.html")
@@ -34,7 +37,6 @@ def home():
 @app.route("/menu")
 def menu():
     return render_template("menu.html")
-
 @app.route("/permainan")
 def permainan():
     return render_template("permainan.html")
@@ -42,6 +44,10 @@ def permainan():
 @app.route("/permainan/penjumlahan")
 def permainan_penjumlahan():
     return render_template("permainan_penjumlahan.html")
+
+@app.route("/permainan/simbol/bilangan")
+def permainan_simbol_bilangan():
+    return render_template("simbol_bilangan.html")
 
 @app.route("/permainan/pengurangan")
 def permainan_pengurangan():

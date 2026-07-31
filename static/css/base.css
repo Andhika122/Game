@@ -301,6 +301,12 @@ button:focus-visible,
   pointer-events: auto;
 }
 
+.fullscreen-action {
+  top: auto;
+  bottom: clamp(12px, 2vw, 28px);
+  right: clamp(12px, 2vw, 28px);
+}
+
 #soundButton {
   left: clamp(12px, 2vw, 28px);
   right: auto;
@@ -309,10 +315,6 @@ button:focus-visible,
 #profileButton {
   right: clamp(12px, 2vw, 28px);
   left: auto;
-}
-
-.fullscreen-action {
-  right: clamp(72px, 14vw, 96px);
 }
 
 .fullscreen-action.is-hidden {
@@ -380,7 +382,8 @@ button:focus-visible,
 .stage:fullscreen #fullscreenButton,
 .stage:-webkit-full-screen #fullscreenButton,
 .stage:-ms-fullscreen #fullscreenButton {
-  right: 64px;
+  right: 12px;
+  bottom: 12px;
   display: block !important;
   opacity: 1 !important;
   visibility: visible !important;
