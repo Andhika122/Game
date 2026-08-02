@@ -98,7 +98,7 @@
     if (typeof initDragHelpers === 'function') initDragHelpers();
     if (window.gemanti && typeof window.gemanti.initFullscreenControl === 'function') window.gemanti.initFullscreenControl();
     if (typeof initFeedbackModalButton === 'function') initFeedbackModalButton();
-    if (typeof initNameInputPage === 'function') initNameInputPage();
+    if (typeof initNameInputPage === 'function' && document.getElementById('playerNameForm')) initNameInputPage();
   }
 
   window.gemanti = window.gemanti || {};
