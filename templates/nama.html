@@ -23,13 +23,22 @@
   <section class="nama-screen">
     <div class="nama-card">
       <h1>Halo, Siapa Namamu?</h1>
-      <p>Masukkan nama agar pengalaman bermainmu lebih seru.</p>
-      <form id="playerNameForm" class="nama-form" action="#" method="post">
-        <label for="playerNameInput">Nama</label>
+      <p>Masukkan nama untuk mulai bermain.</p>
+      <form id="playerNameForm" class="nama-form" action="#">
         <input id="playerNameInput" name="playerName" type="text" placeholder="Ketik nama kamu" autocomplete="name" required>
-        <button id="playerNameSubmit" type="submit" class="btn btn--primary">Lanjut ke Home</button>
+        <button id="playerNameSubmit" type="submit" class="btn btn--primary">Lanjut</button>
       </form>
     </div>
   </section>
+
+  <div id="introVideoOverlay" class="intro-video-overlay" aria-hidden="false">
+    <div class="intro-video-panel">
+      <video id="introVideo" playsinline preload="auto">
+        <source src="/static/video/vidio_logo.mp4" type="video/mp4">
+        Video tidak didukung oleh browser ini.
+      </video>
+      <button id="introVideoStartButton" class="intro-video-start-button" type="button">Klik tombol untuk mulai video</button>
+    </div>
+  </div>
 
 {% endblock %}

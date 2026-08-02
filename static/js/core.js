@@ -56,10 +56,100 @@ function setPlayerName(name) {
   return cleaned;
 }
 
+function hasSeenIntroVideo() {
+  return safeLocalStorageGet('gemanti-intro-video-seen') === 'true';
+}
+
+function markIntroVideoSeen() {
+  safeLocalStorageSet('gemanti-intro-video-seen', 'true');
+}
+
+function getIntroVideoElements() {
+  return {
+    overlay: document.getElementById('introVideoOverlay'),
+    video: document.getElementById('introVideo'),
+    skip: document.getElementById('introVideoSkip'),
+  };
+}
+
+function showIntroVideo(onFinished) {
+  const { overlay, video } = getIntroVideoElements();
+  if (!overlay || !video) {
+    onFinished();
+    return;
+  }
+
+  const showOverlay = () => {
+    overlay.classList.remove('hidden');
+    overlay.style.display = 'flex';
+    overlay.style.visibility = 'visible';
+    overlay.setAttribute('aria-hidden', 'false');
+  };
+
+  const hideOverlay = () => {
+    overlay.classList.add('hidden');
+    overlay.style.display = 'none';
+    overlay.style.visibility = 'hidden';
+    overlay.setAttribute('aria-hidden', 'true');
+  };
+
+  video.controls = false;
+  video.playsInline = true;
+  video.setAttribute('playsinline', '');
+  video.preload = 'auto';
+
+  const finish = () => {
+    hideOverlay();
+    video.pause();
+    video.currentTime = 0;
+    video.controls = true;
+    markIntroVideoSeen();
+    cleanup();
+    onFinished();
+  };
+
+  const handleError = () => {
+    finish();
+  };
+
+  const cleanup = () => {
+    video.removeEventListener('ended', finish);
+    video.removeEventListener('error', handleError);
+    startButton.removeEventListener('click', handleStartClick);
+  };
+
+  const handleStartClick = () => {
+    video.muted = false;
+    video.removeAttribute('muted');
+    video.volume = 1;
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        showOverlay();
+      }).catch(() => {
+        console.warn('Intro video play failed');
+      });
+    }
+  };
+
+  const startButton = document.getElementById('introVideoStartButton');
+  if (startButton) {
+    startButton.addEventListener('click', handleStartClick);
+  }
+
+  video.addEventListener('ended', finish);
+  video.addEventListener('error', handleError, { once: true });
+
+  showOverlay();
+
+  if (video.readyState < 3) {
+    video.load();
+  }
+}
+
 function initNameInputPage() {
   const nameInput = document.getElementById('playerNameInput');
   const nameForm = document.getElementById('playerNameForm');
-  const nameSubmit = document.getElementById('playerNameSubmit');
   const storedName = getStoredPlayerName().trim();
 
   if (nameInput) {
@@ -67,10 +157,7 @@ function initNameInputPage() {
     nameInput.focus();
   }
 
-  const handleSubmitName = (event) => {
-    if (event) event.preventDefault();
-    if (!nameInput) return;
-    const name = setPlayerName(nameInput.value);
+  const navigateHome = () => {
     if (window.gemanti && typeof window.gemanti.loadPage === 'function') {
       window.gemanti.loadPage('/home');
       return;
@@ -78,10 +165,25 @@ function initNameInputPage() {
     window.location.href = '/home';
   };
 
+  const handleSubmitName = (event) => {
+    if (event) event.preventDefault();
+    if (!nameInput) return;
+    setPlayerName(nameInput.value);
+    navigateHome();
+  };
+
+  const showIntroThenFocus = () => {
+    showIntroVideo(() => {
+      if (nameInput) nameInput.focus();
+    });
+  };
+
   if (nameForm && !nameForm.dataset.nameSubmitHandled) {
     nameForm.addEventListener('submit', handleSubmitName);
     nameForm.dataset.nameSubmitHandled = 'true';
   }
+
+  showIntroThenFocus();
 }
 
 function getSoundButtons() {
