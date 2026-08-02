@@ -74,13 +74,19 @@
   }
 
   function ensurePlayerNameForHome() {
-    // name flow removed; noop to avoid unexpected redirects
-    return;
+    if (window.location.pathname !== '/home') return;
+    const storedName = safeLocalStorageGet ? safeLocalStorageGet('gemanti-player-name') || '' : localStorage.getItem('gemanti-player-name') || '';
+    if (!storedName.trim()) {
+      if (window.gemanti && typeof window.gemanti.loadPage === 'function') {
+        window.gemanti.loadPage('/nama', 'replace');
+      } else {
+        window.location.replace('/nama');
+      }
+    }
   }
-  
 
   function runPageInit() {
-    // name input flow removed; do not enforce redirects
+    if (typeof ensurePlayerNameForHome === 'function') ensurePlayerNameForHome();
     if (window.gemanti && typeof window.gemanti.refreshDomRefs === 'function') window.gemanti.refreshDomRefs();
     if (window.gemanti && typeof window.gemanti.updateSoundUI === 'function') window.gemanti.updateSoundUI();
     if (window.gemanti && typeof window.gemanti.playBackgroundGameAudio === 'function') window.gemanti.playBackgroundGameAudio();
@@ -125,10 +131,24 @@
       const newTitle = doc.querySelector('title');
       if (newTitle) document.title = newTitle.textContent;
 
+      const targetUrl = new URL(url, window.location.href);
+      const targetPath = targetUrl.pathname;
+      const isSamePath = targetPath === window.location.pathname;
+
       updateDynamicStyles(doc);
       stage.innerHTML = newStage.innerHTML;
       syncBodyPageClass(url);
-      if (replaceHistory) history.pushState({ path: url }, '', url);
+
+      if (replaceHistory === 'replace') {
+        history.replaceState({ path: url }, '', url);
+      } else if (replaceHistory) {
+        if (isSamePath) {
+          history.replaceState({ path: url }, '', url);
+        } else {
+          history.pushState({ path: url }, '', url);
+        }
+      }
+
       runPageInit();
     } catch (error) {
       window.location.href = url;
@@ -148,7 +168,9 @@
 
     if (button.id === 'profileButton') {
       event.preventDefault();
-      loadPage('/home');
+      if (window.location.pathname !== '/home') {
+        loadPage('/home');
+      }
       return;
     }
 
@@ -190,6 +212,7 @@
 
   window.addEventListener('popstate', (event) => {
     const path = (event.state && event.state.path) || window.location.pathname;
+    if (path === window.location.pathname) return;
     loadPage(path, false);
   });
 

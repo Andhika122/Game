@@ -24,11 +24,15 @@ def favicon_ico():
 
 @app.route("/")
 def index():
-    return render_template("home.html")
+    return redirect("/nama")
 
 
 
 
+
+@app.route("/nama")
+def nama():
+    return render_template("nama.html")
 
 @app.route("/home")
 def home():

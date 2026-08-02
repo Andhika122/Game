@@ -1,6 +1,7 @@
 // core.js - shared DOM refs and UI utilities
 const stage = document.getElementById("stage");
 const SOUND_KEY = 'gemanti-muted';
+const PLAYER_NAME_KEY = 'gemanti-player-name';
 const fullscreenButton = () => document.getElementById("fullscreenButton");
 let questionType = null;
 let questionText = null;
@@ -38,11 +39,12 @@ function safeLocalStorageSet(key, value) {
 }
 
 function getStoredPlayerName() {
-  return '';
+  return safeLocalStorageGet(PLAYER_NAME_KEY) || '';
 }
 
 function getPlayerNameOrDefault() {
-  const name = 'Kamu';
+  const storedName = getStoredPlayerName().trim();
+  const name = storedName || 'Kamu';
   window.playerName = name;
   return name;
 }
@@ -50,12 +52,36 @@ function getPlayerNameOrDefault() {
 function setPlayerName(name) {
   const cleaned = (name || '').trim() || 'Kamu';
   window.playerName = cleaned;
+  safeLocalStorageSet(PLAYER_NAME_KEY, cleaned);
   return cleaned;
 }
 
 function initNameInputPage() {
-  // name input removed; noop to avoid errors
-  return;
+  const nameInput = document.getElementById('playerNameInput');
+  const nameForm = document.getElementById('playerNameForm');
+  const nameSubmit = document.getElementById('playerNameSubmit');
+  const storedName = getStoredPlayerName().trim();
+
+  if (nameInput) {
+    nameInput.value = storedName;
+    nameInput.focus();
+  }
+
+  const handleSubmitName = (event) => {
+    if (event) event.preventDefault();
+    if (!nameInput) return;
+    const name = setPlayerName(nameInput.value);
+    if (window.gemanti && typeof window.gemanti.loadPage === 'function') {
+      window.gemanti.loadPage('/home');
+      return;
+    }
+    window.location.href = '/home';
+  };
+
+  if (nameForm && !nameForm.dataset.nameSubmitHandled) {
+    nameForm.addEventListener('submit', handleSubmitName);
+    nameForm.dataset.nameSubmitHandled = 'true';
+  }
 }
 
 function getSoundButtons() {
@@ -69,6 +95,8 @@ function getSoundIcons() {
 function getSoundStorageKey() {
   return `${SOUND_KEY}:${window.location.pathname}`;
 }
+
+getPlayerNameOrDefault();
 
 let muted = false;
 let currentGameMode = "addition";

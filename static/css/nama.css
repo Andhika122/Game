@@ -1,0 +1,387 @@
+.page-home #profileButton {
+  display: none !important;
+}
+
+.page-home .fullscreen-action {
+  top: auto;
+  right: clamp(12px, 2vw, 28px);
+  bottom: clamp(12px, 2vw, 28px);
+}
+
+.brand {
+  position: absolute;
+  top: 0.6%;
+  left: 50%;
+  width: min(29%, 380px);
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 25;
+}
+
+.brand-logo {
+  position: relative;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 10px rgba(104, 47, 20, 0.24));
+  /* smoother, slower floating: gentle bob + subtle sway + tiny rotation */
+  animation: logo-float3 8s cubic-bezier(.22,.9,.37,.99) infinite;
+  will-change: transform;
+  transform-origin: 50% 50%;
+}
+
+.menu-wrap {
+  position: absolute;
+  left: 50%;
+  bottom: -10%;
+  z-index: 28;
+  width: min(30%, 360px);
+  aspect-ratio: 540 / 420;
+  transform: translateX(-50%);
+}
+
+.menu-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  transition: transform 0.18s ease;
+}
+
+.menu-card:disabled {
+  cursor: default;
+}
+
+.menu-image {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+@keyframes logo-float3 {
+  0% { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+  20% { transform: translate3d(-6px,-8px,0) rotate(-0.6deg) scale(1.005); }
+  40% { transform: translate3d(-10px,-2px,0) rotate(-0.35deg) scale(1.002); }
+  60% { transform: translate3d(-6px,6px,0) rotate(0.35deg) scale(1); }
+  80% { transform: translate3d(6px,4px,0) rotate(0.4deg) scale(1.003); }
+  100% { transform: translate3d(0,0,0) rotate(0deg) scale(1); }
+}
+
+/* accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .brand-logo { animation: none !important; }
+}
+
+/* Keep the start button visible on small screens */
+@media (max-width: 720px) {
+  .menu-wrap {
+    bottom: 4% !important;
+    width: min(72%, 420px);
+  }
+}
+
+@media (max-width: 480px) {
+  .brand {
+    top: 1.2%;
+    width: min(70%, 260px);
+  }
+
+  .brand-logo {
+    filter: drop-shadow(0 10px 8px rgba(104, 47, 20, 0.20));
+  }
+
+  .top-action {
+    top: 1.4%;
+  }
+
+  .icon-button {
+    width: clamp(46px, 10vw, 56px);
+  }
+
+  .menu-wrap {
+    bottom: 8%;
+    width: min(82%, 280px);
+  }
+
+  .leaf {
+    width: 28%;
+  }
+
+  .leaf-left {
+    left: -3%;
+    bottom: 8%;
+  }
+
+  .leaf-right {
+    right: -3%;
+  }
+
+  .front-ground {
+    bottom: -18%;
+    height: 46%;
+  }
+
+  .janur {
+    width: 22%;
+  }
+
+  .janur-left {
+    left: 16%;
+  }
+
+  .janur-right {
+    right: 16%;
+  }
+
+  .temple-image,
+  .tower-image,
+  .people-image,
+  .wayang-image {
+    width: 42%;
+  }
+
+  .temple-image {
+    left: 8%;
+    bottom: 18%;
+  }
+
+  .tower-image {
+    right: 8%;
+    bottom: 18%;
+  }
+
+  .people-image,
+  .wayang-image {
+    bottom: 16%;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand {
+    width: min(82%, 220px);
+  }
+
+  .menu-wrap {
+    width: min(90%, 260px);
+    bottom: 10%;
+  }
+
+  .icon-button {
+    width: clamp(42px, 12vw, 52px);
+  }
+
+  .front-ground {
+    bottom: -16%;
+    height: 52%;
+  }
+
+  .janur {
+    width: 24%;
+  }
+
+  .temple-image,
+  .tower-image,
+  .people-image,
+  .wayang-image {
+    width: 46%;
+  }
+}
+
+@media (max-width: 420px) {
+  .brand {
+    top: 1.6%;
+    width: min(86%, 240px);
+  }
+
+  .menu-wrap {
+    bottom: 6%;
+    width: min(88%, 300px);
+    max-width: 320px;
+  }
+
+  .background-image {
+    object-position: top center;
+  }
+
+  .front-ground {
+    bottom: -12%;
+    height: 50%;
+  }
+
+  .leaf-left {
+    left: 0;
+  }
+
+  .leaf-right {
+    right: 0;
+  }
+
+  .temple-image,
+  .tower-image,
+  .people-image,
+  .wayang-image {
+    width: 44%;
+  }
+
+  .temple-image {
+    left: 6%;
+    bottom: 18%;
+  }
+
+  .tower-image {
+    right: 6%;
+    bottom: 18%;
+  }
+}
+
+.page-nama .brand {
+  top: 2%;
+  width: min(24%, 320px);
+}
+
+.page-nama .brand-logo {
+  max-width: 320px;
+}
+
+.page-nama .menu-wrap,
+.page-nama .wayang-image,
+.page-nama .bottom-decor {
+  display: none;
+}
+
+.page-nama .nama-screen {
+  position: relative;
+  z-index: 20;
+}
+
+.nama-screen {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: calc(100vh - 8rem);
+  padding: 14rem 1rem 3rem;
+}
+
+.nama-card {
+  width: min(480px, 100%);
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 32px;
+  padding: 2.25rem 1.75rem;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.14);
+  text-align: center;
+}
+
+.nama-card h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 1.05;
+}
+
+.nama-card p {
+  margin: 0 0 1.5rem;
+  color: #333;
+  font-size: 1rem;
+}
+
+.nama-form {
+  display: grid;
+  gap: 1rem;
+  text-align: left;
+}
+
+.nama-form label {
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.nama-form input {
+  width: 100%;
+  padding: 1rem 1.1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(34, 34, 34, 0.12);
+  background: #fff;
+  font-size: 1rem;
+  color: #111;
+}
+
+.nama-form input:focus {
+  outline: none;
+  border-color: #118ab2;
+  box-shadow: 0 0 0 4px rgba(17, 138, 178, 0.14);
+}
+
+.nama-form button {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 18px;
+  border: none;
+  background: #0b6e99;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.nama-form button:hover,
+.nama-form button:focus {
+  background: #0a5e85;
+}
+
+  .people-image,
+  .wayang-image {
+    bottom: 14%;
+  }
+
+  .bottom-decor.food-image {
+    left: 2%;
+    bottom: 2%;
+    width: 32%;
+  }
+
+  .bottom-decor.music-image {
+    right: 2%;
+    bottom: 2%;
+    width: 30%;
+  }
+}
+
+@media (max-width: 360px) {
+  .brand {
+    width: min(88%, 200px);
+  }
+
+  .menu-wrap {
+    width: min(92%, 260px);
+    bottom: 8%;
+  }
+
+  .front-ground {
+    bottom: -14%;
+    height: 52%;
+  }
+
+  .temple-image,
+  .tower-image,
+  .people-image,
+  .wayang-image {
+    width: 48%;
+  }
+
+  .bottom-decor.food-image {
+    width: 30%;
+    bottom: 1%;
+  }
+
+  .bottom-decor.music-image {
+    width: 28%;
+    bottom: 1%;
+  }
+}

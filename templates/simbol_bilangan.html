@@ -60,18 +60,48 @@
               </div>
             </div>
           </article>
-
           <article class="math-card image-question-card">
             <div class="image-question-box">
               <div class="image-question-row">
-                <figure class="image-question-thumb">
-                  <img src="/static/img/contoh.png" alt="Soal gambar">
+                <figure class="image-question-thumb" id="symbolStrip">
+                  <!-- symbols will be rendered here via JS -->
                 </figure>
+                <div class="question-controls">
+                  <span id="questionIndex" class="question-index">1/1</span>
+                </div>
                 <div class="image-question-copy">
-                  <p class="image-question-label">Soal dengan gambar</p>
+                  <p class="image-question-label">Perhatikan Simbol Berikut</p>
                   <p class="image-question-text">Gambar ini menunjukkan nilai berapa? Pilih jawabannya berdasarkan simbol yang benar.</p>
                 </div>
               </div>
+            </div>
+          </article>
+
+          <article class="math-card answer-card">
+            <div class="answer-instruction">Simbol ini berarti berapakah bilangan yang diberikan?</div>
+
+            <div class="answer-display" id="answerDisplay">&nbsp;</div>
+
+            <div class="numeric-keypad" id="numericKeypad" aria-label="Keypad angka">
+              <button class="key" data-key="7">7</button>
+              <button class="key" data-key="8">8</button>
+              <button class="key" data-key="9">9</button>
+
+              <button class="key" data-key="4">4</button>
+              <button class="key" data-key="5">5</button>
+              <button class="key" data-key="6">6</button>
+
+              <button class="key" data-key="1">1</button>
+              <button class="key" data-key="2">2</button>
+              <button class="key" data-key="3">3</button>
+
+              <button class="key key--minus" data-key="minus">-</button>
+              <button class="key" data-key="0">0</button>
+              <button class="key key--back" data-key="back">⌫</button>
+            </div>
+
+            <div class="submit-row">
+              <button class="btn btn--primary submit-button" id="answerSubmitButton">Submit Jawaban</button>
             </div>
           </article>
         </div>
@@ -80,4 +110,128 @@
     </div>
 
   </section>
+  <script>
+    (function () {
+      // Use explicit symbol sequences per your specification. Each entry may contain multiple variants (slash-separated).
+      const sequencesPerQuestion = [
+        [ ['plus'], ['minus'] ],
+        [ ['minus','minus'], ['plus','plus'] ],
+        [ ['minus','plus'] ],
+        [ ['minus','plus','minus','plus','minus','plus'] ],
+        [ ['minus','plus','minus','minus'], ['minus','plus','plus','plus'] ],
+        [ ['plus','minus','plus','minus','plus','minus'], ['minus','minus','plus','plus','plus','minus','minus'] ],
+        [ ['plus','plus','plus','plus','minus','minus','minus','minus'], ['minus','minus','minus','minus','plus','plus','plus','plus'] ],
+        [ ['plus','plus','minus','minus','minus','plus','plus'], ['minus','minus','plus','plus','plus','minus','minus'] ]
+      ];
+
+      const TOTAL_TYPES = sequencesPerQuestion.length;
+      let currentQuestion = 1; // 1-based
+      let currentVariant = 0; // which variant index to use for the current question
+
+      function renderSymbolQuestion(type) {
+        const strip = document.getElementById('symbolStrip');
+        const idx = Math.max(1, Math.min(TOTAL_TYPES, type));
+        strip.innerHTML = '';
+        const variants = sequencesPerQuestion[idx - 1] || [['plus']];
+        currentVariant = Math.min(currentVariant, variants.length - 1);
+        const seq = variants[currentVariant];
+        seq.forEach((s) => {
+          const item = document.createElement('div');
+          item.className = 'symbol-item';
+          const img = document.createElement('img');
+          img.className = 'symbol-icon';
+          img.alt = s === 'plus' ? 'Tambah' : 'Kurang';
+          img.src = s === 'plus' ? '/static/img/tambah.png' : '/static/img/kurang.png';
+          item.appendChild(img);
+          strip.appendChild(item);
+        });
+        const qi = document.getElementById('questionIndex');
+        if (qi) qi.textContent = `${idx}/${TOTAL_TYPES}`;
+        const variantToggle = document.getElementById('toggleVariant');
+        if (variantToggle) {
+          variantToggle.disabled = variants.length <= 1;
+          variantToggle.textContent = variants.length > 1 ? `Varian ${currentVariant + 1}/${variants.length}` : '';
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => renderSymbolQuestion(currentQuestion));
+      // No Prev/Next/Variant controls: flow advances only on correct answer
+
+      const display = document.getElementById('answerDisplay');
+      const keypad = document.getElementById('numericKeypad');
+      if (!display || !keypad) return;
+      let value = '';
+
+      function render() {
+        display.textContent = value || '\u00A0';
+      }
+
+      keypad.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        const key = btn.dataset.key;
+        if (!key) return;
+        if (key === 'back') {
+          value = value.slice(0, -1);
+          render();
+          return;
+        }
+        if (key === 'minus') {
+          if (value.startsWith('-')) {
+            value = value.slice(1);
+          } else {
+            value = '-' + value;
+          }
+          render();
+          return;
+        }
+        // numeric key
+        if (/^\d$/.test(key)) {
+          if (value.length < 6) value += key;
+          render();
+        }
+      });
+
+      const submitBtn = document.getElementById('answerSubmitButton');
+      function computeExpectedAnswerForCurrent() {
+        const variants = sequencesPerQuestion[currentQuestion - 1] || [['plus']];
+        // choose first variant (can be randomized later)
+        const seq = variants[0];
+        return seq.reduce((acc, s) => acc + (s === 'plus' ? 1 : -1), 0);
+      }
+
+      if (submitBtn) {
+        submitBtn.addEventListener('click', () => {
+          const expected = computeExpectedAnswerForCurrent();
+          const given = Number(value || NaN);
+          if (Number.isNaN(given)) {
+            if (typeof showFeedback === 'function') showFeedback('Masukkan jawaban terlebih dahulu');
+            else alert('Masukkan jawaban terlebih dahulu');
+            return;
+          }
+          if (given === expected) {
+            if (typeof showFeedback === 'function') showFeedback('Benar!');
+            else alert('Benar!');
+            // advance to next question
+            currentQuestion = currentQuestion + 1;
+            if (currentQuestion > TOTAL_TYPES) {
+              // finished all questions
+              if (typeof showFeedback === 'function') showFeedback('Selamat, semua soal selesai!');
+              else alert('Selamat, semua soal selesai!');
+              currentQuestion = 1;
+            }
+            value = '';
+            render();
+            renderSymbolQuestion(currentQuestion);
+          } else {
+            if (typeof showFeedback === 'function') showFeedback('Salah, coba lagi');
+            else alert('Salah, coba lagi');
+            // keep same question, clear input for retry
+            value = '';
+            render();
+          }
+        });
+      }
+    })();
+  </script>
 {% endblock %}

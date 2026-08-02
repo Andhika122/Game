@@ -86,10 +86,15 @@ function toggleHelpVideo(show) {
 function getHelpVideoSourcePath() {
   const mode = currentGameMode === "subtraction" ? "pengurangan" : "penjumlahan";
   const type = Math.max(1, Math.min(8, currentQuestionType));
-  return `/static/video/vidio_bantuan_${mode}_tipe_${type}.mp4`;
+  const additionPath = `/static/video/vidio_bantuan_${mode}_tipe_${type}.mp4`;
+  if (mode === 'pengurangan') {
+    return '/static/video/vidio_bantuan.mp4';
+  }
+  return additionPath;
 }
 
 function updateHelpVideoSource() {
+  const helpVideoContainer = getHelpVideoContainer();
   if (!helpVideoContainer) return;
   const video = helpVideoContainer.querySelector("video");
   const source = helpVideoContainer.querySelector("source");
@@ -101,6 +106,11 @@ function updateHelpVideoSource() {
 function personalizeMessage(message) {
   const name = window.playerName || 'Kamu';
   const trimmedName = name.trim() || 'Kamu';
+  const containsName = trimmedName !== 'Kamu' && message.includes(trimmedName);
+  const containsKamu = /\bKamu\b|\bkamu\b/.test(message);
+  if (containsName && !containsKamu) {
+    return message;
+  }
   return message
     .replace(/\bKamu\b/g, trimmedName)
     .replace(/\bkamu\b/g, trimmedName.toLowerCase());
@@ -363,6 +373,7 @@ function submitAnswer() {
   const enteredValue = Number(currentUserEntry);
   if (!Number.isFinite(enteredValue)) {
     if (window.resetHelpers) window.resetHelpers();
+    isSubmittingAnswer = false;
     return;
   }
 
@@ -372,7 +383,7 @@ function submitAnswer() {
     const resolvedGameMode = currentGameMode || (window.location.pathname.includes("/permainan/pengurangan") ? "subtraction" : (window.location.pathname.includes("/permainan/penjumlahan") ? "addition" : "addition"));
     let finishedAllQuestions = false;
     if (resolvedGameMode === "subtraction") {
-      if (currentQuestionRepeat < 2) {
+      if (currentQuestionRepeat < 5) {
         currentQuestionRepeat += 1;
       } else if (currentQuestionType < 8) {
         currentQuestionRepeat = 1;
@@ -381,7 +392,7 @@ function submitAnswer() {
         finishedAllQuestions = true;
       }
     } else {
-      if (currentQuestionRepeat < 2) {
+      if (currentQuestionRepeat < 5) {
         currentQuestionRepeat += 1;
       } else if (currentQuestionType < 4) {
         currentQuestionRepeat = 1;
@@ -392,9 +403,10 @@ function submitAnswer() {
     }
 
     if (finishedAllQuestions) {
+      const playerName = window.playerName || 'Kamu';
       const completionMessage = resolvedGameMode === "addition"
-      ? "Woow Keren👍🏻👍🏻👍🏻\nKamu sudah menguasai\nPENJUMLAHAN pada Bilangan Bulat"
-      : "Hebat! Kamu sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Permainan.";
+      ? `Woow Keren👍🏻👍🏻👍🏻\n${playerName} sudah menguasai\nPENJUMLAHAN pada Bilangan Bulat`
+      : `Hebat, ${playerName}! sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Permainan.`;
       if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
         window.gemanti.playFeedbackSound('complete');
       }
@@ -411,22 +423,23 @@ function submitAnswer() {
       completionRedirect = true;
     } else {
       const advanced = currentQuestionType !== prevType;
+      const playerName = window.playerName || 'Kamu';
       if (advanced) {
         if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
           window.gemanti.playFeedbackSound('correctAlt');
         }
-        showFeedback(`Hebat👍🏻\nKamu sudah menaklukan soal TIPE ${prevType}`, "success");
+        showFeedback(`Hebat, ${playerName}! sudah menaklukan soal TIPE ${prevType}`, "success");
       } else if (wasFirstTry) {
         if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
           window.gemanti.playFeedbackSound('correct');
         }
-        const msg = "Yupss Benar✨  ";
+        const msg = `Yupss Benar✨ ${playerName}!`;
         showFeedback(msg, "success");
       } else {
         if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
           window.gemanti.playFeedbackSound('correct');
         }
-        showFeedback("Jawaban benar! Ulangi tipe yang sama.", "success");
+        showFeedback(`Jawaban benar, ${playerName}! Ulangi tipe yang sama.`, "success");
       }
       tampilkanSoal(currentQuestionType);
     }
@@ -434,7 +447,8 @@ function submitAnswer() {
     if (window.resetHelpers) window.resetHelpers();
     isSubmittingAnswer = false;
   } else {
-    const msg = "Opps salah🤭";
+    const playerName = window.playerName || 'Kamu';
+    const msg = `Wah, ${playerName}! Jawabanmu salah 🤭`;
     if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
       window.gemanti.playFeedbackSound('wrong');
     }
