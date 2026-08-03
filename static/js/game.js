@@ -1,26 +1,26 @@
 // game.js - question generation, calculator and game logic
 function angkaPositif() {
-  return Math.floor(Math.random() * 5) + 1;
+  return Math.floor(Math.random() * 3) + 1;
 }
 
 function angkaNegatif() {
-  return -(Math.floor(Math.random() * 5) + 1);
+  return -(Math.floor(Math.random() * 3) + 1);
 }
 
 function angkaPositifKecil() {
-  return Math.floor(Math.random() * 4) + 1;
+  return Math.floor(Math.random() * 3) + 1;
 }
 
 function angkaPositifBesar() {
-  return Math.floor(Math.random() * 5) + 1;
+  return Math.floor(Math.random() * 3) + 1;
 }
 
 function angkaNegatifKecil() {
-  return -(Math.floor(Math.random() * 4) + 1);
+  return -(Math.floor(Math.random() * 3) + 1);
 }
 
 function angkaNegatifBesar() {
-  return -(Math.floor(Math.random() * 5) + 1);
+  return -(Math.floor(Math.random() * 3) + 1);
 }
 
 function getFeedbackModal() {
@@ -181,6 +181,10 @@ function hideFeedback() {
     } else {
       window.location.href = "/permainan";
     }
+    return;
+  }
+  if (feedbackModalButton) {
+    feedbackModalButton.textContent = "Lanjut";
   }
 }
 
@@ -411,8 +415,7 @@ function submitAnswer() {
         window.gemanti.playFeedbackSound('complete');
       }
 
-
-      showFeedback(completionMessage, "success", "Lanjut Permainan Berikutnya...");
+      showFeedback(completionMessage, "success", "Lanjut ke Permainan");
       try {
         createConfettiBurst();
         const celebrationGlow = document.createElement('div');
