@@ -95,6 +95,33 @@
   margin-left: auto;
 }
 
+/* Ensure demo video is visible and constrained so it doesn't push offscreen */
+.demo-page video {
+  display: block;
+  margin: 1rem auto;
+  max-height: 60vh;
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Video wrapper to ensure rounded corners and drop shadow like screenshot */
+.demo-video-wrapper {
+  width: 100%;
+  max-width: 680px;
+  margin: 0 auto;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(12,18,24,0.18);
+  background: #000;
+}
+
+.demo-video-wrapper video {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -106,6 +133,12 @@
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 10px 0 rgba(98, 55, 18, 0.24);
+}
+
+.demo-actions .btn {
+  border-radius: 28px;
+  padding: 0.7rem 1.2rem;
+  background: linear-gradient(180deg,#f08f3f 0%, #d96a10 100%);
 }
 
 @media (max-width: 840px) {

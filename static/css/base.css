@@ -266,11 +266,11 @@ button:focus-visible,
 
 .front-ground {
   position: absolute;
-  left: -10%;
-  right: -10%;
-  bottom: -15%;
-  width: 120%;
-  height: 33%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 38vh;
+  bottom: -2%;
   object-fit: cover;
   z-index: 5;
   pointer-events: none;
@@ -278,20 +278,20 @@ button:focus-visible,
 
 .leaf {
   position: absolute;
-  bottom: 0;
-  width: 20%;
+  bottom: -2%;
+  width: 40%;
   height: auto;
   object-fit: contain;
-  z-index: 7;
+  z-index: 30;
+  pointer-events: none;
 }
 
 .leaf-left {
-  left: -1%;
-  bottom: 0;
+  left: 0%;
 }
 
 .leaf-right {
-  right: -1%;
+  right: 0%;
 }
 
 .top-action {
