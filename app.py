@@ -1,16 +1,34 @@
 from flask import Flask, render_template, redirect
 import os
-from flask import request, Response, send_file, abort
+from flask import request, Response, send_file, abort, url_for
 
-# Configure Flask to serve existing 'game 1' folder as its static folder.
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 GAME_FOLDER = os.path.join(BASE_DIR, "game 1")
 
-# New physical static folder for CSS/JS we created: BASE_DIR/static
-STATIC_FOLDER = os.path.join(BASE_DIR, "static")
 
-# Use the new `static` folder as Flask's static folder (so CSS/JS under /static/...)
+def resolve_static_folder() -> str:
+    candidates = [
+        os.path.join(BASE_DIR, "static"),
+        os.path.join(BASE_DIR, "api", "static"),
+        os.path.join(BASE_DIR, "public", "static"),
+    ]
+    for candidate in candidates:
+        if os.path.isdir(candidate):
+            return candidate
+    return os.path.join(BASE_DIR, "static")
+
+
+STATIC_FOLDER = resolve_static_folder()
+
 app = Flask(__name__, static_folder=STATIC_FOLDER, static_url_path="/static", template_folder="templates")
+
+
+@app.context_processor
+def inject_asset_helpers():
+    def static_url(path: str) -> str:
+        return url_for("static", filename=path)
+
+    return {"static_url": static_url}
 
 
 @app.route("/favicon.png")
