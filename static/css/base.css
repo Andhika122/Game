@@ -278,7 +278,7 @@ button:focus-visible,
 
 .leaf {
   position: absolute;
-  bottom: 14%;
+  bottom: 0;
   width: 20%;
   height: auto;
   object-fit: contain;
@@ -287,7 +287,7 @@ button:focus-visible,
 
 .leaf-left {
   left: -1%;
-  bottom: 10%;
+  bottom: 0;
 }
 
 .leaf-right {
