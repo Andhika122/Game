@@ -158,10 +158,6 @@ function initNameInputPage() {
   }
 
   const navigateHome = () => {
-    if (window.gemanti && typeof window.gemanti.loadPage === 'function') {
-      window.gemanti.loadPage('/home');
-      return;
-    }
     window.location.href = '/home';
   };
 

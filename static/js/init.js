@@ -137,6 +137,27 @@
 
       updateDynamicStyles(doc);
       stage.innerHTML = newStage.innerHTML;
+
+      // Wait for dynamically-inserted stylesheets to load, and for images inside the stage to finish loading
+      const waitForResources = async () => {
+        const dynamicLinks = Array.from(document.head.querySelectorAll('link[data-dynamic-style]'));
+        const linkPromises = dynamicLinks.map(link => new Promise((res) => {
+          if (link.sheet) return res();
+          link.addEventListener('load', () => res(), { once: true });
+          link.addEventListener('error', () => res(), { once: true });
+        }));
+
+        const imgs = Array.from(stage.querySelectorAll('img'));
+        const imgPromises = imgs.map(img => new Promise((res) => {
+          if (img.complete) return res();
+          img.addEventListener('load', () => res(), { once: true });
+          img.addEventListener('error', () => res(), { once: true });
+        }));
+
+        await Promise.all([...linkPromises, ...imgPromises]);
+      };
+
+      await waitForResources();
       syncBodyPageClass(url);
 
       if (replaceHistory === 'replace') {

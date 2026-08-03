@@ -290,3 +290,27 @@
     bottom: 1%;
   }
 }
+
+/* Ensure home page ground and grass match the nama page visuals */
+.front-ground {
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 38vh;
+  bottom: -2%;
+  object-fit: cover;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.leaf {
+  position: absolute;
+  bottom: -2%;
+  width: 40%;
+  height: auto;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.leaf-left { left: 0%; }
+.leaf-right { right: 0%; }

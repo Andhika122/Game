@@ -66,6 +66,22 @@
 .math-panel {
   display: grid;
   gap: 1.8rem;
+  grid-template-columns: 1fr;
+}
+
+.math-panel .simbol-card {
+  grid-column: 1 / -1;
+}
+
+.math-panel .image-question-card,
+.math-panel .answer-card {
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .math-panel {
+    grid-template-columns: 1.55fr 1fr;
+  }
 }
 
 .math-card {
@@ -174,6 +190,18 @@
   grid-template-columns: 1fr;
   align-items: stretch;
   gap: 1rem;
+}
+
+@media (min-width: 900px) {
+  .image-question-row {
+    grid-template-columns: 1.4fr auto;
+    align-items: center;
+  }
+
+  .question-controls {
+    margin-left: 0;
+    justify-content: flex-end;
+  }
 }
 
 .image-question-thumb {
