@@ -32,7 +32,7 @@
 
 .permainan-header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: -1rem;
 }
 
 .page-tag {
@@ -87,15 +87,16 @@
 .math-card {
   padding: 1.25rem 1rem;
   border-radius: 30px;
-  background: linear-gradient(180deg, #fff8e8 0%, #fff3d1 100%);
-  border: 1px solid rgba(213, 157, 84, 0.27);
-  box-shadow: 0 16px 28px rgba(134, 84, 27, 0.12);
+  background: linear-gradient(180deg, hsl(42, 100%, 95%) 0%, #fff3d1 100%);
+  border: 1px solid #fff3d1 ;
+  box-shadow: 0 16px 28px #fff3d1 ;
   width: 100%;
 }
 
-.symbol-description {
+..symbol-description {
   display: grid;
-  gap: 0.45rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem;
   padding: 0.2rem 0;
 }
 
@@ -106,14 +107,53 @@
   flex-wrap: wrap;
 }
 
+.symbol-row:not(.symbol-row--center) {
+  justify-content: space-between;
+  width: 100%;
+}
+
+.symbol-row:not(.symbol-row--center) .symbol-label {
+  order: 0;
+}
+
+.symbol-row:not(.symbol-row--center) .symbol-text {
+  order: 1;
+}
+
+.symbol-row:not(.symbol-row--center) .symbol-value {
+  order: 2;
+}
+
 .symbol-row--center {
-  gap: 0.75rem;
+  grid-column: 1 / -1;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .symbol-row--center .symbol-pill {
-  width: 110px;
-  min-width: 110px;
-  max-width: 110px;
+  width: 220px;
+  min-width: 160px;
+  max-width: 280px;
+}
+
+.symbol-row--center .symbol-pill img {
+  width: 120px;
+  height: 120px;
+}
+
+@media (min-width: 700px) {
+  .symbol-description {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .symbol-row {
+    flex-wrap: nowrap;
+    margin: 0;
+  }
+
+  .symbol-row--center {
+    justify-content: center;
+  }
 }
 
 .symbol-label,
@@ -135,28 +175,28 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 96px;
+  height: 96px;
   border-radius: 18px;
   background: rgba(255, 197, 102, 0.35);
   color: #6a2f21;
-  font-size: 1.35rem;
+  font-size: 2rem;
   font-weight: 800;
   padding: 0;
 }
 
 .symbol-pill {
-  width: 140px;
-  min-width: 90px;
-  max-width: 140px;
+  width: 260px;
+  min-width: 160px;
+  max-width: 320px;
   border-radius: 999px;
   background: rgba(255, 224, 186, 0.75);
 }
 
 .symbol-value img,
 .symbol-pill img {
-  width: 24px;
-  height: 24px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
 }
 
@@ -194,14 +234,17 @@
 
 @media (min-width: 900px) {
   .image-question-row {
-    grid-template-columns: 1.4fr auto;
-    align-items: center;
+    /* Arrange as: copy (left top), controls (right spanning two rows), thumb below copy */
+    grid-template-columns: 1fr 120px;
+    grid-template-rows: auto auto;
+    grid-template-areas: "copy controls" "thumb controls";
+    gap: 1rem;
+    align-items: start;
   }
 
-  .question-controls {
-    margin-left: 0;
-    justify-content: flex-end;
-  }
+  .image-question-copy { grid-area: copy; }
+  .question-controls { grid-area: controls; display:flex; align-items:flex-start; justify-content:flex-end; }
+  .image-question-thumb { grid-area: thumb; }
 }
 
 .image-question-thumb {
@@ -222,8 +265,8 @@
 }
 
 .symbol-item {
-  width: 84px;
-  height: 84px;
+  width: 160px;
+  height: 160px;
   margin: 0;
   display: grid;
   place-items: center;
@@ -235,10 +278,37 @@
   overflow: hidden;
 }
 
+/* Remove the boxed background for symbols inside the image question area */
+.image-question-thumb .symbol-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove the rounded pill background for symbol icons in the top simbol-card */
+.simbol-card .symbol-value,
+.simbol-card .symbol-pill {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+
 .symbol-icon {
-  width: 48px;
-  height: 48px;
+  width: 96px;
+  height: 96px;
   object-fit: contain;
+}
+
+@media (max-width: 700px) {
+  .symbol-value,
+  .symbol-pill { width: 56px; height: 56px; font-size: 1.35rem; }
+  .symbol-pill { width: 140px; min-width: 90px; max-width: 140px; }
+  .symbol-value img, .symbol-pill img { width: 40px; height: 40px; }
+  .symbol-item { width: 84px; height: 84px; }
+  .symbol-icon { width: 48px; height: 48px; }
 }
 
 

@@ -138,6 +138,32 @@
       updateDynamicStyles(doc);
       stage.innerHTML = newStage.innerHTML;
 
+      // Execute scripts from the fetched document in order so inline initialization runs
+      const scripts = Array.from(newStage.querySelectorAll('script'));
+      for (const s of scripts) {
+        try {
+          if (s.src) {
+            // external script: recreate and wait for it to load
+            await new Promise((res) => {
+              const scriptEl = document.createElement('script');
+              scriptEl.src = s.src;
+              if (s.type) scriptEl.type = s.type;
+              scriptEl.addEventListener('load', () => res(), { once: true });
+              scriptEl.addEventListener('error', () => res(), { once: true });
+              document.body.appendChild(scriptEl);
+            });
+          } else {
+            // inline script: execute immediately
+            const scriptEl = document.createElement('script');
+            if (s.type) scriptEl.type = s.type;
+            scriptEl.textContent = s.textContent || s.innerText || '';
+            document.body.appendChild(scriptEl);
+          }
+        } catch (e) {
+          // ignore script execution errors to avoid breaking navigation
+        }
+      }
+
       // Wait for dynamically-inserted stylesheets to load, and for images inside the stage to finish loading
       const waitForResources = async () => {
         const dynamicLinks = Array.from(document.head.querySelectorAll('link[data-dynamic-style]'));

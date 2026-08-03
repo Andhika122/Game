@@ -38,17 +38,17 @@
           <article class="math-card simbol-card">
             <div class="symbol-description">
               <div class="symbol-row">
-                <span class="symbol-label">Bilangan Positif 1</span>
-                <span class="symbol-text">disimbolkan</span>
-                <span class="symbol-value symbol-icon symbol-icon--plus">
-                  <img src="/static/img/tambah.png" alt="Tambah">
-                </span>
-              </div>
-              <div class="symbol-row">
                 <span class="symbol-label">Bilangan Negatif 1</span>
                 <span class="symbol-text">disimbolkan</span>
                 <span class="symbol-value symbol-icon symbol-icon--minus">
                   <img src="/static/img/kurang.png" alt="Kurang">
+                </span>
+              </div>
+              <div class="symbol-row">
+                <span class="symbol-label">Bilangan Positif 1</span>
+                <span class="symbol-text">disimbolkan</span>
+                <span class="symbol-value symbol-icon symbol-icon--plus">
+                  <img src="/static/img/tambah.png" alt="Tambah">
                 </span>
               </div>
               <div class="symbol-row symbol-row--center">
@@ -62,6 +62,10 @@
           </article>
           
           <article class="math-card image-question-card">
+            <div class="image-question-copy">
+                  <p class="image-question-label">Perhatikan Simbol Berikut</p>
+                  <p class="image-question-text">Gambar ini menunjukkan nilai berapa? Pilih jawabannya berdasarkan simbol yang benar.</p>
+                </div>
             <div class="image-question-box">
               <div class="image-question-row">
                 <figure class="image-question-thumb" id="symbolStrip">
@@ -70,10 +74,7 @@
                 <div class="question-controls">
                   <span id="questionIndex" class="question-index">1/1</span>
                 </div>
-                <div class="image-question-copy">
-                  <p class="image-question-label">Perhatikan Simbol Berikut</p>
-                  <p class="image-question-text">Gambar ini menunjukkan nilai berapa? Pilih jawabannya berdasarkan simbol yang benar.</p>
-                </div>
+                
               </div>
             </div>
           </article>
@@ -155,7 +156,11 @@
         }
       }
 
-      document.addEventListener('DOMContentLoaded', () => renderSymbolQuestion(currentQuestion));
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => renderSymbolQuestion(currentQuestion));
+      } else {
+        renderSymbolQuestion(currentQuestion);
+      }
       // No Prev/Next/Variant controls: flow advances only on correct answer
 
       const display = document.getElementById('answerDisplay');
