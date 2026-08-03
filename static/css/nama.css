@@ -370,9 +370,10 @@
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 1rem 1.75rem;
+  padding: 0.56rem 0.94rem;
   background: rgba(255, 255, 255, 0.94);
   color: #111;
+  font-size: 0.72rem;
   font-weight: 700;
   border: none;
   border-radius: 999px;
