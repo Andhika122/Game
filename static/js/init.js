@@ -179,6 +179,16 @@
   function handleBodyClick(event) {
     const anchor = event.target.closest('a');
     if (anchor && isSameOriginLink(anchor)) {
+      // If user clicked the main start button, set session flag and allow full navigation
+      try {
+        if (anchor.id === 'menuButton') {
+          sessionStorage.setItem('gemanti-intro-auto', '1');
+          // Let the browser perform a normal navigation so the user gesture remains valid for autoplay
+          return;
+        }
+      } catch (e) {}
+
+      // For other in-app links, intercept and load via fetch-based navigation
       event.preventDefault();
       loadPage(anchor.href);
       return;
@@ -186,6 +196,14 @@
 
     const button = event.target.closest('button');
     if (!button) return;
+
+    if (button.classList.contains('top-action')) {
+      event.preventDefault();
+      if (window.location.pathname !== '/menu') {
+        loadPage('/menu');
+      }
+      return;
+    }
 
     if (button.id === 'profileButton') {
       event.preventDefault();

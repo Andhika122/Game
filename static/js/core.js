@@ -72,7 +72,7 @@ function getIntroVideoElements() {
   };
 }
 
-function showIntroVideo(onFinished) {
+function showIntroVideo(onFinished, autoStart = false) {
   const { overlay, video } = getIntroVideoElements();
   if (!overlay || !video) {
     onFinished();
@@ -115,24 +115,46 @@ function showIntroVideo(onFinished) {
   const cleanup = () => {
     video.removeEventListener('ended', finish);
     video.removeEventListener('error', handleError);
-    startButton.removeEventListener('click', handleStartClick);
+    if (startButton) startButton.removeEventListener('click', handleStartClick);
   };
 
-  const handleStartClick = () => {
-    video.muted = false;
+  const startIntroVideo = () => {
+    // Try to play unmuted first (best UX). If it fails (autoplay blocked),
+    // try to play muted as a fallback so the video actually starts.
     video.removeAttribute('muted');
     video.volume = 1;
-    const playPromise = video.play();
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        showOverlay();
-      }).catch(() => {
-        console.warn('Intro video play failed');
-      });
-    }
+
+    try {
+      video.muted = false;
+    } catch (e) {}
+
+    const tryPlay = () => {
+      const p = video.play();
+      if (p !== undefined) return p;
+      return Promise.resolve();
+    };
+
+    return tryPlay().catch(() => {
+      // first attempt failed; try muted playback
+      try { video.muted = true; } catch (e) {}
+      // ensure muted attribute is present for browsers that require it
+      try { video.setAttribute('muted', ''); } catch (e) {}
+      return tryPlay();
+    });
   };
 
   const startButton = document.getElementById('introVideoStartButton');
+  const handleStartClick = (ev) => {
+    if (ev && ev.preventDefault) ev.preventDefault();
+    // When user clicks start, attempt to play and then finish when ended
+    startIntroVideo().then(() => {
+      // If we managed to start playback, mark as seen when it ends via 'ended' listener
+    }).catch(() => {
+      // If playback still fails, show the button so user can try again
+      if (startButton) startButton.style.display = '';
+    });
+  };
+
   if (startButton) {
     startButton.addEventListener('click', handleStartClick);
   }
@@ -140,7 +162,18 @@ function showIntroVideo(onFinished) {
   video.addEventListener('ended', finish);
   video.addEventListener('error', handleError, { once: true });
 
-  showOverlay();
+  if (autoStart) {
+    showOverlay();
+    if (startButton) startButton.style.display = 'none';
+    const playPromise = startIntroVideo();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        if (startButton) startButton.style.display = '';
+      });
+    }
+  } else {
+    showOverlay();
+  }
 
   if (video.readyState < 3) {
     video.load();
@@ -157,21 +190,43 @@ function initNameInputPage() {
     nameInput.focus();
   }
 
-  const navigateHome = () => {
-    window.location.href = '/home';
+  const navigateMenu = () => {
+    window.location.href = '/menu';
   };
 
   const handleSubmitName = (event) => {
     if (event) event.preventDefault();
     if (!nameInput) return;
     setPlayerName(nameInput.value);
-    navigateHome();
+    navigateMenu();
+  };
+
+  const getIntroParam = () => {
+    try {
+      return new URLSearchParams(window.location.search).get('intro');
+    } catch (error) {
+      return null;
+    }
   };
 
   const showIntroThenFocus = () => {
-    showIntroVideo(() => {
+    const introParam = getIntroParam();
+    const autoStartQuery = introParam === '1';
+    // sessionStorage flag is set by clicking the home start button
+    let autoStartSession = false;
+    try { autoStartSession = sessionStorage.getItem('gemanti-intro-auto') === '1'; } catch (e) { autoStartSession = false; }
+    // clear session flag after reading
+    try { sessionStorage.removeItem('gemanti-intro-auto'); } catch (e) {}
+
+    const autoStart = autoStartQuery || autoStartSession;
+
+    if (autoStart || !hasSeenIntroVideo()) {
+      showIntroVideo(() => {
+        if (nameInput) nameInput.focus();
+      }, autoStart);
+    } else {
       if (nameInput) nameInput.focus();
-    });
+    }
   };
 
   if (nameForm && !nameForm.dataset.nameSubmitHandled) {

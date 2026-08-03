@@ -24,11 +24,7 @@ def favicon_ico():
 
 @app.route("/")
 def index():
-    return redirect("/nama")
-
-
-
-
+    return redirect("/home")
 
 @app.route("/nama")
 def nama():

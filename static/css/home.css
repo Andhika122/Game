@@ -34,11 +34,33 @@
 .menu-wrap {
   position: absolute;
   left: 50%;
-  bottom: 8%;
+  bottom: 14%;
   z-index: 28;
-  width: min(30%, 360px);
+  width: min(56%, 680px);
+  max-width: 700px;
   aspect-ratio: 540 / 420;
   transform: translateX(-50%);
+}
+
+.menu-card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  transition: transform 0.18s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
 }
 
 .menu-card {
@@ -82,8 +104,8 @@
 /* Keep the start button visible on small screens */
 @media (max-width: 720px) {
   .menu-wrap {
-    bottom: 4% !important;
-    width: min(72%, 420px);
+    bottom: 8% !important;
+    width: min(86%, 520px);
   }
 }
 
