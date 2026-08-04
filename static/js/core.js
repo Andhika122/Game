@@ -80,6 +80,11 @@ function showIntroVideo(onFinished, autoStart = false) {
     return;
   }
 
+  if (backgroundAudio && !backgroundAudio.paused) {
+    backgroundAudioWasPlayingForIntro = true;
+    backgroundAudio.pause();
+  }
+
   const canPlayVideo = (() => {
     try {
       return typeof HTMLMediaElement !== 'undefined' && typeof video.canPlayType === 'function' && video.canPlayType('video/mp4') !== '';
@@ -148,6 +153,10 @@ function showIntroVideo(onFinished, autoStart = false) {
     video.controls = true;
     markIntroVideoSeen();
     cleanup();
+    if (backgroundAudioWasPlayingForIntro && backgroundAudio) {
+      backgroundAudio.play().catch(() => {});
+      backgroundAudioWasPlayingForIntro = false;
+    }
     onFinished();
   };
 
@@ -194,12 +203,12 @@ function showIntroVideo(onFinished, autoStart = false) {
 
     try {
       video.autoplay = true;
-      video.muted = true;
+      video.muted = false;
       video.playsInline = true;
+      video.removeAttribute('muted');
       video.setAttribute('autoplay', '');
-      video.setAttribute('muted', '');
       video.setAttribute('playsinline', '');
-      video.volume = 0;
+      video.volume = 1;
       await video.play();
       return true;
     } catch (error) {
@@ -364,6 +373,7 @@ let completionRedirect = false;
 let audioContext = null;
 let feedbackAudio = null;
 let backgroundAudio = null;
+let backgroundAudioWasPlayingForIntro = false;
 
 const viewClasses = {
   home: "",
