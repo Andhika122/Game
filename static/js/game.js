@@ -432,17 +432,11 @@ function submitAnswer() {
           window.gemanti.playFeedbackSound('correctAlt');
         }
         showFeedback(`Hebat, ${playerName}! sudah menaklukan soal TIPE ${prevType}`, "success");
-      } else if (wasFirstTry) {
-        if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
-          window.gemanti.playFeedbackSound('correct');
-        }
-        const msg = `Yupss Benar✨ ${playerName}!`;
-        showFeedback(msg, "success");
       } else {
         if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
           window.gemanti.playFeedbackSound('correct');
         }
-        showFeedback(`Jawaban benar, ${playerName}! Ulangi tipe yang sama.`, "success");
+        showFeedback(`Jawaban Benar, ${playerName}!`, "success", "lanjut");
       }
       tampilkanSoal(currentQuestionType);
     }
