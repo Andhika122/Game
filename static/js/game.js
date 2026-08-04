@@ -85,12 +85,14 @@ function toggleHelpVideo(show) {
 
 function getHelpVideoSourcePath() {
   const mode = currentGameMode === "subtraction" ? "pengurangan" : "penjumlahan";
-  const type = Math.max(1, Math.min(8, currentQuestionType));
-  const additionPath = `/static/video/vidio_bantuan_${mode}_tipe_${type}.mp4`;
+  let type = Math.max(1, Math.min(8, currentQuestionType));
   if (mode === 'pengurangan') {
-    return '/static/video/vidio_bantuan.mp4';
+    // Subtraction has 8 internal types, but help videos are grouped into 4 categories.
+    type = Math.ceil(type / 2);
+  } else {
+    type = Math.min(type, 4);
   }
-  return additionPath;
+  return `/static/video/vidio_bantuan_${mode}_tipe_${type}.mp4`;
 }
 
 function updateHelpVideoSource() {
