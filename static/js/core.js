@@ -468,10 +468,10 @@ function updateSoundUI() {
 }
 
 function initSoundControl() {
-  const buttons = getSoundButtons();
-  buttons.forEach((btn) => {
+  // Sound button click is handled globally via event delegation in init.js,
+  // so we avoid adding a direct listener here to prevent duplicate toggles.
+  getSoundButtons().forEach((btn) => {
     btn.removeEventListener('click', toggleSound);
-    btn.addEventListener('click', toggleSound);
   });
 }
 
