@@ -61,6 +61,21 @@
       styleLink.dataset.dynamicStyle = 'true';
       document.head.appendChild(styleLink);
     });
+    // Ensure the global base stylesheet is present. Some navigation paths
+    // may return HTML without the base CSS link, so add it if missing.
+    try {
+      const hasBase = Array.from(document.head.querySelectorAll('link[rel="stylesheet"]')).some(l => l.href && l.href.endsWith('/static/css/base.css'));
+      if (!hasBase) {
+        const baseLink = document.createElement('link');
+        baseLink.rel = 'stylesheet';
+        baseLink.href = '/static/css/base.css';
+        // mark as dynamic so future navigations can remove/re-add correctly
+        baseLink.dataset.dynamicStyle = 'true';
+        document.head.appendChild(baseLink);
+      }
+    } catch (e) {
+      // ignore errors — best-effort fallback
+    }
   }
 
   function syncBodyPageClass(url = window.location.href) {
