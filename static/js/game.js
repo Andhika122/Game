@@ -243,44 +243,36 @@ function buatSoal(pilihanTipe = 1) {
   } else {
     switch (pilihanTipe) {
       case 1:
-        a = angkaPositifBesar();
-        b = angkaPositifKecil();
-        namaTipe = "Tipe 1: besar (+) - kecil (+)";
+        [a, b] = buatPasanganAngkaBerbeda(angkaPositifBesar, angkaPositifKecil);
+        namaTipe = "Tipe 1a: positif - positif";
         break;
       case 2:
-        a = angkaPositifKecil();
-        b = angkaPositifBesar();
-        namaTipe = "Tipe 2: kecil (+) - besar (+)";
+        [a, b] = buatPasanganAngkaBerbeda(angkaPositifKecil, angkaPositifBesar);
+        namaTipe = "Tipe 1b: positif - positif";
         break;
       case 3:
-        a = angkaPositifBesar();
-        b = angkaNegatifKecil();
-        namaTipe = "Tipe 3: besar (+) - kecil (-)";
+        [a, b] = buatPasanganAngkaBerbeda(angkaPositifBesar, angkaNegatifKecil);
+        namaTipe = "Tipe 2a: positif - negatif";
         break;
       case 4:
-        a = angkaPositifKecil();
-        b = angkaNegatifBesar();
-        namaTipe = "Tipe 4: kecil (+) - besar (-)";
+        [a, b] = buatPasanganAngkaBerbeda(angkaPositifKecil, angkaNegatifBesar);
+        namaTipe = "Tipe 2b: positif - negatif";
         break;
       case 5:
-        a = angkaNegatifBesar();
-        b = angkaNegatifKecil();
-        namaTipe = "Tipe 5: besar (-) - kecil (-)";
+        [a, b] = buatPasanganAngkaBerbeda(angkaNegatifBesar, angkaNegatifKecil);
+        namaTipe = "Tipe 3a: negatif - negatif";
         break;
       case 6:
-        a = angkaNegatifKecil();
-        b = angkaNegatifBesar();
-        namaTipe = "Tipe 6: kecil (-) - besar (-)";
+        [a, b] = buatPasanganAngkaBerbeda(angkaNegatifKecil, angkaNegatifBesar);
+        namaTipe = "Tipe 3b: negatif - negatif";
         break;
       case 7:
-        a = angkaNegatifBesar();
-        b = angkaPositifKecil();
-        namaTipe = "Tipe 7: besar (-) - kecil (+)";
+        [a, b] = buatPasanganAngkaBerbeda(angkaNegatifBesar, angkaPositifKecil);
+        namaTipe = "Tipe 4a: negatif - positif";
         break;
       default:
-        a = angkaNegatifKecil();
-        b = angkaPositifBesar();
-        namaTipe = "Tipe 8: kecil (-) - besar (+)";
+        [a, b] = buatPasanganAngkaBerbeda(angkaNegatifKecil, angkaPositifBesar);
+        namaTipe = "Tipe 4b: negatif - positif";
         break;
     }
 
