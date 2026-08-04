@@ -225,7 +225,15 @@
     const button = event.target.closest('button');
     if (!button) return;
 
-    if (button.classList.contains('top-action')) {
+    if (button.id === 'soundButton') {
+      event.preventDefault();
+      if (typeof toggleSound === 'function') {
+        toggleSound();
+      }
+      return;
+    }
+
+    if (button.id === 'profileButton') {
       event.preventDefault();
       if (window.location.pathname !== '/menu') {
         loadPage('/menu');
@@ -233,10 +241,10 @@
       return;
     }
 
-    if (button.id === 'profileButton') {
+    if (button.classList.contains('top-action')) {
       event.preventDefault();
-      if (window.location.pathname !== '/home') {
-        loadPage('/home');
+      if (window.location.pathname !== '/menu') {
+        loadPage('/menu');
       }
       return;
     }

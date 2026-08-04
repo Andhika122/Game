@@ -455,10 +455,12 @@ function updateSoundUI() {
   getSoundIcons().forEach((icon) => {
     if (!icon) return;
     icon.src = muted ? "/static/img/speaker_non_aktif.png" : "/static/img/speaker_aktif.png";
+    icon.alt = muted ? "Suara nonaktif" : "Suara aktif";
   });
 
   getSoundButtons().forEach((btn) => {
     if (!btn) return;
+    btn.classList.toggle('muted', muted);
     btn.setAttribute("aria-label", muted ? "Nyalakan suara" : "Matikan suara");
   });
 

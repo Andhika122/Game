@@ -535,12 +535,34 @@ button:focus-visible,
   pointer-events: auto;
 }
 
+.icon-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
 .icon-button img {
   display: block;
   width: 100%;
   height: 100%;
   border-radius: inherit;
   object-fit: cover;
+}
+
+#soundButton {
+  transition: transform 0.18s ease, filter 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+#soundButton.muted {
+  background: linear-gradient(180deg, #f7e8d5, #e7c89d);
+  border-color: rgba(91, 34, 22, 0.35);
+  box-shadow: inset 0 0 0 2px rgba(91, 34, 22, 0.12), 0 8px 14px rgba(0, 0, 0, 0.16);
+  filter: grayscale(0.35) brightness(0.92);
+}
+
+.stage.muted #soundButton {
+  background: linear-gradient(180deg, #f3dfc2, #e0b87b);
+  border-color: rgba(91, 34, 22, 0.4);
+  box-shadow: inset 0 0 0 2px rgba(91, 34, 22, 0.12), 0 8px 14px rgba(0, 0, 0, 0.16);
 }
 
 .btn {
