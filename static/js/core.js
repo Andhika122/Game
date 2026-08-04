@@ -68,13 +68,28 @@ function getIntroVideoElements() {
   return {
     overlay: document.getElementById('introVideoOverlay'),
     video: document.getElementById('introVideo'),
+    startButton: document.getElementById('introVideoStartButton'),
     skip: document.getElementById('introVideoSkip'),
   };
 }
 
 function showIntroVideo(onFinished, autoStart = false) {
-  const { overlay, video } = getIntroVideoElements();
+  const { overlay, video, startButton } = getIntroVideoElements();
   if (!overlay || !video) {
+    onFinished();
+    return;
+  }
+
+  const canPlayVideo = (() => {
+    try {
+      return typeof HTMLMediaElement !== 'undefined' && typeof video.canPlayType === 'function' && video.canPlayType('video/mp4') !== '';
+    } catch (e) {
+      return false;
+    }
+  })();
+
+  if (!canPlayVideo) {
+    markIntroVideoSeen();
     onFinished();
     return;
   }
@@ -93,6 +108,20 @@ function showIntroVideo(onFinished, autoStart = false) {
     overlay.setAttribute('aria-hidden', 'true');
   };
 
+  const showStartButton = () => {
+    if (startButton) {
+      startButton.style.display = '';
+      startButton.disabled = false;
+    }
+  };
+
+  const hideStartButton = () => {
+    if (startButton) {
+      startButton.style.display = 'none';
+      startButton.disabled = true;
+    }
+  };
+
   video.controls = false;
   video.playsInline = true;
   video.setAttribute('playsinline', '');
@@ -100,8 +129,9 @@ function showIntroVideo(onFinished, autoStart = false) {
 
   const finish = () => {
     hideOverlay();
-    video.pause();
-    video.currentTime = 0;
+    hideStartButton();
+    try { video.pause(); } catch (e) {}
+    try { video.currentTime = 0; } catch (e) {}
     video.controls = true;
     markIntroVideoSeen();
     cleanup();
@@ -109,70 +139,91 @@ function showIntroVideo(onFinished, autoStart = false) {
   };
 
   const handleError = () => {
-    finish();
+    hideOverlay();
+    hideStartButton();
+    markIntroVideoSeen();
+    cleanup();
+    onFinished();
   };
 
   const cleanup = () => {
     video.removeEventListener('ended', finish);
     video.removeEventListener('error', handleError);
+    video.removeEventListener('play', onVideoPlay);
     if (startButton) startButton.removeEventListener('click', handleStartClick);
   };
 
-  const startIntroVideo = () => {
-    // Try to play unmuted first (best UX). If it fails (autoplay blocked),
-    // try to play muted as a fallback so the video actually starts.
-    video.removeAttribute('muted');
-    video.volume = 1;
-
-    try {
-      video.muted = false;
-    } catch (e) {}
-
-    const tryPlay = () => {
-      const p = video.play();
-      if (p !== undefined) return p;
-      return Promise.resolve();
-    };
-
-    return tryPlay().catch(() => {
-      // first attempt failed; try muted playback
-      try { video.muted = true; } catch (e) {}
-      // ensure muted attribute is present for browsers that require it
-      try { video.setAttribute('muted', ''); } catch (e) {}
-      return tryPlay();
-    });
+  const onVideoPlay = () => {
+    hideStartButton();
   };
 
-  const startButton = document.getElementById('introVideoStartButton');
-  const handleStartClick = (ev) => {
+  const supportsVideoPlayback = (() => {
+    try {
+      const testVideo = document.createElement('video');
+      return typeof testVideo.canPlayType === 'function' && testVideo.canPlayType('video/mp4') !== '';
+    } catch (e) {
+      return false;
+    }
+  })();
+
+  const startIntroVideo = async () => {
+    if (!supportsVideoPlayback) {
+      return false;
+    }
+
+    try {
+      video.removeAttribute('muted');
+      video.muted = false;
+      video.volume = 1;
+      await video.play();
+      return true;
+    } catch (unmutedError) {
+      try {
+        video.muted = true;
+        video.setAttribute('muted', '');
+        await video.play();
+        return true;
+      } catch (mutedError) {
+        return false;
+      }
+    }
+  };
+
+  const handleStartClick = async (ev) => {
     if (ev && ev.preventDefault) ev.preventDefault();
-    // When user clicks start, attempt to play and then finish when ended
-    startIntroVideo().then(() => {
-      // If we managed to start playback, mark as seen when it ends via 'ended' listener
-    }).catch(() => {
-      // If playback still fails, show the button so user can try again
-      if (startButton) startButton.style.display = '';
-    });
+    if (startButton) {
+      startButton.disabled = true;
+      startButton.style.display = 'none';
+    }
+
+    const started = await startIntroVideo();
+    if (!started) {
+      finish();
+      return;
+    }
+
+    finish();
   };
 
   if (startButton) {
     startButton.addEventListener('click', handleStartClick);
   }
 
+  video.addEventListener('play', onVideoPlay);
   video.addEventListener('ended', finish);
   video.addEventListener('error', handleError, { once: true });
 
   if (autoStart) {
     showOverlay();
-    if (startButton) startButton.style.display = 'none';
-    const playPromise = startIntroVideo();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        if (startButton) startButton.style.display = '';
-      });
-    }
+    hideStartButton();
+    startIntroVideo().then((started) => {
+      if (!started) {
+        showStartButton();
+      }
+    });
   } else {
     showOverlay();
+    showStartButton();
   }
 
   if (video.readyState < 3) {
@@ -220,10 +271,10 @@ function initNameInputPage() {
 
     const autoStart = autoStartQuery || autoStartSession;
 
-    if (autoStart || !hasSeenIntroVideo()) {
+    if (autoStart) {
       showIntroVideo(() => {
         if (nameInput) nameInput.focus();
-      }, autoStart);
+      }, true);
     } else {
       if (nameInput) nameInput.focus();
     }
