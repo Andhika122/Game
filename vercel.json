@@ -12,6 +12,10 @@
       "dest": "/static/$1"
     },
     {
+      "src": "/video/(.*)",
+      "dest": "/video/$1"
+    },
+    {
       "handle": "filesystem"
     },
     {

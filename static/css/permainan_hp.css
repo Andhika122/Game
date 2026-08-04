@@ -7,8 +7,8 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 100vh;
-  padding: clamp(30px, 4vw, 60px) 0;
+  min-height: 100dvh;
+  padding: clamp(10px, 2.2vw, 18px) 0;
 }
 
 .game-menu-page.direct-view.permainan-top .menu-panel {
@@ -98,14 +98,20 @@
   .permainan-page {
     width: min(100%, 460px);
     max-width: min(96vw, 460px);
-    padding: clamp(10px, 2.5vw, 14px);
-    gap: 0.6rem;
-    border-radius: 24px;
+    padding: clamp(8px, 2.2vw, 12px);
+    gap: 0.35rem;
+    border-radius: 22px;
   }
 
   .game-menu-page.direct-view.permainan-top .menu-panel {
     width: min(100vw, 500px);
-    padding: 6px;
+    padding: 4px;
+    max-height: calc(100svh - 18px);
+    max-height: calc(100dvh - 18px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   .permainan-header {
@@ -131,7 +137,7 @@
   .bottom-row {
     display: flex !important;
     flex-direction: column !important;
-    gap: 0.65rem !important;
+    gap: 0.55rem !important;
   }
 
   .calculator-column {
@@ -147,8 +153,8 @@
   .math-card,
   .helper-panel,
   .calculator-panel {
-    padding: 0.75rem;
-    border-radius: 16px;
+    padding: 0.65rem;
+    border-radius: 14px;
   }
 
   .symbol-description {
@@ -225,10 +231,10 @@
       flex: 1 1 48%;
       max-width: 48%;
     }
-  }
 
-  .help-video-container.hidden {
-    display: none !important;
+  .math-question-row.large-question .math-question,
+  .math-question-row.large-question .answer-inline {
+    font-size: clamp(1.45rem, 6.8vw, 1.85rem);
   }
 
   .help-video-container video {
@@ -256,19 +262,19 @@
 
   .helper-pieces.helper-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(48px, 1fr));
+    grid-template-columns: repeat(5, minmax(40px, 1fr));
     width: 100%;
     max-width: 100%;
-    gap: 6px;
-    grid-auto-rows: 56px;
+    gap: 3px;
+    grid-auto-rows: 46px;
     margin: 0;
     justify-items: center;
   }
 
   .helper-piece {
     width: 100%;
-    max-width: 56px;
-    height: 56px;
+    max-width: 52px;
+    height: 52px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -283,20 +289,20 @@
   }
 
   .helper-piece--empty {
-    min-height: 56px;
+    min-height: 52px;
   }
 
   .action-bins {
     width: 100%;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.7rem;
+    gap: 0.55rem;
   }
 
   .action-bin {
     width: 100%;
-    min-height: 140px;
+    min-height: 116px;
     aspect-ratio: 1.8 / 1;
-    padding: 1rem;
+    padding: 0.75rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;

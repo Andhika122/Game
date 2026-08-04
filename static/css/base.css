@@ -17,13 +17,16 @@
 html,
 body {
   width: 100%;
+  height: 100%;
   min-height: 100%;
   margin: 0;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 body {
-  min-height: 100vh;
+  min-height: 100dvh;
+  overscroll-behavior: none;
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 18%),
     radial-gradient(circle at right center, rgba(240, 248, 255, 0.85), transparent 20%),
@@ -51,9 +54,15 @@ button:focus-visible,
 .stage {
   position: relative;
   width: 100%;
-  min-height: 100vh;
-  overflow-y: auto;
+  min-height: 100svh;
+  min-height: 100dvh;
+  max-height: 100svh;
+  max-height: 100dvh;
+  height: 100svh;
+  height: 100dvh;
+  overflow: hidden;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
   border: 0;
   border-radius: 14px;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(236, 249, 255, 0.75));
