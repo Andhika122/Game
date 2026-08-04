@@ -101,11 +101,24 @@ function showIntroVideo(onFinished, autoStart = false) {
     overlay.setAttribute('aria-hidden', 'false');
   };
 
+  const showPosterImmediately = () => {
+    try {
+      if (video && video.poster) {
+        video.style.opacity = '1';
+      }
+    } catch (e) {}
+  };
+
   const hideOverlay = () => {
     overlay.classList.add('hidden');
     overlay.style.display = 'none';
     overlay.style.visibility = 'hidden';
     overlay.setAttribute('aria-hidden', 'true');
+  };
+
+  const ensureOverlayHiddenByDefault = () => {
+    hideOverlay();
+    hideStartButton();
   };
 
   const showStartButton = () => {
@@ -146,6 +159,14 @@ function showIntroVideo(onFinished, autoStart = false) {
     onFinished();
   };
 
+  const handleAbort = () => {
+    hideOverlay();
+    hideStartButton();
+    markIntroVideoSeen();
+    cleanup();
+    onFinished();
+  };
+
   const cleanup = () => {
     video.removeEventListener('ended', finish);
     video.removeEventListener('error', handleError);
@@ -172,20 +193,17 @@ function showIntroVideo(onFinished, autoStart = false) {
     }
 
     try {
-      video.removeAttribute('muted');
-      video.muted = false;
-      video.volume = 1;
+      video.autoplay = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.setAttribute('autoplay', '');
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      video.volume = 0;
       await video.play();
       return true;
-    } catch (unmutedError) {
-      try {
-        video.muted = true;
-        video.setAttribute('muted', '');
-        await video.play();
-        return true;
-      } catch (mutedError) {
-        return false;
-      }
+    } catch (error) {
+      return false;
     }
   };
 
@@ -212,17 +230,37 @@ function showIntroVideo(onFinished, autoStart = false) {
   video.addEventListener('play', onVideoPlay);
   video.addEventListener('ended', finish);
   video.addEventListener('error', handleError, { once: true });
+  video.addEventListener('abort', handleAbort, { once: true });
+
+  ensureOverlayHiddenByDefault();
 
   if (autoStart) {
     showOverlay();
+    showPosterImmediately();
     hideStartButton();
-    startIntroVideo().then((started) => {
-      if (!started) {
-        showStartButton();
-      }
-    });
+    const beginAutoPlay = () => {
+      startIntroVideo().then((started) => {
+        if (!started) {
+          window.setTimeout(() => {
+            finish();
+          }, 800);
+        }
+      });
+    };
+
+    const triggerAutoPlay = () => {
+      window.setTimeout(() => {
+        beginAutoPlay();
+      }, 120);
+    };
+
+    if (video.readyState >= 2) {
+      triggerAutoPlay();
+    } else {
+      video.addEventListener('canplay', triggerAutoPlay, { once: true });
+      video.load();
+    }
   } else {
-    showOverlay();
     showStartButton();
   }
 
@@ -246,6 +284,13 @@ function initNameInputPage() {
   };
 
   const handleSubmitName = (event) => {
+    if (event) event.preventDefault();
+    if (!nameInput) return;
+    setPlayerName(nameInput.value);
+    navigateMenu();
+  };
+
+  const handleButtonClick = (event) => {
     if (event) event.preventDefault();
     if (!nameInput) return;
     setPlayerName(nameInput.value);
@@ -280,9 +325,15 @@ function initNameInputPage() {
     }
   };
 
+  const submitButton = document.getElementById('playerNameSubmit');
   if (nameForm && !nameForm.dataset.nameSubmitHandled) {
     nameForm.addEventListener('submit', handleSubmitName);
     nameForm.dataset.nameSubmitHandled = 'true';
+  }
+
+  if (submitButton && !submitButton.dataset.nameButtonHandled) {
+    submitButton.addEventListener('click', handleButtonClick);
+    submitButton.dataset.nameButtonHandled = 'true';
   }
 
   showIntroThenFocus();

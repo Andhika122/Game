@@ -88,20 +88,7 @@
     }
   }
 
-  function ensurePlayerNameForHome() {
-    if (window.location.pathname !== '/home') return;
-    const storedName = safeLocalStorageGet ? safeLocalStorageGet('gemanti-player-name') || '' : localStorage.getItem('gemanti-player-name') || '';
-    if (!storedName.trim()) {
-      if (window.gemanti && typeof window.gemanti.loadPage === 'function') {
-        window.gemanti.loadPage('/nama', 'replace');
-      } else {
-        window.location.replace('/nama');
-      }
-    }
-  }
-
   function runPageInit() {
-    if (typeof ensurePlayerNameForHome === 'function') ensurePlayerNameForHome();
     if (window.gemanti && typeof window.gemanti.refreshDomRefs === 'function') window.gemanti.refreshDomRefs();
     if (window.gemanti && typeof window.gemanti.updateSoundUI === 'function') window.gemanti.updateSoundUI();
     if (window.gemanti && typeof window.gemanti.playBackgroundGameAudio === 'function') window.gemanti.playBackgroundGameAudio();
