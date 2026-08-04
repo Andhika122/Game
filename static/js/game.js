@@ -4,7 +4,7 @@ function angkaPositif() {
 }
 
 function angkaNegatif() {
-  return -(Math.floor(Math.random() * 3) + 1);
+  return -(Math.floor(Math.random() * 5) + 1);
 }
 
 function angkaPositifKecil() {
@@ -16,11 +16,11 @@ function angkaPositifBesar() {
 }
 
 function angkaNegatifKecil() {
-  return -(Math.floor(Math.random() * 3) + 1);
+  return -(Math.floor(Math.random() * 5) + 1);
 }
 
 function angkaNegatifBesar() {
-  return -(Math.floor(Math.random() * 3) + 1);
+  return -(Math.floor(Math.random() * 5) + 1);
 }
 
 function getFeedbackModal() {
@@ -197,7 +197,7 @@ function initFeedbackModalButton() {
 }
 
 function formatAngka(n) {
-  return `${n}`;
+  return n < 0 ? `(${n})` : `${n}`;
 }
 
 function formatAngkaKedua(n) {
