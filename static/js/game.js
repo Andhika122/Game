@@ -204,6 +204,18 @@ function formatAngkaKedua(n) {
   return n < 0 ? `(${n})` : `${n}`;
 }
 
+function buatPasanganAngkaBerbeda(generatorA, generatorB) {
+  let a = generatorA();
+  let b = generatorB();
+
+  while (a === b) {
+    a = generatorA();
+    b = generatorB();
+  }
+
+  return [a, b];
+}
+
 function buatSoal(pilihanTipe = 1) {
   let a = 0;
   let b = 0;
@@ -212,23 +224,19 @@ function buatSoal(pilihanTipe = 1) {
   if (currentGameMode === "addition") {
     switch (pilihanTipe) {
       case 1:
-        a = angkaPositif();
-        b = angkaPositif();
+        [a, b] = buatPasanganAngkaBerbeda(angkaPositif, angkaPositif);
         namaTipe = "Tipe 1: positif + positif";
         break;
       case 2:
-        a = angkaNegatif();
-        b = angkaNegatif();
+        [a, b] = buatPasanganAngkaBerbeda(angkaNegatif, angkaNegatif);
         namaTipe = "Tipe 2: negatif + negatif";
         break;
       case 3:
-        a = angkaPositif();
-        b = angkaNegatif();
+        [a, b] = buatPasanganAngkaBerbeda(angkaPositif, angkaNegatif);
         namaTipe = "Tipe 3: positif + negatif";
         break;
       default:
-        a = angkaNegatif();
-        b = angkaPositif();
+        [a, b] = buatPasanganAngkaBerbeda(angkaNegatif, angkaPositif);
         namaTipe = "Tipe 4: negatif + positif";
         break;
     }

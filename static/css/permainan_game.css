@@ -242,8 +242,40 @@
 
 .helper-panel-head .helper-refresh {
   justify-self: end;
-  padding: 0.55rem 0.9rem;
-  font-size: 0.92rem;
+  min-width: auto;
+  min-height: auto;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(148, 106, 44, 0.18);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 6px 14px rgba(97, 58, 19, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 0 !important;
+}
+
+.helper-panel-head .helper-refresh:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 1);
+}
+
+.helper-panel-head .helper-refresh img {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+.helper-panel-head .helper-refresh.btn,
+.helper-panel-head .helper-refresh.btn--secondary {
+  padding: 0 !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: auto !important;
+  min-height: auto !important;
 }
 
 .helper-hint {
