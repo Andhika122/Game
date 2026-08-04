@@ -271,13 +271,21 @@
   gap: 0.22rem;
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
-  background: rgba(255,255,255,0.88);
+  background: rgba(255, 239, 230, 0.9);
   border: 1px solid rgba(148,106,44,0.18);
   font-weight: 800;
   color: #5b3e24;
   margin-top: 0.5rem;
   cursor: grab;
   user-select: none;
+}
+
+.action-bin--minus .bin-count {
+  background: rgba(255, 229, 224, 0.92);
+}
+
+.action-bin--plus .bin-count {
+  background: rgba(233, 247, 230, 0.92);
 }
 
 .bin-count:active {

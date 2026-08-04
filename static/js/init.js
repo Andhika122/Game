@@ -241,6 +241,11 @@
       return;
     }
 
+    if (button.id === 'fullscreenButton') {
+      // Fullscreen is handled separately in core.js; do not treat it as navigation.
+      return;
+    }
+
     if (button.classList.contains('top-action')) {
       event.preventDefault();
       if (window.location.pathname !== '/menu') {

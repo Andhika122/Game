@@ -389,13 +389,20 @@ function initDragHelpers() {
 
         dragClone = piece.cloneNode(true);
         dragClone.classList.add('dragging');
+        dragClone.classList.remove('helper-piece--removed');
         dragClone.style.position = 'absolute';
         dragClone.style.left = `${pieceRect.left - panelRect.left}px`;
         dragClone.style.top = `${pieceRect.top - panelRect.top}px`;
         dragClone.style.width = `${pieceRect.width}px`;
-        dragClone.style.opacity = '0.9';
+        dragClone.style.opacity = '0.95';
         dragClone.style.pointerEvents = 'none';
         dragClone.style.zIndex = '1000';
+        dragClone.style.background = 'transparent';
+        const dragCloneIcon = dragClone.querySelector('.helper-icon');
+        if (dragCloneIcon) {
+          dragCloneIcon.style.filter = 'none';
+          dragCloneIcon.style.opacity = '1';
+        }
         panel.appendChild(dragClone);
 
         window.addEventListener('pointermove', onPointerMove);
