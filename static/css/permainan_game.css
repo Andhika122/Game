@@ -379,6 +379,23 @@
   user-select: none;
 }
 
+.action-bin--minus .bin-count,
+.action-bin--plus .bin-count,
+.action-bin.drag-over .bin-count,
+.action-bin--minus.action-bin.drag-over .bin-count,
+.action-bin--plus.action-bin.drag-over .bin-count {
+  color: #fff !important;
+}
+
+.action-bin--minus .bin-count .bin-sign,
+.action-bin--plus .bin-count .bin-sign,
+.action-bin--minus .bin-count .bin-count-value,
+.action-bin--plus .bin-count .bin-count-value,
+.action-bin.drag-over .bin-count .bin-sign,
+.action-bin.drag-over .bin-count .bin-count-value {
+  color: inherit !important;
+}
+
 .bin-count:active {
   cursor: grabbing;
 }

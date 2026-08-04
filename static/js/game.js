@@ -130,7 +130,7 @@ function showFeedback(message, type = "success", buttonText = null) {
 
   if (feedbackModalButton) {
     if (type === "error") {
-      feedbackModalButton.textContent = "Coba lagi, yuk!";
+      feedbackModalButton.textContent = buttonText || "Coba lagi";
     } else if (buttonText) {
       feedbackModalButton.textContent = buttonText;
     } else if (message.includes("Yupss Benar")) {

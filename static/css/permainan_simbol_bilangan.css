@@ -123,20 +123,18 @@
 
 .symbol-row--center {
   grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  justify-content: center;
+  display: flex;
   align-items: center;
-  gap: -5rem;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
   padding: 1rem 0.75rem 0;
 }
 
-.symbol-row--center > .symbol-label {
-  text-align: right;
-}
-
+.symbol-row--center > .symbol-label,
 .symbol-row--center > .symbol-text {
-  text-align: left;
+  text-align: center;
+  white-space: nowrap;
 }
 
 .symbol-row--center .symbol-pill {
@@ -173,9 +171,18 @@
   font-size: clamp(1rem, 2.2vw, 1.15rem);
 }
 
+.symbol-row:not(.symbol-row--center) .symbol-text {
+  margin-left: 0.75rem;
+}
+
 .symbol-label {
   font-weight: 700;
   white-space: nowrap;
+}
+
+.symbol-underline {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .symbol-text {
@@ -196,6 +203,10 @@
   font-size: 2rem;
   font-weight: 800;
   padding: 0;
+}
+
+.symbol-value.symbol-icon {
+  color: #fff;
 }
 
 .symbol-pill {
