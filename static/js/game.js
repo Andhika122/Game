@@ -476,8 +476,8 @@ function submitAnswer() {
         window.gemanti.playFeedbackSound('complete');
       }
 
+      completionRedirectTarget = "/permainan";
       if (resolvedGameMode === "subtraction") {
-        completionRedirectTarget = "/final";
         safeLocalStorageSet('gemanti-completed-pengurangan', '1');
       } else {
         safeLocalStorageSet('gemanti-completed-penjumlahan', '1');
