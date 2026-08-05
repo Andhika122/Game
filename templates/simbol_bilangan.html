@@ -86,7 +86,72 @@
               <button class="key" data-key="0">0</button>
               <button class="key key--back" data-key="back">⌫</button>
             </div>
+<style>
+  .icon-button {
+    position: absolute;
+    top: 0.5rem;
+    width: clamp(48px, 10vw, 60px);
+    aspect-ratio: 1;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 
+  .top-left {
+    left: 0.5rem;
+  }
+
+  .top-right {
+    right: 0.5rem;
+  }
+
+  .icon-button img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+</style>
+
+<!-- Speaker (Kiri Atas) -->
+<button class="icon-button top-left" id="soundButton" type="button" aria-label="Matikan suara">
+  <img id="soundIcon" src="/static/img/speaker_aktif.png" alt="">
+</button>
+
+<!-- Home (Kanan Atas) -->
+<button class="icon-button top-right" id="profileButton" type="button" aria-label="Profil">
+  <img src="/static/img/home.png" alt="">
+</button>
+<style>
+  .bottom-right {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    width: clamp(48px, 10vw, 60px);
+    aspect-ratio: 1;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .bottom-right img {
+    width: 30%;
+    height: 30%;
+    object-fit: contain;
+  }
+</style>
+
+<!-- Tombol Fullscreen (Kanan Bawah) -->
+<button id="fullscreenButton" class="bottom-right" type="button" aria-label="Buka layar penuh">
+  <img src="/static/img/fs.png" alt="Layar penuh">
+</button>
             <div class="submit-row">
               <button class="btn btn--primary submit-button" id="answerSubmitButton">Submit Jawaban</button>
             </div>

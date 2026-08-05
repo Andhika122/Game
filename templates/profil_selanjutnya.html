@@ -18,7 +18,71 @@
               <img src="/static/img/gemati.png" alt="Gambar tengah" />
             </div>
           </div>
+<button
+  id="fullscreenButton"
+  type="button"
+  aria-label="Buka layar penuh"
+  style="
+    position:absolute;
+    right:0.5rem;
+    bottom:0.5rem;
+    width:clamp(48px,10vw,60px);
+    aspect-ratio:1;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  "
+>
+  <img
+    src="/static/img/fs.png"
+    alt="Layar penuh"
+    style="
+      width:30%;
+      height:30%;
+      object-fit:contain;
+    "
+  >
+</button>
+<style>
+  .icon-button {
+    position: absolute;
+    top: 0.5rem;
+    width: clamp(48px, 10vw, 60px);
+    aspect-ratio: 1;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 
+  .top-left {
+    left: 0.5rem;
+  }
+
+  .top-right {
+    right: 0.5rem;
+  }
+
+  .icon-button img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+</style>
+
+<!-- Speaker (Kiri Atas) -->
+<button class="icon-button top-left" id="soundButton" type="button" aria-label="Matikan suara">
+  <img id="soundIcon" src="/static/img/speaker_aktif.png" alt="">
+</button>
+
+<!-- Home (Kanan Atas) -->
+<button class="icon-button top-right" id="profileButton" type="button" aria-label="Profil">
+  <img src="/static/img/home.png" alt="">
+</button>
           <div class="profil-description-actions actions-split">
             <a class="page-arrow" href="/menu" aria-label="Kembali ke profil">
               <span>Selamat Bermain</span>

@@ -13,6 +13,24 @@
   z-index: 60;
 }
 
+.bottom-right {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  width: clamp(48px, 10vw, 60px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottom-right img {
+  width: 30%;
+  height: 30%;
+  object-fit: contain;
+}
+
 .menu-panel {
   width: min(96vw, 1180px);
   min-height: 84vh;
