@@ -45,7 +45,7 @@
   font-size: 0.85rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: 400;
 }
 
 .permainan-header h1 {
@@ -176,14 +176,17 @@
 }
 
 .symbol-label {
-  font-weight: 700;
+  font-weight: 400;
   white-space: nowrap;
 }
 
 .symbol-underline {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  font-weight: 700;
+  /* Use a continuous border-bottom so the underline does not break */
+  text-decoration: none;
+  display: inline-block;
+  border-bottom: 2px solid #6a2f21;
+  padding-bottom: 2px;
+  font-weight: 400;
 }
 
 .symbol-text {
@@ -235,6 +238,11 @@
 .symbol-icon--zero {
   background: rgba(255, 224, 186, 0.6);
   color: #7a4428;
+}
+
+/* Ensure no text appears bold inside the simbol card */
+.simbol-card, .simbol-card * {
+  font-weight: 400 !important;
 }
 
 .image-question-card {
@@ -356,7 +364,7 @@
 }
 
 .question-index {
-  font-weight: 700;
+  font-weight: 400;
   color: #6a2f21;
 }
 
@@ -369,7 +377,7 @@
   margin: 0;
   color: #6a2f21;
   font-size: 1.05rem;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .image-question-text {
@@ -382,7 +390,7 @@
 /* Answer card (input + keypad) */
 .answer-card .answer-instruction {
   color: #6a2f21;
-  font-weight: 700;
+  font-weight: 400;
   margin-bottom: 0.75rem;
   font-size: 1.05rem;
 }
@@ -412,7 +420,7 @@
   border-radius: 12px;
   background: linear-gradient(180deg,#fff8e8,#fff3d1);
   border: 1px solid rgba(213,157,84,0.2);
-  font-weight: 700;
+  font-weight: 400;
   font-size: 1.1rem;
   color: #6a2f21;
   cursor: pointer;
@@ -442,6 +450,6 @@
   background: linear-gradient(180deg,#ffb75f,#ff9d2b);
   border: none;
   color: #fff;
-  font-weight: 800;
+  font-weight: 400;
   box-shadow: 0 8px 18px rgba(255,157,51,0.18);
 }
