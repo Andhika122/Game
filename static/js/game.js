@@ -278,15 +278,13 @@ function buatSoal(pilihanTipe = 1) {
         break;
     }
 
-    // Pastikan relasi besar/kecil berdasarkan tipe:
-    // Untuk tipe 1,3,5,7: angka pertama harus memiliki nilai mutlak lebih besar dari angka kedua.
-    // Untuk tipe 2,4,6,8: angka pertama harus memiliki nilai mutlak lebih kecil dari angka kedua.
-    const mustAGTB = [1, 3, 5, 7].includes(pilihanTipe);
-    const mustALTb = [2, 4, 6, 8].includes(pilihanTipe);
-    if (mustAGTB && Math.abs(a) <= Math.abs(b)) {
+    // Pastikan relasi besar/kecil hanya untuk pasangan dengan tanda sama.
+    // Untuk tipe 1 dan 5: angka pertama harus memiliki nilai mutlak lebih besar dari angka kedua.
+    // Untuk tipe 2 dan 6: angka pertama harus memiliki nilai mutlak lebih kecil dari angka kedua.
+    if ([1, 5].includes(pilihanTipe) && Math.abs(a) <= Math.abs(b)) {
       const tmp = a; a = b; b = tmp;
     }
-    if (mustALTb && Math.abs(a) >= Math.abs(b)) {
+    if ([2, 6].includes(pilihanTipe) && Math.abs(a) >= Math.abs(b)) {
       const tmp = a; a = b; b = tmp;
     }
   }
