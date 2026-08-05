@@ -183,6 +183,7 @@
 .symbol-underline {
   text-decoration: underline;
   text-underline-offset: 3px;
+  font-weight: 700;
 }
 
 .symbol-text {
