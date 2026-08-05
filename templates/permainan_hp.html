@@ -28,7 +28,6 @@
                 </div>
                 {% if not game_description %}
                 <div class="help-actions">
-                  <button type="button" class="btn btn--primary" id="makeQuestionButton">Jawaban</button>
                   <button type="button" id="helpVideoButton" class="btn">Bantuan</button>
                 </div>
                 {% endif %}
@@ -119,7 +118,7 @@
                   Browser kamu tidak mendukung video bantuan.
                 </video>
               </div>
-              <div class="calculator-panel hidden">
+              <div class="calculator-panel">
                 <div class="number-pad">
                   <button type="button" class="pad-key calculator-key" data-key="7">7</button>
                   <button type="button" class="pad-key calculator-key" data-key="8">8</button>
@@ -135,7 +134,7 @@
                   <button type="button" class="pad-key calculator-key delete" data-key="Hapus">⌫</button>
                 </div>
               </div>
-              <div class="calculator-actions calculator-actions--single hidden" id="submitAnswerRow">
+              <div class="calculator-actions calculator-actions--single" id="submitAnswerRow">
                 <button type="button" class="btn btn--primary" id="submitAnswerButton">Submit Jawaban</button>
               </div>
             </div>

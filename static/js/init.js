@@ -10,23 +10,12 @@
     return document.querySelector('.calculator-panel');
   }
 
-  function getMakeQuestionButton() {
-    return document.getElementById('makeQuestionButton');
-  }
-
   function getSubmitAnswerRow() {
     return document.getElementById('submitAnswerRow');
   }
 
   function getSubmitAnswerButton() {
     return document.getElementById('submitAnswerButton');
-  }
-
-  function updateMakeQuestionButton() {
-    const button = getMakeQuestionButton();
-    const calculatorPanel = getCalculatorPanel();
-    if (!button || !calculatorPanel) return;
-    button.textContent = calculatorPanel.classList.contains('hidden') ? 'Jawaban' : 'Tutup Jawaban';
   }
 
   function updateSubmitButtonVisibility() {
@@ -36,7 +25,6 @@
     submitAnswerRow.classList.toggle('hidden', calculatorPanel.classList.contains('hidden'));
   }
 
-  window.updateMakeQuestionButton = updateMakeQuestionButton;
   window.updateSubmitButtonVisibility = updateSubmitButtonVisibility;
 
   function isSameOriginLink(anchor) {
@@ -93,7 +81,6 @@
     if (window.gemanti && typeof window.gemanti.updateSoundUI === 'function') window.gemanti.updateSoundUI();
     if (window.gemanti && typeof window.gemanti.playBackgroundGameAudio === 'function') window.gemanti.playBackgroundGameAudio();
     if (window.gemanti && typeof window.gemanti.initSoundControl === 'function') window.gemanti.initSoundControl();
-    if (typeof updateMakeQuestionButton === 'function') updateMakeQuestionButton();
     if (typeof updateSubmitButtonVisibility === 'function') updateSubmitButtonVisibility();
     if (typeof toggleHelpVideo === 'function') toggleHelpVideo(false);
     if (typeof initPermainanGame === 'function') initPermainanGame();
@@ -260,17 +247,6 @@
       return;
     }
 
-    if (button.id === 'makeQuestionButton') {
-      event.preventDefault();
-      const calculatorPanel = getCalculatorPanel();
-      if (!calculatorPanel) return;
-      const openingCalculator = calculatorPanel.classList.contains('hidden');
-      calculatorPanel.classList.toggle('hidden');
-      if (openingCalculator && typeof toggleHelpVideo === 'function') toggleHelpVideo(false);
-      updateMakeQuestionButton();
-      updateSubmitButtonVisibility();
-      return;
-    }
 
     if (button.id === 'submitAnswerButton') {
       event.preventDefault();

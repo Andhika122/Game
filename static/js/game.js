@@ -103,11 +103,15 @@ function toggleHelpVideo(show) {
   if (!helpVideoContainer) return;
   const isHidden = helpVideoContainer.classList.contains("hidden");
   const shouldShow = typeof show === "boolean" ? show : isHidden;
+  const calculatorPanel = document.querySelector('.calculator-panel');
   if (shouldShow) {
-    const calculatorPanel = document.querySelector('.calculator-panel');
     if (calculatorPanel && !calculatorPanel.classList.contains('hidden')) {
       calculatorPanel.classList.add('hidden');
-      if (window.updateMakeQuestionButton) window.updateMakeQuestionButton();
+      if (window.updateSubmitButtonVisibility) window.updateSubmitButtonVisibility();
+    }
+  } else {
+    if (calculatorPanel && calculatorPanel.classList.contains('hidden')) {
+      calculatorPanel.classList.remove('hidden');
       if (window.updateSubmitButtonVisibility) window.updateSubmitButtonVisibility();
     }
   }
