@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% block title %}Gemanti - Profil{% endblock %}
+
+{% block styles %}
+<link rel="stylesheet" href="/static/css/profil.css">
+{% endblock %}
+
+{% block content %}
+  <section class="profil-page direct-view" aria-label="Profil">
+    <div class="profil-panel">
+      <div class="profil-profil-page">
+        <h1 id="finalPlayerName">Gemati</h1>
+
+       <div class="profil-image-placeholder profil-image-placeholder--centered">
+            <div class="profil-image-container">
+              <img src="/static/img/final.png" alt="Gambar tengah" />
+            </div>
+          </div>
+
+        <div class="profil-description-actions actions-split">
+          <a class="page-arrow" href="/profil/selanjutnya" aria-label="Lanjut ke halaman selanjutnya">
+            <span>Selanjutnya</span>
+            <img src="/static/img/kanan.png" alt="Panah kanan" />
+          </a>
+        </div>
+        <button
+  id="fullscreenButton"
+  type="button"
+  aria-label="Buka layar penuh"
+  style="
+    position:absolute;
+    right:0.5rem;
+    bottom:0.5rem;
+    width:clamp(48px,10vw,60px);
+    aspect-ratio:1;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  "
+>
+  <img
+    src="/static/img/fs.png"
+    alt="Layar penuh"
+    style="
+      width:30%;
+      height:30%;
+      object-fit:contain;
+    "
+  >
+</button>
+<script>
+  (function() {
+    const finalHeading = document.getElementById('finalPlayerName');
+    if (!finalHeading) return;
+    let name = 'Kamu';
+    try {
+      const storedName = localStorage.getItem('gemanti-player-name');
+      if (storedName) {
+        const trimmed = storedName.trim();
+        if (trimmed) name = trimmed;
+      }
+    } catch (e) {
+      // ignore localStorage errors
+    }
+    if (window.playerName && window.playerName.toString().trim()) {
+      name = window.playerName.toString().trim();
+    }
+    finalHeading.textContent = name;
+  })();
+</script>
+<style>
+  .icon-button {
+    position: absolute;
+    top: 0.5rem;
+    width: clamp(48px, 10vw, 60px);
+    aspect-ratio: 1;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .top-left {
+    left: 0.5rem;
+  }
+
+  .top-right {
+    right: 0.5rem;
+  }
+
+  .icon-button img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+</script>
+
+<!-- Speaker (Kiri Atas) -->
+<button class="icon-button top-left" id="soundButton" type="button" aria-label="Matikan suara">
+  <img id="soundIcon" src="/static/img/speaker_aktif.png" alt="">
+</button>
+
+<!-- Home (Kanan Atas) -->
+<button class="icon-button top-right" id="profileButton" type="button" aria-label="Profil">
+  <img src="/static/img/home.png" alt="">
+</button>
+      </div>
+    </div>
+  </section>
+{% endblock %}

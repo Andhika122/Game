@@ -84,6 +84,10 @@ def profil_selanjutnya():
 def demo():
     return render_template("demo.html")
 
+@app.route("/final")
+def final():
+    return render_template("final.html")
+
 @app.route('/status')
 def status():
     return {"status": "ok", "message": "server running"}

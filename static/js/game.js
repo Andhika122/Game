@@ -477,7 +477,7 @@ function submitAnswer() {
       }
 
       if (resolvedGameMode === "subtraction") {
-        completionRedirectTarget = "/";
+        completionRedirectTarget = "/final";
       }
       showFeedback(completionMessage, "success", resolvedGameMode === "addition" ? "Lanjut PENGURANGAN" : "SELESAI");
       try {
