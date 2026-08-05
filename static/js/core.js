@@ -202,7 +202,7 @@ function showIntroVideo(onFinished, autoStart = false) {
     }
 
     try {
-      video.autoplay = true; Is that right
+      video.autoplay = true; 
       video.muted = muted;
       if (muted) {
         video.setAttribute('muted', '');
