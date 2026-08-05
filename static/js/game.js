@@ -222,8 +222,22 @@ function hideFeedback() {
   feedbackModal.classList.remove("feedback-modal--show", "feedback-modal--success", "feedback-modal--error");
   feedbackModal.setAttribute("aria-hidden", "true");
   if (completionRedirect) {
-    completionRedirect = false;
     const target = typeof completionRedirectTarget !== 'undefined' ? completionRedirectTarget : "/permainan";
+    const redirectNow = !pendingFeedbackAudio || pendingFeedbackAudio.ended || pendingFeedbackAudio.paused;
+    if (!redirectNow) {
+      pendingFeedbackAudio.addEventListener('ended', () => {
+        completionRedirect = false;
+        completionRedirectTarget = "/permainan";
+        if (window.gemanti && typeof window.gemanti.loadPage === 'function') {
+          window.gemanti.loadPage(target);
+        } else {
+          window.location.href = target;
+        }
+      }, { once: true });
+      return;
+    }
+
+    completionRedirect = false;
     completionRedirectTarget = "/permainan";
     if (window.gemanti && typeof window.gemanti.loadPage === 'function') {
       window.gemanti.loadPage(target);

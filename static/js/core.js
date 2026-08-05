@@ -196,19 +196,24 @@ function showIntroVideo(onFinished, autoStart = false) {
     }
   })();
 
-  const startIntroVideo = async () => {
+  const startIntroVideo = async ({ muted = false } = {}) => {
     if (!supportsVideoPlayback) {
       return false;
     }
 
     try {
       video.autoplay = true;
-      video.muted = false;
+      video.muted = muted;
+      if (muted) {
+        video.setAttribute('muted', '');
+        video.volume = 0;
+      } else {
+        video.removeAttribute('muted');
+        video.volume = 1;
+      }
       video.playsInline = true;
-      video.removeAttribute('muted');
       video.setAttribute('autoplay', '');
       video.setAttribute('playsinline', '');
-      video.volume = 1;
       await video.play();
       return true;
     } catch (error) {
@@ -223,13 +228,14 @@ function showIntroVideo(onFinished, autoStart = false) {
       startButton.style.display = 'none';
     }
 
-    const started = await startIntroVideo();
+    const started = await startIntroVideo({ muted: false });
     if (!started) {
       finish();
       return;
     }
 
-    finish();
+    // Keep the overlay visible while the video plays; finish() is called
+    // when the video naturally ends, or upon error/abort.
   };
 
   if (startButton) {
@@ -248,11 +254,9 @@ function showIntroVideo(onFinished, autoStart = false) {
     showPosterImmediately();
     hideStartButton();
     const beginAutoPlay = () => {
-      startIntroVideo().then((started) => {
+      startIntroVideo({ muted: true }).then((started) => {
         if (!started) {
-          window.setTimeout(() => {
-            finish();
-          }, 800);
+          showStartButton();
         }
       });
     };
@@ -375,6 +379,7 @@ let audioContext = null;
 let feedbackAudio = null;
 let backgroundAudio = null;
 let backgroundAudioWasPlayingForIntro = false;
+let pendingFeedbackAudio = null;
 
 const viewClasses = {
   home: "",
@@ -518,13 +523,29 @@ function playFeedbackSound(kind, playCount = 1) {
 
   if (playCount < 1) return;
 
+  const candidates = audioMap[kind];
+  if (!candidates || !candidates.length) return;
+
+  if (kind === 'complete') {
+    pendingFeedbackAudio = new Audio(candidates[0]);
+    pendingFeedbackAudio.volume = 1;
+    pendingFeedbackAudio.addEventListener('ended', () => {
+      pendingFeedbackAudio = null;
+    }, { once: true });
+    pendingFeedbackAudio.addEventListener('error', () => {
+      pendingFeedbackAudio = null;
+    }, { once: true });
+    pendingFeedbackAudio.play().catch(() => {
+      pendingFeedbackAudio = null;
+    });
+    return;
+  }
+
   const sources = [];
   if (kind === 'correct' && playCount > 1) {
     sources.push(...audioMap.correct);
     sources.push(...audioMap.correctAlt);
   } else {
-    const candidates = audioMap[kind];
-    if (!candidates || !candidates.length) return;
     sources.push(...candidates);
   }
 
