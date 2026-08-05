@@ -43,6 +43,49 @@ function getHelpVideoContainer() {
   return document.getElementById("helpVideoContainer");
 }
 
+function createFeedbackModalIfMissing() {
+  if (getFeedbackModal() && getFeedbackModalMessage()) return;
+  if (document.getElementById('feedbackModal')) return;
+  const modal = document.createElement('div');
+  modal.id = 'feedbackModal';
+  modal.className = 'feedback-modal';
+  modal.setAttribute('aria-hidden', 'true');
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+
+  const overlay = document.createElement('div');
+  overlay.className = 'feedback-modal__overlay';
+  modal.appendChild(overlay);
+
+  const dialog = document.createElement('div');
+  dialog.className = 'feedback-modal__dialog';
+  dialog.setAttribute('role', 'alertdialog');
+  dialog.setAttribute('aria-labelledby', 'feedbackModalTitle');
+  dialog.setAttribute('aria-describedby', 'feedbackModalMessage');
+
+  const title = document.createElement('h2');
+  title.id = 'feedbackModalTitle';
+  title.className = 'sr-only';
+  title.textContent = 'Feedback Jawaban';
+  dialog.appendChild(title);
+
+  const msg = document.createElement('p');
+  msg.id = 'feedbackModalMessage';
+  msg.className = 'feedback-modal__message';
+  dialog.appendChild(msg);
+
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.id = 'feedbackModalButton';
+  btn.className = 'btn feedback-modal__button';
+  btn.textContent = 'Lanjut';
+  dialog.appendChild(btn);
+
+  modal.appendChild(dialog);
+  document.body.appendChild(modal);
+  initFeedbackModalButton();
+}
+
 function getQuestionTypeElement() {
   return document.getElementById("questionType");
 }
@@ -119,16 +162,13 @@ function personalizeMessage(message) {
 }
 
 function showFeedback(message, type = "success", buttonText = null) {
+  // ensure modal exists so we never fall back to alert
+  createFeedbackModalIfMissing();
   const feedbackModal = getFeedbackModal();
   const feedbackModalMessage = getFeedbackModalMessage();
   const feedbackModalButton = getFeedbackModalButton();
 
   const finalMessage = personalizeMessage(message);
-
-  if (!feedbackModal || !feedbackModalMessage) {
-    alert(finalMessage);
-    return;
-  }
 
   if (feedbackModalButton) {
     if (type === "error") {
@@ -142,6 +182,7 @@ function showFeedback(message, type = "success", buttonText = null) {
     }
   }
 
+  // preserve line breaks (CSS uses white-space: pre-line)
   feedbackModalMessage.textContent = finalMessage;
   feedbackModal.classList.toggle("feedback-modal--success", type === "success");
   feedbackModal.classList.toggle("feedback-modal--error", type === "error");
@@ -178,10 +219,12 @@ function hideFeedback() {
   feedbackModal.setAttribute("aria-hidden", "true");
   if (completionRedirect) {
     completionRedirect = false;
+    const target = typeof completionRedirectTarget !== 'undefined' ? completionRedirectTarget : "/permainan";
+    completionRedirectTarget = "/permainan";
     if (window.gemanti && typeof window.gemanti.loadPage === 'function') {
-      window.gemanti.loadPage("/permainan");
+      window.gemanti.loadPage(target);
     } else {
-      window.location.href = "/permainan";
+      window.location.href = target;
     }
     return;
   }
@@ -246,35 +289,35 @@ function buatSoal(pilihanTipe = 1) {
     switch (pilihanTipe) {
       case 1:
         [a, b] = buatPasanganAngkaBerbeda(angkaPositifBesar, angkaPositifKecil);
-        namaTipe = "Tipe 1a: positif - positif";
+        namaTipe = "Tipe 1: positif - positif";
         break;
       case 2:
         [a, b] = buatPasanganAngkaBerbeda(angkaPositifKecil, angkaPositifBesar);
-        namaTipe = "Tipe 1b: positif - positif";
+        namaTipe = "Tipe 2: positif - positif";
         break;
       case 3:
         [a, b] = buatPasanganAngkaBerbeda(angkaPositifBesar, angkaNegatifKecil);
-        namaTipe = "Tipe 2a: positif - negatif";
+        namaTipe = "Tipe 3: positif - negatif";
         break;
       case 4:
         [a, b] = buatPasanganAngkaBerbeda(angkaPositifKecil, angkaNegatifBesar);
-        namaTipe = "Tipe 2b: positif - negatif";
+        namaTipe = "Tipe 4: positif - negatif";
         break;
       case 5:
         [a, b] = buatPasanganAngkaBerbeda(angkaNegatifBesar, angkaNegatifKecil);
-        namaTipe = "Tipe 3a: negatif - negatif";
+        namaTipe = "Tipe 5: negatif - negatif";
         break;
       case 6:
         [a, b] = buatPasanganAngkaBerbeda(angkaNegatifKecil, angkaNegatifBesar);
-        namaTipe = "Tipe 3b: negatif - negatif";
+        namaTipe = "Tipe 6: negatif - negatif";
         break;
       case 7:
         [a, b] = buatPasanganAngkaBerbeda(angkaNegatifBesar, angkaPositifKecil);
-        namaTipe = "Tipe 4a: negatif - positif";
+        namaTipe = "Tipe 7: negatif - positif";
         break;
       default:
         [a, b] = buatPasanganAngkaBerbeda(angkaNegatifKecil, angkaPositifBesar);
-        namaTipe = "Tipe 4b: negatif - positif";
+        namaTipe = "Tipe 8: negatif - positif";
         break;
     }
 
@@ -375,6 +418,7 @@ function submitAnswer() {
   }
 
   const enteredValue = Number(currentUserEntry);
+  const resolvedGameMode = currentGameMode || (window.location.pathname.includes("/permainan/pengurangan") ? "subtraction" : (window.location.pathname.includes("/permainan/penjumlahan") ? "addition" : "addition"));
   if (!Number.isFinite(enteredValue)) {
     if (window.resetHelpers) window.resetHelpers();
     isSubmittingAnswer = false;
@@ -384,7 +428,6 @@ function submitAnswer() {
   if (enteredValue === currentQuestionAnswer) {
     const prevType = currentQuestionType;
     const wasFirstTry = currentQuestionRepeat === 1;
-    const resolvedGameMode = currentGameMode || (window.location.pathname.includes("/permainan/pengurangan") ? "subtraction" : (window.location.pathname.includes("/permainan/penjumlahan") ? "addition" : "addition"));
     let finishedAllQuestions = false;
     if (resolvedGameMode === "subtraction") {
       if (currentQuestionRepeat < 5) {
@@ -409,13 +452,16 @@ function submitAnswer() {
     if (finishedAllQuestions) {
       const playerName = window.playerName || 'Kamu';
       const completionMessage = resolvedGameMode === "addition"
-      ? `Woow Keren👍🏻👍🏻👍🏻\n${playerName} sudah menguasai\nPENJUMLAHAN pada Bilangan Bulat`
-      : `Hebat, ${playerName}! sudah menyelesaikan semua soal. Teruskan belajar dan kembali ke Permainan.`;
+      ? `Wow Keren 👍👍👍\n${playerName} telah memahami PENJUMLAHAN pada bilangan bulat.`
+      : `Wow Keren 👍👍👍\n${playerName} telah memahami PENGURANGAN pada bilangan bulat.`;
       if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
         window.gemanti.playFeedbackSound('complete');
       }
 
-      showFeedback(completionMessage, "success", "Lanjut ke Permainan");
+      if (resolvedGameMode === "subtraction") {
+        completionRedirectTarget = "/";
+      }
+      showFeedback(completionMessage, "success", resolvedGameMode === "addition" ? "Lanjut PENGURANGAN" : "SELESAI");
       try {
         createConfettiBurst();
         const celebrationGlow = document.createElement('div');
@@ -431,12 +477,16 @@ function submitAnswer() {
         if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
           window.gemanti.playFeedbackSound('correctAlt');
         }
-        showFeedback(`Hebat, ${playerName}! sudah menaklukan soal TIPE ${prevType}`, "success");
+        if (resolvedGameMode === "addition") {
+          showFeedback(`Hebat!\n${playerName} sudah memahami PENJUMLAHAN Tipe ${prevType}`, "success", "Lanjut tipe berikutnya.");
+        } else {
+          showFeedback(`Hebat!\n${playerName} sudah memahami PENGURANGAN Tipe ${prevType}`, "success", "Lanjut tipe berikutnya.");
+        }
       } else {
         if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
           window.gemanti.playFeedbackSound('correct');
         }
-        showFeedback(`Jawaban Benar, ${playerName}!`, "success", "lanjut");
+        showFeedback(`Jawaban benar, ${playerName}.`, "success", "Lanjut");
       }
       tampilkanSoal(currentQuestionType);
     }
@@ -445,11 +495,11 @@ function submitAnswer() {
     isSubmittingAnswer = false;
   } else {
     const playerName = window.playerName || 'Kamu';
-    const msg = `Wah, ${playerName}! Jawabanmu salah 🤭`;
+    const msg = `Jawaban belum benar, ${playerName}.\nJika masih bingung, klik tombol bantuan sebelum menjawab.`;
     if (window.gemanti && typeof window.gemanti.playFeedbackSound === 'function') {
       window.gemanti.playFeedbackSound('wrong');
     }
-    showFeedback(msg, "error");
+    showFeedback(msg, "error", "Coba lagi");
     currentUserEntry = "";
     tampilkanSoal(currentQuestionType);
     if (window.resetHelpers) window.resetHelpers();

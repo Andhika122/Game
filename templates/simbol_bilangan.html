@@ -198,21 +198,22 @@
           const given = Number(value || NaN);
           if (Number.isNaN(given)) {
             const emptyMessage = `Masukkan jawaban terlebih dahulu, ${playerName}!`;
-            if (typeof showFeedback === 'function') showFeedback(emptyMessage);
+            if (typeof showFeedback === 'function') showFeedback(emptyMessage, 'error', 'Coba lagi');
             else alert(emptyMessage);
             return;
           }
           if (given === expected) {
-            const correctMessage = `Jawaban Benar, ${playerName}!`;
-            if (typeof showFeedback === 'function') showFeedback(correctMessage, 'success', 'lanjut');
+            const correctMessage = `Jawaban benar, ${playerName}.`;
+            if (typeof showFeedback === 'function') showFeedback(correctMessage, 'success', 'Lanjut');
             else alert(correctMessage);
             // advance to next question
             currentQuestion = currentQuestion + 1;
             if (currentQuestion > TOTAL_TYPES) {
               // finished all questions
-              const completedMessage = `Selamat, ${playerName} sudah menguasai simbol bilangan`;
+                const completedMessage = `Wow Keren 👍👍👍\n${playerName} sudah memahami simbol bilangan bulat.`;
+              if (typeof createConfettiBurst === 'function') createConfettiBurst();
               if (typeof showFeedback === 'function') {
-                showFeedback(completedMessage, 'success', 'lanjut permainan berikutnya');
+                showFeedback(completedMessage, 'success', 'Lanjut PENJUMLAHAN!');
                 completionRedirect = true;
               } else {
                 alert(completedMessage);
@@ -223,8 +224,8 @@
             render();
             renderSymbolQuestion(currentQuestion);
           } else {
-            const wrongMessage = `Jawaban salah, ${playerName}`;
-            if (typeof showFeedback === 'function') showFeedback(wrongMessage, 'error');
+            const wrongMessage = `Jawaban belum benar, ${playerName}.`;
+            if (typeof showFeedback === 'function') showFeedback(wrongMessage, 'error', 'Coba lagi');
             else alert(wrongMessage);
             // keep same question, clear input for retry
             value = '';

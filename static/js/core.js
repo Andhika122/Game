@@ -370,6 +370,7 @@ let currentQuestionAnswer = null;
 let currentUserEntry = "";
 let isSubmittingAnswer = false;
 let completionRedirect = false;
+let completionRedirectTarget = "/permainan";
 let audioContext = null;
 let feedbackAudio = null;
 let backgroundAudio = null;
