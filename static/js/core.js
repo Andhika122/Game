@@ -202,7 +202,7 @@ function showIntroVideo(onFinished, autoStart = false) {
     }
 
     try {
-      video.autoplay = true;
+      video.autoplay = true; Is that right
       video.muted = muted;
       if (muted) {
         video.setAttribute('muted', '');
@@ -274,6 +274,8 @@ function showIntroVideo(onFinished, autoStart = false) {
       video.load();
     }
   } else {
+    showOverlay();
+    showPosterImmediately();
     showStartButton();
   }
 
@@ -296,18 +298,27 @@ function initNameInputPage() {
     window.location.href = '/menu';
   };
 
+  const playIntroThenNavigate = () => {
+    if (hasSeenIntroVideo()) {
+      navigateMenu();
+      return;
+    }
+
+    showIntroVideo(navigateMenu, false);
+  };
+
   const handleSubmitName = (event) => {
     if (event) event.preventDefault();
     if (!nameInput) return;
     setPlayerName(nameInput.value);
-    navigateMenu();
+    playIntroThenNavigate();
   };
 
   const handleButtonClick = (event) => {
     if (event) event.preventDefault();
     if (!nameInput) return;
     setPlayerName(nameInput.value);
-    navigateMenu();
+    playIntroThenNavigate();
   };
 
   const getIntroParam = () => {
