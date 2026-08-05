@@ -19,31 +19,56 @@
           </div>
 
           <div class="permainan-select-card">
-            <article class="permainan-select-item">
+            <article id="simbolGameCard" class="permainan-select-item">
               <div class="item-deco item-deco--plus"></div>
               <h2>Simbol Bilangan</h2>
               <img src="/static/img/0.png" alt="Ilustrasi simbol bilangan" class="permainan-select-image">
               <a class="btn" href="/permainan/simbol/bilangan">Main</a>
             </article>
 
-            <article class="permainan-select-item">
+            <article id="penjumlahanGameCard" class="permainan-select-item">
               <div class="item-deco item-deco--plus"></div>
               <h2>Penjumlahan</h2>
               <p>+</p>
               <a class="btn" href="/permainan/penjumlahan">Main</a>
             </article>
 
-            <article class="permainan-select-item">
+            <article id="penguranganGameCard" class="permainan-select-item">
               <div class="item-deco item-deco--minus"></div>
               <h2>Pengurangan</h2>
               <p>-</p>
               <a class="btn" href="/permainan/pengurangan">Main</a>
             </article>
+          </div>
+          <style>
+  .bottom-right {
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    width: clamp(48px, 10vw, 60px);
+    aspect-ratio: 1;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
 
-            <button id="fullscreenButton" class="bottom-right" type="button" aria-label="Buka layar penuh">
-        <img src="/static/img/fs.png" alt="Layar penuh">
-      </button>
-      <style>
+  .bottom-right img {
+    width: 30%;
+    height: 30%;
+    object-fit: contain;
+  }
+</style>
+
+<!-- Tombol Fullscreen (Kanan Bawah) -->
+<button id="fullscreenButton" class="bottom-right" type="button" aria-label="Buka layar penuh">
+  <img src="/static/img/fs.png" alt="Layar penuh">
+</button>
+
+<style>
   .icon-button {
     position: absolute;
     top: 0.5rem;
@@ -82,6 +107,38 @@
 <button class="icon-button top-right" id="profileButton" type="button" aria-label="Profil">
   <img src="/static/img/home.png" alt="">
 </button>
+
+          <script>
+            (function () {
+              function isCompleted(key) {
+                try {
+                  return localStorage.getItem(key) === '1';
+                } catch (e) {
+                  return false;
+                }
+              }
+              function addCompletedBadge(card) {
+                if (!card || card.querySelector('.completed-badge')) return;
+                const badge = document.createElement('span');
+                badge.className = 'completed-badge';
+                badge.setAttribute('aria-hidden', 'true');
+                badge.textContent = '✔';
+                card.appendChild(badge);
+              }
+              const checks = [
+                { key: 'gemanti-completed-simbol', id: 'simbolGameCard' },
+                { key: 'gemanti-completed-penjumlahan', id: 'penjumlahanGameCard' },
+                { key: 'gemanti-completed-pengurangan', id: 'penguranganGameCard' },
+              ];
+              checks.forEach(({ key, id }) => {
+                const card = document.getElementById(id);
+                if (card && isCompleted(key)) {
+                  card.classList.add('completed');
+                  addCompletedBadge(card);
+                }
+              });
+            })();
+          </script>
           </div>
         </section>
       </div>

@@ -277,6 +277,11 @@
               // finished all questions
                 const completedMessage = `Wow Keren 👍👍👍\n${playerName} sudah memahami simbol bilangan bulat.`;
               if (typeof createConfettiBurst === 'function') createConfettiBurst();
+              try {
+                safeLocalStorageSet('gemanti-completed-simbol', '1');
+              } catch (e) {
+                try { localStorage.setItem('gemanti-completed-simbol', '1'); } catch (e) {}
+              }
               if (typeof showFeedback === 'function') {
                 showFeedback(completedMessage, 'success', 'Lanjut PENJUMLAHAN!');
                 completionRedirect = true;

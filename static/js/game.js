@@ -478,6 +478,9 @@ function submitAnswer() {
 
       if (resolvedGameMode === "subtraction") {
         completionRedirectTarget = "/final";
+        safeLocalStorageSet('gemanti-completed-pengurangan', '1');
+      } else {
+        safeLocalStorageSet('gemanti-completed-penjumlahan', '1');
       }
       showFeedback(completionMessage, "success", resolvedGameMode === "addition" ? "Lanjut PENGURANGAN" : "SELESAI");
       try {
