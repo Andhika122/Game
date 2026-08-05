@@ -253,12 +253,12 @@ function showIntroVideo(onFinished, autoStart = false) {
     showOverlay();
     showPosterImmediately();
     hideStartButton();
-    const beginAutoPlay = () => {
-      startIntroVideo({ muted: true }).then((started) => {
-        if (!started) {
-          showStartButton();
-        }
-      });
+    const beginAutoPlay = async () => {
+      const started = await startIntroVideo({ muted: false });
+      if (!started) {
+        // Autoplay without mute failed, allow user to start with audio.
+        showStartButton();
+      }
     };
 
     const triggerAutoPlay = () => {
