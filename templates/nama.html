@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="/static/css/nama.css">
 {% endblock %}
 
-{% block body_class %}page-home page-nama{% endblock %}
+{% block body_class %}page-nama{% endblock %}
 
 {% block content %}
 
@@ -18,66 +18,14 @@
     <div class="nama-card">
       <h1>Halo, siapa namamu?</h1>
       <p>Masukkan nama untuk mulai bermain.</p>
-      <form id="playerNameForm" class="nama-form" action="/menu" method="get">
+      <form id="playerNameForm" class="nama-form">
         <input id="playerNameInput" name="playerName" type="text" placeholder="Ketik nama kamu" autocomplete="name" required>
         <button id="playerNameSubmit" type="submit" class="btn btn--primary">Lanjut</button>
       </form>
-      <style>
-  .bottom-right {
-    position: absolute;
-    right: 0.5rem;
-    bottom: 0.5rem;
-    width: clamp(56px, 10vw, 72px);
-    aspect-ratio: 1;
-    border-radius: 0%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 1000;
-  }
-
-  .bottom-right img {
-    width: 30%;
-    height: 30%;
-    object-fit: contain;
-  }
-</style>
-
 <!-- Tombol Fullscreen (Kanan Bawah) -->
 <button id="fullscreenButton" class="bottom-right" type="button" aria-label="Buka layar penuh">
   <img src="/static/img/fs.png" alt="Layar penuh">
 </button>
-
-<style>
-  .icon-button {
-    position: absolute;
-    top: 0.5rem;
-    width: clamp(48px, 10vw, 60px);
-    aspect-ratio: 1;
-    border: none;
-    background: transparent;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-  }
-
-  .top-left {
-    left: 0.5rem;
-  }
-
-  .top-right {
-    right: 0.5rem;
-  }
-
-  .icon-button img {
-    width: 70%;
-    height: 70%;
-    object-fit: contain;
-  }
-</style>
 
 <!-- Speaker (Kiri Atas) -->
 <button class="icon-button top-left" id="soundButton" type="button" aria-label="Matikan suara">

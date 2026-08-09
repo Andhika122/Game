@@ -314,10 +314,62 @@ button:focus-visible,
   pointer-events: auto;
 }
 
+#fullscreenButton,
+.bottom-right {
+  position: fixed;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  width: clamp(48px, 10vw, 60px);
+  aspect-ratio: 1;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+#fullscreenButton img,
+.bottom-right img {
+  width: 30%;
+  height: 30%;
+  object-fit: contain;
+}
+
 .fullscreen-action {
   top: auto;
   bottom: clamp(10px, 2vw, 28px);
   right: clamp(10px, 2vw, 28px);
+}
+
+.icon-button {
+  position: absolute;
+  top: 0.5rem;
+  width: clamp(48px, 10vw, 60px);
+  aspect-ratio: 1;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-button.top-left {
+  left: 0.5rem;
+}
+
+.icon-button.top-right {
+  right: 0.5rem;
+}
+
+.icon-button img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
 }
 
 #soundButton {
@@ -328,8 +380,22 @@ button:focus-visible,
 #profileButton {
   right: clamp(12px, 2vw, 28px);
   left: auto;
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
+.stage:fullscreen #profileButton,
+.stage:-webkit-full-screen #profileButton,
+.stage:-ms-fullscreen #profileButton {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  right: 12px;
+}
+
+#fullscreenButton.is-hidden,
+.bottom-right.is-hidden,
 .fullscreen-action.is-hidden {
   display: none !important;
 }
@@ -397,10 +463,10 @@ button:focus-visible,
 .stage:-ms-fullscreen #fullscreenButton {
   right: 12px;
   bottom: 12px;
-  display: block !important;
-  opacity: 1 !important;
-  visibility: visible !important;
-  pointer-events: auto !important;
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .stage:fullscreen .game-menu-page.direct-view.permainan-top,

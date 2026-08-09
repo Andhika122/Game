@@ -70,9 +70,17 @@
     try {
       const pathname = new URL(url, window.location.href).pathname;
       const isHomePage = pathname === '/home' || pathname === '/';
-      document.body.classList.toggle('page-home', isHomePage);
+      const isNamaPage = pathname === '/nama';
+
+      document.body.classList.remove('page-home', 'page-nama');
+
+      if (isHomePage) {
+        document.body.classList.add('page-home');
+      } else if (isNamaPage) {
+        document.body.classList.add('page-nama');
+      }
     } catch (error) {
-      document.body.classList.remove('page-home');
+      document.body.classList.remove('page-home', 'page-nama');
     }
   }
 

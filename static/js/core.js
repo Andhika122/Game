@@ -295,7 +295,15 @@ function initNameInputPage() {
   }
 
   const navigateMenu = () => {
-    window.location.href = '/menu';
+    try {
+      if (window.gemanti && typeof window.gemanti.loadPage === 'function') {
+        window.gemanti.loadPage('/menu');
+      } else {
+        window.location.href = '/menu';
+      }
+    } catch (error) {
+      window.location.href = '/menu';
+    }
   };
 
   const playIntroThenNavigate = () => {
