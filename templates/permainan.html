@@ -42,7 +42,7 @@
           </div>
           <style>
   .bottom-right {
-    position: absolute;
+    position: fixed;
     right: 0.5rem;
     bottom: 0.5rem;
     width: clamp(48px, 10vw, 60px);
@@ -54,6 +54,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    z-index: 1000;
   }
 
   .bottom-right img {
