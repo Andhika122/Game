@@ -273,7 +273,7 @@ button:focus-visible,
   top: -10%;
   object-fit: cover;
   object-position: center top;
-  z-index: 1;
+  z-index: -1;
   filter: saturate(0.92) brightness(1.02);
 }
 
@@ -285,7 +285,7 @@ button:focus-visible,
   height: 38vh;
   bottom: -2%;
   object-fit: cover;
-  z-index: 5;
+  z-index: 0;
   pointer-events: none;
 }
 
@@ -295,7 +295,7 @@ button:focus-visible,
   width: 40%;
   height: auto;
   object-fit: contain;
-  z-index: 30;
+  z-index: 0;
   pointer-events: none;
 }
 

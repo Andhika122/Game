@@ -6,17 +6,18 @@
   position: relative;
   overflow: hidden;
   padding: 1rem;
+  z-index: 200000 !important;
 }
 
 .profil-panel {
   position: relative;
-  width: min(94vw, 760px);
-  background: linear-gradient(135deg, #fff6e8 0%, #fce7c8 100%);
+  width: min(92vw, 900px);
+  background: linear-gradient(135deg, #fff7ea 0%, #fce9cc 100%);
   border: 2px solid #b3661f;
-  border-radius: 28px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.16);
-  padding: 1.25rem;
-  z-index: 10000; /* ensure panel sits above all decorative elements */
+  border-radius: 32px;
+  box-shadow: 0 28px 64px rgba(0,0,0,0.18);
+  padding: 1.5rem;
+  z-index: 200001 !important; /* ensure panel sits above all decorative elements */
 }
 
 .profil-panel.no-border {
